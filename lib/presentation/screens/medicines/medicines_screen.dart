@@ -44,7 +44,6 @@ class _CustomAppbar extends StatelessWidget {
 
 class _CardTittleMedicamentos extends StatelessWidget {
   const _CardTittleMedicamentos({
-
     required this.size,
   });
 
@@ -67,26 +66,32 @@ class _CardTittleMedicamentos extends StatelessWidget {
                   Color.fromARGB(255, 7, 197, 255),
                   Color.fromARGB(255, 0, 109, 255),
                 ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-                child: const Column(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
+                    const Center(
                       child: Text(
                         'MEDICAMENTOS',
                         style: TextStyle(fontSize: 35, color: Colors.white),
                       ),
                     ),
-                    Center(
+                    const Center(
                       child: Text('Porque tu salud es muy importante'),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     Center(
-                      child: Icon(
-                        Icons.add,
-                        size: 80,
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          //TODO: Añadir funcionalidad para agregar nuevo medicamento
+                          print('Buscando añadir');
+                        },
+                        child: const Icon(
+                          Icons.add,
+                          size: 80,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -196,8 +201,10 @@ class _ListCustomItemsMedicine extends StatelessWidget {
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return ModalMedicineDetail(
-                        size: size, itemMedicine: itemMedicine);
+                    return FadeInRight(
+                      child: ModalMedicineDetail(
+                          size: size, itemMedicine: itemMedicine),
+                    );
                   },
                 );
               },

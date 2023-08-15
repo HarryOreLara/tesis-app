@@ -22,14 +22,14 @@ const itemsMedicineConstant = <MedicinesConstant>[
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
-      cantidadMedicamentos: 2,
+      cantidadMedicamentos: 1,
       idMedicine: '1'),
   MedicinesConstant(
       nombre: 'Amoxicilina',
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
-      cantidadMedicamentos: 2,
+      cantidadMedicamentos: 3,
       idMedicine: '2'),
   MedicinesConstant(
       idMedicine: '3',
@@ -44,7 +44,7 @@ const itemsMedicineConstant = <MedicinesConstant>[
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
-      cantidadMedicamentos: 2),
+      cantidadMedicamentos: 1),
   MedicinesConstant(
       idMedicine: '5',
       nombre: 'Aspirina',
