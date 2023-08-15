@@ -28,8 +28,7 @@ class CardFirst extends StatelessWidget {
                   padding: EdgeInsets.all(16.0),
                   child: CircleAvatar(
                     radius: 50.0,
-                    backgroundImage: NetworkImage(
-                        'https://images.genial.ly/5e6aa17fecdda90fc9f1bac2/b96c74ba-a2dc-4794-87c2-3c4c03b930e4.png'),
+                    backgroundImage: AssetImage('assets/images/perfil.webp'),
                   ),
                 ),
               ),

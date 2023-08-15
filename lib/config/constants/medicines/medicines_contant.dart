@@ -1,4 +1,5 @@
 class MedicinesConstant {
+  final String idMedicine;
   final String nombre;
   final String? horaInicio;
   final String? horaIntermedio;
@@ -6,6 +7,7 @@ class MedicinesConstant {
   final int cantidadMedicamentos;
 
   const MedicinesConstant({
+    required this.idMedicine,
     required this.nombre,
     required this.horaInicio,
     required this.horaIntermedio,
@@ -20,20 +22,45 @@ const itemsMedicineConstant = <MedicinesConstant>[
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
-      cantidadMedicamentos: 2),
+      cantidadMedicamentos: 2,
+      idMedicine: '1'),
   MedicinesConstant(
+      nombre: 'Amoxicilina',
+      horaInicio: '08:00',
+      horaIntermedio: '14:00',
+      horaFin: '20:00',
+      cantidadMedicamentos: 2,
+      idMedicine: '2'),
+  MedicinesConstant(
+      idMedicine: '3',
       nombre: 'Clorfenamina',
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
       cantidadMedicamentos: 2),
   MedicinesConstant(
+      idMedicine: '4',
       nombre: 'Paracetamol',
       horaInicio: '08:00',
       horaIntermedio: '14:00',
       horaFin: '20:00',
       cantidadMedicamentos: 2),
   MedicinesConstant(
+      idMedicine: '5',
+      nombre: 'Aspirina',
+      horaInicio: '08:00',
+      horaIntermedio: '14:00',
+      horaFin: '20:00',
+      cantidadMedicamentos: 2),
+  MedicinesConstant(
+      idMedicine: '6',
+      nombre: 'Aspirina',
+      horaInicio: '08:00',
+      horaIntermedio: '',
+      horaFin: '20:00',
+      cantidadMedicamentos: 2),
+  MedicinesConstant(
+      idMedicine: '7',
       nombre: 'Aspirina',
       horaInicio: '08:00',
       horaIntermedio: '14:00',

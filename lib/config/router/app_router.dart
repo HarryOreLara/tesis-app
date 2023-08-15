@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesis_app/presentation/screens/screens.dart';
 
-final appRouter = GoRouter(initialLocation: '/', routes: [
+final appRouter = GoRouter(initialLocation: '/', 
+navigatorKey: GlobalKey<NavigatorState>(),
+routes: [
   GoRoute(
     path: '/',
     name: HomeScreen.name,
@@ -22,7 +25,7 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
     name: AssistantScreen.name,
     builder: (context, state) => const AssistantScreen(),
   ),
-    GoRoute(
+  GoRoute(
     path: '/entertainment',
     name: EntertainmentScreen.name,
     builder: (context, state) => const EntertainmentScreen(),
@@ -53,10 +56,21 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
     builder: (context, state) => const VideosScreen(),
   ),
   GoRoute(
-    path: '/medicines',
-    name: MedicinesScreen.name,
-    builder: (context, state) => const MedicinesScreen(),
-  ),
+      path: '/medicines',
+      name: MedicinesScreen.name,
+      builder: (context, state) => const MedicinesScreen(),
+      routes: [
+        GoRoute(
+          path: 'one-medicine/:id',
+          name: OneMedicineScreen.name,
+          builder: (context, state) {
+            final medicineId = state.pathParameters['id'] ?? 'no-id';
+            return OneMedicineScreen(
+              idMedicine: medicineId,
+            );
+          },
+        ),
+      ]),
   GoRoute(
     path: '/message',
     name: MessageScreen.name,
@@ -72,7 +86,7 @@ final appRouter = GoRouter(initialLocation: '/', routes: [
     name: SettingScreen.name,
     builder: (context, state) => const SettingScreen(),
   ),
-    GoRoute(
+  GoRoute(
     path: '/newMedicine',
     name: NewMedicineScreen.name,
     builder: (context, state) => const NewMedicineScreen(),

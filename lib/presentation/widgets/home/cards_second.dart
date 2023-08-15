@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 class CardsSecond extends StatelessWidget {
   final String nombreCard;
   final String ruta;
+
   const CardsSecond({
     super.key,
     required this.nombreCard,
@@ -25,7 +26,7 @@ class CardsSecond extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: CircleAvatar(
                 radius: 50.0,
-                backgroundImage: NetworkImage(''),
+                //TODO: Implementar imagen de cada card
               ),
             ),
           ),
