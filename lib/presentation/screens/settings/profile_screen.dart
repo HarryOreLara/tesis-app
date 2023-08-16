@@ -11,7 +11,6 @@ class ProfileScreen extends StatelessWidget {
         title: const Text('Perfil'),
         centerTitle: true,
       ),
-      body: const Placeholder(),
     );
   }
 }

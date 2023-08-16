@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/config/constants/medicines/medicines_contant.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
@@ -84,8 +85,8 @@ class _CardTittleMedicamentos extends StatelessWidget {
                     Center(
                       child: GestureDetector(
                         onTap: () {
-                          //TODO: Añadir funcionalidad para agregar nuevo medicamento
-                          print('Buscando añadir');
+                          //TOD: Añadir funcionalidad para agregar nuevo medicamento
+                          context.push('/newMedicine');
                         },
                         child: const Icon(
                           Icons.add,

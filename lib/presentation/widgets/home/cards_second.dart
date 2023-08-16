@@ -26,7 +26,7 @@ class CardsSecond extends StatelessWidget {
               padding: EdgeInsets.all(16.0),
               child: CircleAvatar(
                 radius: 50.0,
-                //TODO: Implementar imagen de cada card
+                backgroundImage: AssetImage('assets/images/entertainment.jpg'),
               ),
             ),
           ),

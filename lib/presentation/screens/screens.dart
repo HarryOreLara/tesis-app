@@ -1,3 +1,5 @@
+export 'package:tesis_app/presentation/screens/entertainment/movies_screen.dart';
+
 export 'package:tesis_app/presentation/screens/medicines/one_medicine_screen.dart';
 
 export 'package:tesis_app/presentation/screens/medicines/new_medicine_screen.dart';
@@ -17,3 +19,6 @@ export 'package:tesis_app/presentation/screens/medicines/medicines_screen.dart';
 export 'package:tesis_app/presentation/screens/messages/message_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/profile_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/settings_screen.dart';
+
+
+

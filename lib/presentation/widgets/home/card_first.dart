@@ -19,6 +19,9 @@ class CardFirst extends StatelessWidget {
           context.push(ruta);
         },
         child: const Card(
+          color: Color.fromARGB(255, 74, 206, 254),
+          elevation: 4,
+          shadowColor: Colors.amber,
           child: Column(
             children: [
               SizedBox(
