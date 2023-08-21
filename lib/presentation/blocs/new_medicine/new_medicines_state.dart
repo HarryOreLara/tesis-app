@@ -8,6 +8,7 @@ class NewMedicinesState extends Equatable {
   final bool isValid;
   final NombreMedicine nombreMedicine;
   final HoraInicio horaInicio;
+  final HoraIntermedia horaIntermedia;
   final HoraFin horaFin;
   final CantidadPastillas cantidadPastillas;
 
@@ -16,6 +17,7 @@ class NewMedicinesState extends Equatable {
       this.isValid = false,
       this.nombreMedicine = const NombreMedicine.pure(),
       this.horaInicio = const HoraInicio.pure(),
+      this.horaIntermedia = const HoraIntermedia.pure() , 
       this.horaFin = const HoraFin.pure(),
       this.cantidadPastillas = const CantidadPastillas.pure()});
 
@@ -24,6 +26,7 @@ class NewMedicinesState extends Equatable {
     bool? isValid,
     NombreMedicine? nombreMedicine,
     HoraInicio? horaInicio,
+    HoraIntermedia? horaIntermedia,
     HoraFin? horaFin,
     CantidadPastillas? cantidadPastillas,
   }) =>
@@ -32,6 +35,7 @@ class NewMedicinesState extends Equatable {
           isValid: isValid ?? this.isValid,
           nombreMedicine: nombreMedicine ?? this.nombreMedicine,
           horaInicio: horaInicio ?? this.horaInicio,
+          horaIntermedia: horaIntermedia ?? this.horaIntermedia,
           horaFin: horaFin ?? this.horaFin,
           cantidadPastillas: cantidadPastillas ?? this.cantidadPastillas);
 
@@ -41,6 +45,7 @@ class NewMedicinesState extends Equatable {
         isValid,
         nombreMedicine,
         horaFin,
+        horaIntermedia,
         horaInicio,
         cantidadPastillas
       ];

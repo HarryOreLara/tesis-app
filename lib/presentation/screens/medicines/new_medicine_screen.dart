@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
@@ -7,8 +6,6 @@ import 'package:tesis_app/presentation/widgets/widgets.dart';
 class NewMedicineScreen extends StatelessWidget {
   static const String name = 'newMedicine_screen';
   const NewMedicineScreen({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +17,6 @@ class NewMedicineScreen extends StatelessWidget {
           centerTitle: true,
         ),
         body: Scaffold(
-
             body: BlocProvider(
           create: (context) => NewMedicinesCubit(),
           child: const _NewMedicineView(),
@@ -66,7 +62,7 @@ class _FormMedicine extends StatelessWidget {
     final cantidadPastillas = newMedicinesCubit.state.cantidadPastillas;
     final horaInicio = newMedicinesCubit.state.horaInicio;
     final horaFin = newMedicinesCubit.state.horaFin;
-
+    final horaIntermedia = newMedicinesCubit.state.horaIntermedia;
 
     return Form(
       child: Column(
@@ -101,7 +97,7 @@ class _FormMedicine extends StatelessWidget {
               SizedBox(
                 width: size.width * 0.4,
                 child: InputTextFormField(
-                  label: 'Hora Fin',
+                  label: 'Hora Finnnn',
                   onChanged: newMedicinesCubit.hoursEndChange,
                   erroMessage: horaFin.errorMessage,
                 ),
@@ -111,11 +107,22 @@ class _FormMedicine extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
+          SizedBox(
+            child: Center(
+              child: InputTextFormField(
+                label: 'Hora intermedia en caso exista',
+                onChanged: newMedicinesCubit.hoursMidChange,
+                erroMessage: horaIntermedia.errorMessage,
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 30,
+          ),
           FilledButton.tonalIcon(
               onPressed: () {
                 //newMedicinesCubit.onSubmit();
                 newMedicinesCubit.guardarBaseDatos();
-
               },
               icon: const Icon(Icons.save),
               label: const Text('Guardar Medicina'))

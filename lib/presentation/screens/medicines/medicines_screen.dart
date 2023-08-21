@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tesis_app/config/constants/medicines/medicines_contant.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/presentation/providers/providers.dart';
-import 'package:tesis_app/presentation/screens/medicines/prueba_medicine.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class MedicinesScreen extends StatelessWidget {
@@ -151,71 +149,73 @@ class _ListCustomItemsMedicine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        final colors = Theme.of(context).colorScheme;
+    final colors = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Card(
-          elevation: 3,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.0),
-                gradient: const LinearGradient(colors: [
-                  Color.fromARGB(255, 7, 197, 255),
-                  Color.fromARGB(235, 60, 236, 255)
-                ])),
-            alignment: Alignment.center,
-            height: 70,
-            child: ListTile(
-              title: Text(
-                medicine.nombre,
-                style: const TextStyle(fontSize: 20),
-              ),
-              subtitle: SizedBox(
-                width: 80,
-                child: Row(
-                  children: [
-                    Text(
-                      medicine.horaInicio.toString(),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text(medicine.horaIntermedio.toString()),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    Text(medicine.horaFin.toString()),
-                    const SizedBox(
-                      width: 60,
-                    ),
-                    const Icon(
-                      Icons.alarm,
-                      color: Colors.red,
-                    )
-                  ],
+    return SingleChildScrollView(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Card(
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0)),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  gradient: const LinearGradient(colors: [
+                    Color.fromARGB(255, 7, 197, 255),
+                    Color.fromARGB(235, 60, 236, 255)
+                  ])),
+              alignment: Alignment.center,
+              height: 70,
+              child: ListTile(
+                title: Text(
+                  medicine.nombre,
+                  style: const TextStyle(fontSize: 20),
                 ),
-              ),
-              //child: Text(itemMedicine.cantidadMedicamentos.toString())),
-              trailing: Icon(
-                Icons.arrow_right_rounded,
-                color: colors.primary,
-              ),
+                subtitle: SizedBox(
+                  width: 80,
+                  child: Row(
+                    children: [
+                      Text(
+                        medicine.horaInicio.toString(),
+                      ),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Text(medicine.horaIntermedio.toString()),
+                      const SizedBox(
+                        width: 30,
+                      ),
+                      Text(medicine.horaFin.toString()),
+                      const SizedBox(
+                        width: 60,
+                      ),
+                      const Icon(
+                        Icons.alarm,
+                        color: Colors.red,
+                      )
+                    ],
+                  ),
+                ),
+                //child: Text(itemMedicine.cantidadMedicamentos.toString())),
+                trailing: Icon(
+                  Icons.arrow_right_rounded,
+                  color: colors.primary,
+                ),
 
-              onTap: () {
-                showModalBottomSheet(
-                  context: context,
-                  builder: (context) {
-                    return FadeInRight(
-                      child: ModalMedicineDetail(
-                          size: size, itemMedicine: medicine),
-                    );
-                  },
-                );
-              },
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return FadeInRight(
+                        child: ModalMedicineDetail(
+                            size: size, itemMedicine: medicine),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
         ),

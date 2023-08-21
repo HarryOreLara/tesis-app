@@ -17,6 +17,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
         cantidadPastillas:
             CantidadPastillas.dirty(state.cantidadPastillas.value),
         horaInicio: HoraInicio.dirty(state.horaInicio.value),
+        horaIntermedia: HoraIntermedia.dirty(state.horaIntermedia.value),
         horaFin: HoraFin.dirty(state.horaFin.value),
         isValid: Formz.validate([
           state.nombreMedicine,
@@ -28,7 +29,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   }
 
   void guardarBaseDatos() async {
-
     var dio = Dio(BaseOptions(headers: {
       'x-auth-token':
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTJhNjgxMWUzNTBkOWIxYzFjMmZhZSIsImlhdCI6MTY5MjU3NTM2MX0.5rES-UtmnEAJZonUqPQ9cHll30wsNSY8zUVzIqXn5zo'
@@ -40,7 +40,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
         "nombre": state.nombreMedicine.value,
         "cantidadMedicamentos": state.cantidadPastillas.value,
         "horaInicio": state.horaInicio.value,
-        "horaIntermedio": "15:00",
+        "horaIntermedio": state.horaIntermedia.value,
         "horaFin": state.horaFin.value,
       });
       print(response.statusCode);
@@ -58,6 +58,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
           nombreMedicine,
           state.cantidadPastillas,
           state.horaFin,
+          state.horaIntermedia,
           state.horaInicio
         ])));
   }
@@ -70,6 +71,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
           cantidadPastillas,
           state.nombreMedicine,
           state.horaFin,
+          state.horaIntermedia,
           state.horaInicio
         ])));
   }
@@ -82,7 +84,8 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
           horaInicio,
           state.nombreMedicine,
           state.cantidadPastillas,
-          state.horaFin
+          state.horaFin,
+          state.horaIntermedia,
         ])));
   }
 
@@ -94,7 +97,21 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
           horaFin,
           state.nombreMedicine,
           state.cantidadPastillas,
-          state.horaInicio
+          state.horaInicio,
+          state.horaIntermedia,
+        ])));
+  }
+
+  void hoursMidChange(String value) {
+    final horaIntermedia = HoraIntermedia.dirty(value);
+    emit(state.copyWith(
+        horaIntermedia: horaIntermedia,
+        isValid: Formz.validate([
+          horaIntermedia,
+          state.nombreMedicine,
+          state.cantidadPastillas,
+          state.horaInicio,
+          state.horaFin
         ])));
   }
 }
