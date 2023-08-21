@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesis_app/config/constants/medicines/medicines_contant.dart';
+import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/presentation/providers/providers.dart';
+import 'package:tesis_app/presentation/screens/medicines/prueba_medicine.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class MedicinesScreen extends StatelessWidget {
@@ -19,6 +23,7 @@ class MedicinesScreen extends StatelessWidget {
             flexibleSpace: const _CustomAppbar(),
           ),
         ),
+        //body: MedicinasList());
         body: _CardTittleMedicamentos(size: size));
   }
 }
@@ -113,38 +118,40 @@ class _CardTittleMedicamentos extends StatelessWidget {
   }
 }
 
-class _ListMedicines extends StatelessWidget {
+class _ListMedicines extends ConsumerWidget {
   const _ListMedicines();
 
   @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
+  Widget build(BuildContext context, ref) {
+    final medicinasAsyncValue = ref.watch(medicinasProvider); //Paso 1
 
-    return ListView.builder(
-      physics: const BouncingScrollPhysics(),
-      itemCount: itemsMedicineConstant.length,
-      itemBuilder: (context, index) {
-        final itemMedicine = itemsMedicineConstant[index];
-
-        return FadeInRight(
-          child: _ListCustomItemsMedicine(
-              itemMedicine: itemMedicine, colors: colors),
+    return medicinasAsyncValue.when(
+      data: (medicinas) {
+        return ListView.builder(
+          physics: const BouncingScrollPhysics(),
+          itemCount: medicinas.length,
+          itemBuilder: (context, index) {
+            final medicina = medicinas[index];
+            return FadeInRight(
+              child: _ListCustomItemsMedicine(medicine: medicina),
+            );
+          },
         );
       },
+      error: (error, stackTrace) => Text('Error al cargar las medicinas'),
+      loading: () => CircularProgressIndicator(),
     );
   }
 }
 
 class _ListCustomItemsMedicine extends StatelessWidget {
-  const _ListCustomItemsMedicine({
-    required this.itemMedicine,
-    required this.colors,
-  });
+  final Medicine medicine;
 
-  final MedicinesConstant itemMedicine;
-  final ColorScheme colors;
+  const _ListCustomItemsMedicine({required this.medicine});
+
   @override
   Widget build(BuildContext context) {
+        final colors = Theme.of(context).colorScheme;
     final size = MediaQuery.of(context).size;
     return Center(
       child: Padding(
@@ -164,7 +171,7 @@ class _ListCustomItemsMedicine extends StatelessWidget {
             height: 70,
             child: ListTile(
               title: Text(
-                itemMedicine.nombre,
+                medicine.nombre,
                 style: const TextStyle(fontSize: 20),
               ),
               subtitle: SizedBox(
@@ -172,16 +179,16 @@ class _ListCustomItemsMedicine extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      itemMedicine.horaInicio.toString(),
+                      medicine.horaInicio.toString(),
                     ),
                     const SizedBox(
                       width: 30,
                     ),
-                    Text(itemMedicine.horaIntermedio.toString()),
+                    Text(medicine.horaIntermedio.toString()),
                     const SizedBox(
                       width: 30,
                     ),
-                    Text(itemMedicine.horaFin.toString()),
+                    Text(medicine.horaFin.toString()),
                     const SizedBox(
                       width: 60,
                     ),
@@ -204,7 +211,7 @@ class _ListCustomItemsMedicine extends StatelessWidget {
                   builder: (context) {
                     return FadeInRight(
                       child: ModalMedicineDetail(
-                          size: size, itemMedicine: itemMedicine),
+                          size: size, itemMedicine: medicine),
                     );
                   },
                 );

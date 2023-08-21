@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tesis_app/config/constants/medicines/medicines_contant.dart';
+import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 
 class ModalMedicineDetail extends StatelessWidget {
   const ModalMedicineDetail({
@@ -9,7 +10,7 @@ class ModalMedicineDetail extends StatelessWidget {
   });
 
   final Size size;
-  final MedicinesConstant itemMedicine;
+  final Medicine itemMedicine;
 
   @override
   Widget build(BuildContext context) {

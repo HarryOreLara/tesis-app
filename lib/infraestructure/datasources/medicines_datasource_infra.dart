@@ -1,37 +1,44 @@
 import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/infraestructure/mappers/medicine_mapper.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dart';
 
+//https://tesis-xz3b.onrender.com/medicines/getList/64e2a6811e350d9b1c1c2fae
 class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
-  final dio = Dio(BaseOptions(baseUrl: 'http://localhost:3000/', headers: {
+  final dio =
+      Dio(BaseOptions(baseUrl: 'https://tesis-xz3b.onrender.com', headers: {
     'x-auth-token':
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTJhNjgxMWUzNTBkOWIxYzFjMmZhZSIsImlhdCI6MTY5MjU3NTM2MX0.5rES-UtmnEAJZonUqPQ9cHll30wsNSY8zUVzIqXn5zo'
   }));
 
+  List<Medicine> JsonToMedicines(Map<String, dynamic> json) {
+    final medicineResponse = MedicinesReponse.fromJson(json);
+    final List<Medicine> medicines = medicineResponse.newMedicine
+        .map((medicinesDb) => MedicineMapper.medicineDbToEntity(medicinesDb))
+        .toList();
 
-  // String _JsonToMedicines(Map<String, dynamic> json){
-  //   final medicineResponse = MedicinesReponse.fromJson(json);
-  //   final String medicines = medicineResponse.toString();
+    return medicines;
+  }
 
-  //   return medicines;
-  // }
+
+
+  //TODO: Cambiar id por la dinamica al momneto de crear usuario
+  @override
+  Future<List<Medicine>> getAllMedicine(String id) async {
+    id = '64e2a6811e350d9b1c1c2fae';
+    final response = await dio.get('/medicines/getList/$id');
+    // if (response.statusCode != 200) {
+    //   throw Exception('Moviue with id: $id not found');
+    // }
+
+    return JsonToMedicines(response.data);
+  }
 
 
   @override
-  Future<List<Medicine>> getAllMedicine({String id = ''}) {
-
+  Future<MedicinesReponse> postNewMedicine(Medicine medicine) {
+    // TODO: implement postNewMedicine
     throw UnimplementedError();
   }
-  
-  
-  @override
-  Future<MedicinesReponse> postNewMedicine(Medicine medicine) async{
-    final response = await dio.post('medicines/post', data: medicine);
-    final medicineRes = MedicinesReponse(ok: true, msg: "Todo correcto", data:response);
-    return medicineRes;
-  }
-
-
-
 }

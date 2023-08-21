@@ -4,5 +4,5 @@ import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dar
 abstract class MedicineRepository {
   Future<MedicinesReponse> postNewMedicine(Medicine medicine);
 
-  Future<List<Medicine>> getAllMedicine({String id = ''});
+  Future<List<Medicine>> getAllMedicine(String id);
 }
