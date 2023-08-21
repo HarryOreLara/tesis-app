@@ -41,7 +41,7 @@ class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
     final medicineResponse = MedicinesReponse(
         ok: true, msg: 'Guardo con exito', newMedicine: [medicineLista]);
 
-    print(medicineResponse);
+    //print(medicineResponse);
     return medicineResponse;
   }
 }

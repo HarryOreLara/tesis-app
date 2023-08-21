@@ -136,8 +136,8 @@ class _ListMedicines extends ConsumerWidget {
           },
         );
       },
-      error: (error, stackTrace) => Text('Error al cargar las medicinas'),
-      loading: () => CircularProgressIndicator(),
+      error: (error, stackTrace) => const Text('Error al cargar las medicinas'),
+      loading: () => const CircularProgressIndicator(),
     );
   }
 }
