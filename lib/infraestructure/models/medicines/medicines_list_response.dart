@@ -1,7 +1,7 @@
 class MedicineList {//MobieMobieDB
     final String id;
     final String nombre;
-    final int cantidadMedicamentos;
+    final String cantidadMedicamentos;
     final String horaInicio;
     final String horaIntermedio;
     final String horaFin;

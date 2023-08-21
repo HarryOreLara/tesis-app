@@ -1,7 +1,7 @@
 class Medicine {
-  final String id;
+  final String? id;
   final String nombre;
-  final int cantidadMedicamentos;
+  final String cantidadMedicamentos;
   final String horaInicio;
   final String horaIntermedio;
   final String horaFin;
@@ -20,4 +20,6 @@ class Medicine {
     required this.createdAt,
     required this.v,
   });
+
+
 }

@@ -10,7 +10,6 @@ final idPersonaProvider = Provider<String>((ref) {
   return '64e2a6811e350d9b1c1c2fae';
 });
 
-
 //Guardar esto siempre, sirve mucho
 final medicinasProvider =
     FutureProvider.autoDispose<List<Medicine>>((ref) async {
@@ -25,6 +24,19 @@ final medicinasProvider =
 });
 
 
+
+final deleteMedicinesProvider =
+    FutureProvider.autoDispose<List<Medicine>>((ref) async {
+  final idPersona = ref.read(idPersonaProvider);
+  final medicineDataSourceInfra = MedicineDbDatasourceInfra();
+  final datita = medicineDataSourceInfra.getAllMedicine(idPersona);
+  return datita;
+});
+
+
+
+
+//Esto no se utiliza
 final getMedicinesByIdMedicineProvider =
     StateNotifierProvider<MedicinesByNotifier, Map<String, List<Medicine>>>(
         (ref) {

@@ -1,6 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:tesis_app/config/constants/medicines/medicines_contant.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
+import 'package:tesis_app/presentation/providers/medicines/medicines_provider.dart';
 
 class ModalMedicineDetail extends StatelessWidget {
   const ModalMedicineDetail({
@@ -113,7 +117,9 @@ class ModalMedicineDetail extends StatelessWidget {
               ),
               Flexible(
                 child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      deleteMedicine(itemMedicine.id);
+                    },
                     child: const Text('Eliminar medicamento')),
               )
             ],
@@ -121,5 +127,22 @@ class ModalMedicineDetail extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+void deleteMedicine(String? medicineId) async {
+  final dio = Dio(); // Instancia de Dio para las solicitudes
+
+  try {
+    final response = await dio
+        .delete('https://tesis-xz3b.onrender.com/medicines/delete/$medicineId');
+
+    if (response.statusCode == 200) {
+      print('Eliminación exitosa');
+    } else {
+      print('Error en la eliminación');
+    }
+  } catch (error) {
+    print('Error: $error');
   }
 }

@@ -33,7 +33,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
       'x-auth-token':
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTJhNjgxMWUzNTBkOWIxYzFjMmZhZSIsImlhdCI6MTY5MjU3NTM2MX0.5rES-UtmnEAJZonUqPQ9cHll30wsNSY8zUVzIqXn5zo'
     }));
-
     try {
       var response = await dio
           .post('https://tesis-xz3b.onrender.com/medicines/post', data: {
@@ -47,6 +46,23 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
       print(response.data.toString());
     } catch (error) {
       print('Error al guardar en la base de datos: $error');
+    }
+  }
+
+  void deleteMedicine(String? medicineId) async {
+    final dio = Dio(); // Instancia de Dio para las solicitudes
+
+    try {
+      final response = await dio.delete(
+          'https://tesis-xz3b.onrender.com/medicines/delete/$medicineId');
+
+      if (response.statusCode == 200) {
+        print('Eliminación exitosa');
+      } else {
+        print('Error en la eliminación');
+      }
+    } catch (error) {
+      print('Error: $error');
     }
   }
 
