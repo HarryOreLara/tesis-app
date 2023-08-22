@@ -39,7 +39,7 @@ class CardFirst extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 20),
                 child: Text(
                   'Buen dia, Feliciana',
-                  style: TextStyle(fontSize: 18.0),
+                  style: TextStyle(fontSize: 18.0, color: Colors.white),
                 ),
               ),
             ],

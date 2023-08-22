@@ -22,13 +22,15 @@ class InputTextFormField extends StatelessWidget {
 
     final border = OutlineInputBorder(
         //borderSide: BorderSide(color: colors.primary),//Este ccodigo es para darle color a todos los inputs
-        borderRadius: BorderRadius.circular(30));
+        borderRadius: BorderRadius.circular(20));
 
     return TextFormField(
       onChanged: onChanged,
       validator: validator,
       obscureText: obscureText,
       decoration: InputDecoration(
+        filled: true, // Indica que el fondo debe ser llenado
+        fillColor: const Color.fromARGB(192, 255, 255, 255),
         enabledBorder: border,
         focusedBorder:
             border.copyWith(borderSide: BorderSide(color: colors.primary)),
