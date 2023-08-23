@@ -9,14 +9,16 @@ class AssistantScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(40.0),
-          child: AppBar(
-            flexibleSpace: const _CustomAppbar(),
-            centerTitle: true,
-          ),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(40.0),
+        child: AppBar(
+          flexibleSpace: const _CustomAppbar(),
+          centerTitle: true,
         ),
-        body: const _CardAsistenteLogo());
+      ),
+      body: QuestionChatScreen(),
+      //body: const _CardAsistenteLogo()
+    );
   }
 }
 
@@ -87,4 +89,77 @@ class _CardAsistenteLogo extends StatelessWidget {
       ],
     );
   }
+}
+
+class QuestionChatScreen extends StatefulWidget {
+  @override
+  _QuestionChatScreenState createState() => _QuestionChatScreenState();
+}
+
+class _QuestionChatScreenState extends State<QuestionChatScreen> {
+  final List<Question> questions = [
+    Question('¿Te sientes bien hoy?'),
+    Question('¿Estás disfrutando el día?'),
+    Question('¿Te gustaría hacer algo especial?'),
+  ];
+
+  int currentQuestionIndex = 0;
+  bool canAnswer = true;
+
+  void _nextQuestion(bool isPositiveResponse) {
+    setState(() {
+      questions[currentQuestionIndex].response = isPositiveResponse;
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex >= questions.length) {
+        canAnswer = false;
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Chat Interactivo')),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              itemCount: currentQuestionIndex + 1,
+              itemBuilder: (BuildContext context, int index) {
+                return ListTile(
+                  title: Text(questions[index].text),
+                  subtitle: index < currentQuestionIndex
+                      ? Text(
+                          'Usuario: ${questions[index].response ? 'Bien' : 'Mal'}')
+                      : null,
+                );
+              },
+            ),
+          ),
+          if (currentQuestionIndex < questions.length)
+            ButtonBar(
+              alignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: canAnswer ? () => _nextQuestion(true) : null,
+                  child: Text('Bien'),
+                ),
+                ElevatedButton(
+                  onPressed: canAnswer ? () => _nextQuestion(false) : null,
+                  child: Text('Mal'),
+                ),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class Question {
+  final String text;
+  bool response;
+
+  Question(this.text) : response = false;
 }
