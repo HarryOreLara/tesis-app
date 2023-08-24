@@ -25,7 +25,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
           state.horaInicio,
           state.horaFin,
         ])));
-    //print('Todo llego al cubit: ${state.nombreMedicine}');
   }
 
   void guardarBaseDatos() async {
@@ -42,8 +41,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
         "horaIntermedio": state.horaIntermedia.value,
         "horaFin": state.horaFin.value,
       });
-      print(response.statusCode);
-      print(response.data.toString());
     } catch (error) {
       print('Error al guardar en la base de datos: $error');
     }

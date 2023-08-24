@@ -19,7 +19,8 @@ class ProfileScreen extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'Perfil',
-                style: TextStyle(fontSize: 40, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 40, color: Color.fromARGB(255, 138, 138, 138)),
               )),
         ),
         body: BlocProvider(

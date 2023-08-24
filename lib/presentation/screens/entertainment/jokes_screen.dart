@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:tesis_app/domain/entities/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
+
 class JokesScreen extends StatelessWidget {
   static const String name = 'jokes_screen';
   const JokesScreen({super.key});
@@ -88,48 +89,59 @@ class __ChistesScreenState extends State<_ChistesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          FutureBuilder<Joke>(
-            future: jokeFromApi,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('Error al obtener el chiste');
-              } else if (!snapshot.hasData) {
-                return Text('No hay datos');
-              } else {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FutureBuilder<Joke>(
+              future: jokeFromApi,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                }
+
+                if (snapshot.hasError) {
+                  return Text('Error al obtener el chiste');
+                }
+
+                if (!snapshot.hasData) {
+                  return Text('No hay datos');
+                }
+
                 final joke = snapshot.data!;
                 currentJokeId = joke.id;
-                return Text(joke.contenido);
-              }
-            },
-          ),
-          const SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton(
-                onPressed: () {
-                  cargar('likes', currentJokeId);
-                  cargarNuevoChiste();
-                },
-                child: const Text('Like'),
-              ),
-              const SizedBox(width: 20),
-              ElevatedButton(
-                onPressed: () {
-                  cargar('dislikes', currentJokeId);
-                  cargarNuevoChiste();
-                },
-                child: const Text('Dislike'),
-              ),
-            ],
-          ),
-        ],
+                return Text(
+                  joke.contenido,
+                  style: TextStyle(fontSize: 35),
+                  textAlign: TextAlign.center,
+                );
+              },
+            ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    cargar('likes', currentJokeId);
+                    cargarNuevoChiste();
+                  },
+                  child: const Text('Like'),
+                ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    cargar('dislikes', currentJokeId);
+                    cargarNuevoChiste();
+                  },
+                  child: const Text('Dislike'),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
