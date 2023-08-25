@@ -16,7 +16,7 @@ class DniProfile extends FormzInput<String, DniProfileError> {
     if (isValid || isPure) return null;
 
     if (displayError == DniProfileError.empty) return 'El campo es requerido';
-    if (displayError == DniProfileError.length) return 'Minimo 20 caracteres';
+    if (displayError == DniProfileError.length) return 'Minimo 8 caracteres';
 
     return null;
   }
@@ -25,7 +25,7 @@ class DniProfile extends FormzInput<String, DniProfileError> {
   @override
   DniProfileError? validator(String value) {
     if (value.isEmpty || value.trim().isEmpty) return DniProfileError.empty;
-    if (value.length > 9) return DniProfileError.length;
+    if (value.length != 8) return DniProfileError.length;
 
     return null;
   }
