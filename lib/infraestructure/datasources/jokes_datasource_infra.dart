@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/jokes_datasource_domain.dart';
-import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
 import 'package:tesis_app/domain/entities/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/infraestructure/mappers/medicine_mapper.dart';
-import 'package:tesis_app/infraestructure/models/entertainment/jokes_list_response.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dart';
-import 'package:tesis_app/infraestructure/models/medicines/medicines_list_response.dart';
 
 //https://tesis-xz3b.onrender.com/medicines/getList/64e2a6811e350d9b1c1c2fae
 class JokeDatasouserceInfra extends JokesDataSourceDomain {

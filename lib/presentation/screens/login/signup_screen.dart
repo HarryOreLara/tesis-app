@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:tesis_app/presentation/blocs/login/login_cubit.dart';
+
 class SignUpScreen extends StatelessWidget {
   static const String name = 'signup_screen';
   const SignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.blue,
-      body: CurvedContainer(),
+      body: BlocProvider(
+        create: (context) => LoginCubit(),
+        child: const CurvedContainer(),
+      ),
     );
   }
 }
@@ -39,7 +46,26 @@ class CurvedContainer extends StatelessWidget {
       SizedBox(
         height: size.height * 0.07,
       ),
-      SingleChildScrollView(
+      _FormRegister(size: size),
+    ]);
+  }
+}
+
+class _FormRegister extends StatelessWidget {
+  const _FormRegister({
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    final loginCubit = context.watch<LoginCubit>();
+    final dni = loginCubit.state.dniProfile;
+    final password = loginCubit.state.passwordLogin;
+
+    return Form(
+      child: SingleChildScrollView(
         child: Column(children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -61,10 +87,12 @@ class CurvedContainer extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Colors.grey.shade200))),
-                    child: const TextField(
+                    child: TextField(
+                      onChanged: loginCubit.dniLoginChange,
                       decoration: InputDecoration(
+                          errorText: dni.errorMessage,
                           hintText: "Dni",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           border: InputBorder.none),
                     ),
                   ),
@@ -73,10 +101,12 @@ class CurvedContainer extends StatelessWidget {
                     decoration: BoxDecoration(
                         border: Border(
                             bottom: BorderSide(color: Colors.grey.shade200))),
-                    child: const TextField(
+                    child: TextField(
+                      onChanged: loginCubit.passwordLoginchange,
                       decoration: InputDecoration(
+                          errorText: password.errorMessage,
                           hintText: "Contraseña",
-                          hintStyle: TextStyle(color: Colors.grey),
+                          hintStyle: const TextStyle(color: Colors.grey),
                           border: InputBorder.none),
                     ),
                   ),
@@ -132,7 +162,7 @@ class CurvedContainer extends StatelessWidget {
           )
         ]),
       ),
-    ]);
+    );
   }
 }
 
