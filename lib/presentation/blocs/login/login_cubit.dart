@@ -26,7 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
   }
 
-  void register() async {
+  Future<bool> register() async {
     var dio = Dio();
     try {
       var response = await dio
@@ -34,11 +34,14 @@ class LoginCubit extends Cubit<LoginState> {
         "username": state.dniProfile.value,
         "password": state.passwordLogin.value
       });
-      print(response);
+      Map<String, dynamic> data = response.data;
+      final bool ok = data.containsKey('ok') ? data['ok'] : false;
+      return ok;
     } catch (e) {
-      print(e);
+      return false;
     }
   }
+
 
   void dniLoginChange(String value) {
     final dniLogin = DniProfile.dirty(value);

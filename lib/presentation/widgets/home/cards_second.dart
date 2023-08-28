@@ -52,7 +52,7 @@ class CardsSecond extends StatelessWidget {
                   child: Text(
                     nombreCard,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: Color(0xFF0077BF),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),

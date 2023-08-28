@@ -10,58 +10,74 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final colors = Theme.of(context).colorScheme;
+    final size = MediaQuery.of(context).size;
 
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 176, 239, 255),
+        backgroundColor: const Color(0xFF008FD5),
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 176, 239, 255),
+          backgroundColor: const Color(0xFF008FD5),
           title: const Align(
               alignment: Alignment.centerRight,
               child: Text(
                 'Perfil',
-                style: TextStyle(
-                    fontSize: 40, color: Color.fromARGB(255, 138, 138, 138)),
+                style: TextStyle(fontSize: 40, color: Color(0xff113984)),
               )),
         ),
         body: BlocProvider(
           create: (context) => ProfileCubit(),
           child: ListView(
-            children: const [
+            children: [
               Card(
-                color: Color.fromARGB(255, 74, 206, 254),
+                color: Colors.white,
                 elevation: 4,
-                shadowColor: Colors.amber,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      width: 380,
-                      height: 200,
-                      child: Padding(
-                        padding: EdgeInsets.all(16.0),
-                        child: CircleAvatar(
-                          radius: 50.0,
-                          backgroundImage:
-                              AssetImage('assets/images/perfil.webp'),
+                shadowColor: const Color.fromARGB(255, 0, 0, 0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    gradient: const LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 255, 255, 255),
+                        Color.fromARGB(255, 255, 255, 255)
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: const Column(
+                    children: [
+                      SizedBox(
+                        width: 380,
+                        height: 200,
+                        child: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: CircleAvatar(
+                            radius: 50.0,
+                            backgroundImage:
+                                AssetImage('assets/images/perfil.webp'),
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 20),
-                      child: Text(
-                        'Buen dia, Feliciana',
-                        style: TextStyle(fontSize: 18.0, color: Colors.white),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 20),
+                        child: Text(
+                          'Buen dia, Feliciana',
+                          style: TextStyle(
+                              fontSize: 22.0,
+                              color: Color(0xff003976),
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Padding(
+              const Padding(
                 padding: EdgeInsets.only(right: 16, left: 0),
                 child: Card(
-                  color: Color.fromARGB(255, 74, 206, 254),
+                  color: Color.fromARGB(255, 255, 255, 255),
                   shadowColor: Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
@@ -72,8 +88,21 @@ class ProfileScreen extends StatelessWidget {
                   child: _FormProfile(),
                 ),
               ),
-              SizedBox(
-                height: 40,
+              const SizedBox(
+                height: 20,
+              ), 
+              Container(
+                width: 100,
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    print('Cerrando sesion');
+                  },
+                  icon: const Icon(Icons.logout), // Ícono del botón
+                  label: const Text('Cerrar Sesión'), // Etiqueta del botón
+                ),
+              ),
+              const SizedBox(
+                height: 20,
               ),
             ],
           ),

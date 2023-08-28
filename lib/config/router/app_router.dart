@@ -7,12 +7,12 @@ final appRouter = GoRouter(
     navigatorKey: GlobalKey<NavigatorState>(),
     routes: [
       GoRoute(
-        path: '/',
+        path: '/login',
         name: LoginScreen.name,
         builder: (context, state) => const LoginScreen(),
       ),
       GoRoute(
-        path: '/home',
+        path: '/',
         name: HomeScreen.name,
         builder: (context, state) => const HomeScreen(),
       ),

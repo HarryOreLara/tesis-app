@@ -18,31 +18,47 @@ class CardFirst extends StatelessWidget {
         onTap: () {
           context.push(ruta);
         },
-        child: const Card(
-          color: Color.fromARGB(255, 74, 206, 254),
+        child: Card(
+          color: Colors.white,
           elevation: 4,
-          shadowColor: Colors.amber,
-          child: Column(
-            children: [
-              SizedBox(
-                width: 380,
-                height: 200,
-                child: Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: CircleAvatar(
-                    radius: 50.0,
-                    backgroundImage: AssetImage('assets/images/perfil.webp'),
+          shadowColor: const Color.fromARGB(255, 255, 255, 255),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20.0),
+              gradient: const LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(255, 255, 255, 255)
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+            child: const Column(
+              children: [
+                SizedBox(
+                  width: 380,
+                  height: 200,
+                  child: Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: CircleAvatar(
+                      radius: 50.0,
+                      backgroundImage: AssetImage('assets/images/perfil.webp'),
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20),
-                child: Text(
-                  'Buen dia, Feliciana',
-                  style: TextStyle(fontSize: 18.0, color: Colors.white),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20),
+                  child: Text(
+                    'Buen dia, Feliciana',
+                    style: TextStyle(
+                        fontSize: 22.0,
+                        color: Color(0xff003976),
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

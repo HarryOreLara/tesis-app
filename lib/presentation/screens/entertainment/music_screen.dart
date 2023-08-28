@@ -8,80 +8,51 @@ class MusicScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Musica'),
-        centerTitle: true,
+    return Container(
+      decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+            Colors.deepPurple.shade800.withOpacity(0.8),
+            Colors.deepPurple.shade200.withOpacity(0.8)
+          ])),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+
+        appBar: const _CustomAppbar(),
+        bottomNavigationBar: BottomNavigationBar(items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home')
+        ]),
+        body: Container(),
+        //body: MusicPlayerScreen(),
       ),
-      //body: MusicPlayerScreen(),
     );
   }
 }
 
-class MusicPlayerScreen extends StatefulWidget {
-  @override
-  _MusicPlayerScreenState createState() => _MusicPlayerScreenState();
-}
-
-class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
-  AudioPlayer audioPlayer = AudioPlayer();
-  bool isPlaying = false;
-  String currentSong = 'Canción actual';
-
-  void playPauseMusic() async {
-    if (isPlaying) {
-      await audioPlayer.pause();
-    } else {
-      await audioPlayer.play(UrlSource(''));
-    }
-
-    setState(() {
-      isPlaying = !isPlaying;
-    });
-  }
-
-  void stopMusic() async {
-    await audioPlayer.stop();
-
-    setState(() {
-      isPlaying = false;
-    });
-  }
-
-  @override
-  void dispose() {
-    audioPlayer.dispose();
-    super.dispose();
-  }
+class _CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
+  const _CustomAppbar({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Reproductor de Música'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              currentSong,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            IconButton(
-              icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
-              iconSize: 64,
-              onPressed: playPauseMusic,
-            ),
-            IconButton(
-              icon: Icon(Icons.stop),
-              iconSize: 48,
-              onPressed: stopMusic,
-            ),
-          ],
-        ),
-      ),
+    return AppBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      leading: const Icon(Icons.grid_view_rounded),
+      actions: [
+        Container(
+          margin: const EdgeInsets.only(right: 20),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(''),
+          ),
+        )
+      ],
     );
   }
+
+  @override
+  Size get preferredSize => throw UnimplementedError();
 }

@@ -121,8 +121,8 @@ class _FormRegister extends StatelessWidget {
           FilledButton.icon(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor:
-                  MaterialStateProperty.all(const Color.fromARGB(255, 0, 102, 185)),
+              foregroundColor: MaterialStateProperty.all(
+                  const Color.fromARGB(255, 0, 102, 185)),
               padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
                   vertical: 15,
                   horizontal:
@@ -130,8 +130,15 @@ class _FormRegister extends StatelessWidget {
               minimumSize: MaterialStateProperty.all(
                   const Size(200, 50)), // Ajusta el tamaño mínimo del botón
             ),
-            onPressed: () {
-              loginCubit.register();
+            onPressed: () async {
+              bool ok = await loginCubit.register();
+              if (ok) {
+                context.push('/home');
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Error en el inicio de sesión')),
+                );
+              }
             },
             icon: const Icon(Icons.person),
             label: const Text(

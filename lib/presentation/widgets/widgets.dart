@@ -1,4 +1,7 @@
 
+export 'package:tesis_app/presentation/widgets/assistant/her_message_bubble.dart';
+export 'package:tesis_app/presentation/widgets/assistant/my_message_bubble.dart';
+
 export 'package:tesis_app/presentation/widgets/medicine/form_medicine.dart';
 
 export 'package:tesis_app/presentation/widgets/medicine/modal_medicine_detail.dart';
