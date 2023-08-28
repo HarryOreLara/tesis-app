@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:tesis_app/presentation/blocs/login/login_cubit.dart';
 
@@ -10,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      backgroundColor: const Color.fromARGB(255, 0, 102, 185),
       body: BlocProvider(
         create: (context) => LoginCubit(),
         child: const CurvedContainer(),
@@ -37,7 +38,7 @@ class CurvedContainer extends StatelessWidget {
                   child: Text(
                 'Registro',
                 style: TextStyle(
-                    color: Colors.blue,
+                    color: Color.fromARGB(255, 0, 102, 185),
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold),
               ))),
@@ -120,7 +121,8 @@ class _FormRegister extends StatelessWidget {
           FilledButton.icon(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.white),
-              foregroundColor: MaterialStateProperty.all(Colors.blue),
+              foregroundColor:
+                  MaterialStateProperty.all(const Color.fromARGB(255, 0, 102, 185)),
               padding: MaterialStateProperty.all(const EdgeInsets.symmetric(
                   vertical: 15,
                   horizontal:
@@ -129,7 +131,7 @@ class _FormRegister extends StatelessWidget {
                   const Size(200, 50)), // Ajusta el tamaño mínimo del botón
             ),
             onPressed: () {
-              print('Registrandome');
+              loginCubit.register();
             },
             icon: const Icon(Icons.person),
             label: const Text(
@@ -150,7 +152,7 @@ class _FormRegister extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              print('Volver a iniciar sesion');
+              context.push('/');
             },
             child: const Text(
               'Inicia Sesión',

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/presentation/blocs/login/login_cubit.dart';
+import 'package:tesis_app/presentation/screens/screens.dart';
 
 class LoginScreen extends StatelessWidget {
   static const String name = 'login_screen';
@@ -74,20 +76,25 @@ class _CustomLogin extends StatelessWidget {
                 child: _FormLogin(size: size),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
 
-class _FormLogin extends StatelessWidget {
+class _FormLogin extends StatefulWidget {
   const _FormLogin({
     required this.size,
   });
 
   final Size size;
 
+  @override
+  State<_FormLogin> createState() => _FormLoginState();
+}
+
+class _FormLoginState extends State<_FormLogin> {
   @override
   Widget build(BuildContext context) {
     final loginCubit = context.watch<LoginCubit>();
@@ -98,10 +105,10 @@ class _FormLogin extends StatelessWidget {
       child: ListView(
         children: [
           SizedBox(
-            height: size.height * 0.04,
+            height: widget.size.height * 0.04,
           ),
           Container(
-            width: size.width * 1,
+            width: widget.size.width * 1,
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -140,7 +147,7 @@ class _FormLogin extends StatelessWidget {
                         hintStyle: const TextStyle(color: Colors.grey),
                         border: InputBorder.none),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -155,8 +162,15 @@ class _FormLogin extends StatelessWidget {
             height: 40,
           ),
           GestureDetector(
-            onTap: () {
-              print('Iniciando sesion');
+            onTap: () async {
+              bool ok = await loginCubit.login();
+              if (ok) {
+                context.push('/home');
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Error en el inicio de sesión')),
+                );
+              }
             },
             child: Container(
               height: 50,
@@ -175,9 +189,66 @@ class _FormLogin extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 30,
+            height: 20,
           ),
+          const Text(
+            'Ó',
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          GestureDetector(
+            onTap: () {
+              context.push('/signup');
+            },
+            child: const Text(
+              'Registrate',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 0, 102, 185)),
+            ),
+          )
         ],
+      ),
+    );
+  }
+}
+
+class SomeOtherWidget extends StatelessWidget {
+  const SomeOtherWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Error en el inicio de sesión'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(
+              Icons.error,
+              color: Colors.red,
+              size: 64.0,
+            ),
+            const SizedBox(height: 16.0),
+            const Text(
+              'Hubo un error al iniciar sesión.',
+              style: TextStyle(fontSize: 18.0),
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context); // Regresar a la pantalla anterior
+              },
+              child: const Text('Regresar'),
+            ),
+          ],
+        ),
       ),
     );
   }
