@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'dart:math';
+import 'package:go_router/go_router.dart';
 
 class MinigamesScreen extends StatelessWidget {
   static const String name = 'minigames_screen';
@@ -14,125 +13,59 @@ class MinigamesScreen extends StatelessWidget {
         title: const Text('Minijuegos'),
         centerTitle: true,
       ),
-      body: MemoryGame(),
+      body: _GameListScreen(),
     );
   }
 }
 
-class CardItem {
-  final int id;
-  final String image;
-
-  CardItem(this.id, this.image);
-}
-
-class MemoryGame extends StatefulWidget {
-  @override
-  _MemoryGameState createState() => _MemoryGameState();
-}
-
-class _MemoryGameState extends State<MemoryGame> {
-  List<CardItem> cards = [];
-  List<CardItem> flippedCards = [];
-  bool isFlipping = false;
-  int attempts = 0;
-
-  void initializeGame() {
-    // Preparar tarjetas duplicadas
-    List<String> images = [
-      '🐶',
-      '🐱',
-      '🐰',
-      '🐢',
-      '🦄',
-      '🦜',
-      '🐍',
-      '🦐',
-    ];
-
-    List<CardItem> allCards = [];
-    for (String image in images) {
-      allCards.add(CardItem(Random().nextInt(100), image));
-      allCards.add(CardItem(Random().nextInt(100), image));
+class _GameListScreen extends StatelessWidget {
+  final List<Map<String, String>> games = [
+    {'title': 'Pareja', 'subtitle': 'Un juego clasico de encontrar la pareja'},
+    {'title': 'rompecabeza', 'subtitle': 'A legendary RPG by Square Enix'},
+    {
+      'title': 'busqueda',
+      'subtitle': 'Build, explore, and survive in a blocky world'
+    },
+    {
+      'title': 'refran',
+      'subtitle': 'Build, explore, and survive in a blocky world'
     }
-
-    allCards.shuffle();
-    setState(() {
-      cards = allCards;
-      flippedCards = [];
-      attempts = 0;
-    });
-  }
-
-  void checkForMatch() {
-    if (flippedCards.length == 2) {
-      setState(() {
-        attempts++;
-        isFlipping = true;
-      });
-
-      Future.delayed(const Duration(seconds: 1), () {
-        if (flippedCards[0].image == flippedCards[1].image) {
-          setState(() {
-            cards.removeWhere((card) => flippedCards.contains(card));
-          });
-        }
-        flippedCards.clear();
-        isFlipping = false;
-      });
-    }
-  }
-
-  void onCardTap(int index) {
-    if (isFlipping) return;
-
-    if (!flippedCards.contains(cards[index])) {
-      setState(() {
-        flippedCards.add(cards[index]);
-      });
-
-      checkForMatch();
-    }
-  }
+  ];
+  //refran
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
+      body: ListView.builder(
+        itemCount: games.length,
+        itemBuilder: (BuildContext context, int index) {
+          return InkWell(
+            onTap: () {
+              // Acción al tocar una tarjeta (puedes agregar navegación o acciones aquí)
+              print('Tocaste ${games[index]['title']}');
+              // print('/${games[index]['title']}');
+              context.go(
+                  '/minigames/${games[index]['title']}'); //CRUCIAL NO BORRAR NUNCA
+            },
+            child: Card(
+              elevation: 4,
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: ListTile(
+                title: Text(
+                  games[index]['title']!,
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue.shade800),
+                ),
+                subtitle: Text(
+                  games[index]['subtitle']!,
+                  style: const TextStyle(fontSize: 18),
+                ),
               ),
-              itemCount: cards.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => onCardTap(index),
-                  child: Card(
-                    child: Center(
-                      child: Text(
-                        flippedCards.contains(cards[index])
-                            ? cards[index].image
-                            : '??',
-                        style: TextStyle(fontSize: 24),
-                      ),
-                    ),
-                  ),
-                );
-              },
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: initializeGame,
-              child: Text('Iniciar Juego'),
-            ),
-            SizedBox(height: 10),
-            Text('Intentos: $attempts'),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

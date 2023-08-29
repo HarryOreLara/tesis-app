@@ -37,10 +37,27 @@ final appRouter = GoRouter(
         builder: (context, state) => const JokesScreen(),
       ),
       GoRoute(
-        path: '/minigames',
-        name: MinigamesScreen.name,
-        builder: (context, state) => const MinigamesScreen(),
-      ),
+          path: '/minigames',
+          name: MinigamesScreen.name,
+          builder: (context, state) => const MinigamesScreen(),
+          routes: [
+            GoRoute(
+              path: 'pareja',
+              builder: (context, state) => const ParejaMinigameScreen(),
+            ),
+            GoRoute(
+              path: 'rompecabeza',
+              builder: (context, state) => const RompecabezasMinigameScreen(),
+            ),
+            GoRoute(
+              path: 'busqueda',
+              builder: (context, state) => const BusquedaMinigameScreen(),
+            ),
+            GoRoute(
+              path: 'refran',
+              builder: (context, state) => const RefranesMinigameScreen(),
+            ),
+          ]),
       GoRoute(
         path: '/music',
         name: MusicScreen.name,
@@ -57,21 +74,10 @@ final appRouter = GoRouter(
         builder: (context, state) => const VideosScreen(),
       ),
       GoRoute(
-          path: '/medicines',
-          name: MedicinesScreen.name,
-          builder: (context, state) => const MedicinesScreen(),
-          routes: [
-            GoRoute(
-              path: 'one-medicine/:id',
-              name: OneMedicineScreen.name,
-              builder: (context, state) {
-                final medicineId = state.pathParameters['id'] ?? 'no-id';
-                return OneMedicineScreen(
-                  idMedicine: medicineId,
-                );
-              },
-            ),
-          ]),
+        path: '/medicines',
+        name: MedicinesScreen.name,
+        builder: (context, state) => const MedicinesScreen(),
+      ),
       GoRoute(
         path: '/message',
         name: MessageScreen.name,

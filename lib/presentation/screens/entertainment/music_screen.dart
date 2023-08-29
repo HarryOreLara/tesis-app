@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:audioplayers/audioplayers.dart';
+// import 'package:audioplayers/audioplayers.dart';
 
 class MusicScreen extends StatelessWidget {
   static const String name = 'music_screen';
@@ -21,7 +21,7 @@ class MusicScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
 
         appBar: const _CustomAppbar(),
-        bottomNavigationBar: BottomNavigationBar(items: [
+        bottomNavigationBar: BottomNavigationBar(items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home')
         ]),
         body: Container(),
@@ -32,9 +32,7 @@ class MusicScreen extends StatelessWidget {
 }
 
 class _CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
-  const _CustomAppbar({
-    super.key,
-  });
+  const _CustomAppbar();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class _CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),
-          child: CircleAvatar(
+          child: const CircleAvatar(
             backgroundImage: NetworkImage(''),
           ),
         )
