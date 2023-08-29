@@ -29,9 +29,9 @@ class _PrincipalInterface extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const [
-        CardFirst(nombreCard: 'profile', ruta: '/profile'),
-        SizedBox(
+      children: [
+        const CardFirst(nombreCard: 'profile', ruta: '/profile'),
+        const SizedBox(
           height: 20.0,
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -39,20 +39,20 @@ class _PrincipalInterface extends StatelessWidget {
             nombreCard: 'Mensajes',
             ruta: '/message',
             colorsList: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
+              Colors.white.withOpacity(0.8),
+              const Color(0xff008FD5).withOpacity(0.5),
             ],
           ),
           CardsSecond(
             nombreCard: 'Medicamentos',
             ruta: '/medicines',
             colorsList: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
+              Colors.white.withOpacity(0.8),
+              const Color(0xff008FD5).withOpacity(0.5),
             ],
           )
         ]),
-        SizedBox(
+        const SizedBox(
           height: 16.0,
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
@@ -60,20 +60,22 @@ class _PrincipalInterface extends StatelessWidget {
             nombreCard: 'Diversion',
             ruta: '/entertainment',
             colorsList: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
+              Colors.white.withOpacity(0.8),
+              const Color(0xff008FD5).withOpacity(0.5),
             ],
           ),
           CardsSecond(
             nombreCard: 'Foro',
             ruta: '/forum',
             colorsList: [
-              Color.fromARGB(255, 255, 255, 255),
-              Color.fromARGB(255, 255, 255, 255)
+              // Color.fromARGB(255, 255, 255, 255),
+              // Color.fromARGB(255, 255, 255, 255)
+              Colors.white.withOpacity(0.8),
+              const Color(0xff008FD5).withOpacity(0.5),
             ],
           )
         ]),
-        SizedBox(
+        const SizedBox(
           height: 16.0,
         ),
         Center(
@@ -81,11 +83,11 @@ class _PrincipalInterface extends StatelessWidget {
           nombreCard: 'Asistente',
           ruta: '/assistant',
           colorsList: [
-            Color.fromARGB(255, 255, 255, 255),
-            Color.fromARGB(255, 255, 255, 255)
+            Colors.white.withOpacity(0.8),
+            const Color(0xff008FD5).withOpacity(0.5),
           ],
         )),
-        SizedBox(
+        const SizedBox(
           height: 15,
         )
       ],

@@ -53,7 +53,7 @@ class CardsSecond extends StatelessWidget {
                     nombreCard,
                     style: const TextStyle(
                       color: Color(0xFF0077BF),
-                      fontSize: 18,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

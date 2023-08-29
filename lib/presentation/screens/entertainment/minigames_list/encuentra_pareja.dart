@@ -103,7 +103,7 @@ class _MemoryGameState extends State<MemoryGame> {
           children: [
             GridView.builder(
               shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
               ),
               itemCount: cards.length,
@@ -116,19 +116,19 @@ class _MemoryGameState extends State<MemoryGame> {
                         flippedCards.contains(cards[index])
                             ? cards[index].image
                             : '??',
-                        style: TextStyle(fontSize: 24),
+                        style: const TextStyle(fontSize: 24),
                       ),
                     ),
                   ),
                 );
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: initializeGame,
-              child: Text('Iniciar Juego'),
+              child: const Text('Iniciar Juego'),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text('Intentos: $attempts'),
           ],
         ),

@@ -25,13 +25,13 @@ class CardFirst extends StatelessWidget {
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
-              gradient: const LinearGradient(
+              gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 255, 255, 255),
-                  Color.fromARGB(255, 255, 255, 255)
+                  Colors.white.withOpacity(0.8),
+                  const Color(0xFF003976),
                 ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
               ),
             ),
             child: const Column(
@@ -52,7 +52,7 @@ class CardFirst extends StatelessWidget {
                   child: Text(
                     'Buen dia, Feliciana',
                     style: TextStyle(
-                        fontSize: 22.0,
+                        fontSize: 30.0,
                         color: Color(0xff003976),
                         fontWeight: FontWeight.bold),
                   ),

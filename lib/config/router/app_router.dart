@@ -62,6 +62,12 @@ final appRouter = GoRouter(
         path: '/music',
         name: MusicScreen.name,
         builder: (context, state) => const MusicScreen(),
+        routes: [
+          GoRoute(
+            path: 'onemusic',
+            builder: (context, state) => const OneMusicScreen(),
+          )
+        ]
       ),
       GoRoute(
         path: '/forum',

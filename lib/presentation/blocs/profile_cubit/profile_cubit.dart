@@ -26,7 +26,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           state.generoProfile
         ])));
 
-    print('Todo llego al cubit $state');
+    //print('Todo llego al cubit $state');
   }
 
 //TODO: Tener en cuenta que esta forma de registor esta mal

@@ -55,21 +55,21 @@ class _CuerpoForo extends StatelessWidget {
             },
             child: Card(
               elevation: 4,
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               child: Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       posts[index].question,
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       'Responses: ${posts[index].responses.length}',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                   ],
                 ),
@@ -85,22 +85,22 @@ class _CuerpoForo extends StatelessWidget {
 class PostDetailScreen extends StatelessWidget {
   final Post post;
 
-  PostDetailScreen({required this.post});
+  const PostDetailScreen({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Details'),
+        title: const Text('Post Details'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Text(
               post.question,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
           ),
           Expanded(
@@ -108,7 +108,7 @@ class PostDetailScreen extends StatelessWidget {
               itemCount: post.responses.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Icon(Icons.chat_bubble_outline),
+                  leading: const Icon(Icons.chat_bubble_outline),
                   title: Text(post.responses[index]),
                 );
               },

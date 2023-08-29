@@ -28,11 +28,13 @@ import 'package:tesis_app/presentation/providers/medicines/medicines_provider.da
 // }
 
 class MedicinasScreen extends StatelessWidget {
+  const MedicinasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Medicinas'),
+        title: const Text('Medicinas'),
       ),
       body: Center(
         child: MedicinasList(),

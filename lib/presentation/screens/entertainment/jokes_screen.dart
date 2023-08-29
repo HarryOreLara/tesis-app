@@ -90,7 +90,7 @@ class __ChistesScreenState extends State<_ChistesScreen> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -103,18 +103,18 @@ class __ChistesScreenState extends State<_ChistesScreen> {
                 }
 
                 if (snapshot.hasError) {
-                  return Text('Error al obtener el chiste');
+                  return const Text('Error al obtener el chiste');
                 }
 
                 if (!snapshot.hasData) {
-                  return Text('No hay datos');
+                  return const Text('No hay datos');
                 }
 
                 final joke = snapshot.data!;
                 currentJokeId = joke.id;
                 return Text(
                   joke.contenido,
-                  style: TextStyle(fontSize: 35),
+                  style: const TextStyle(fontSize: 35),
                   textAlign: TextAlign.center,
                 );
               },

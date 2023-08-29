@@ -34,8 +34,8 @@ class _CompleteProverbsGameState extends State<CompleteProverbsGame> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
+            padding: const EdgeInsets.all(16),
+            child: const Text(
               'Completa los refranes:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -47,11 +47,11 @@ class _CompleteProverbsGameState extends State<CompleteProverbsGame> {
                 return ListTile(
                   title: Text(
                     proverbs[index],
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                   trailing: completedProverbs.contains(proverbs[index])
-                      ? Icon(Icons.check, color: Colors.green)
-                      : Icon(Icons.clear, color: Colors.red),
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : const Icon(Icons.clear, color: Colors.red),
                   onTap: () {
                     _completeProverb(proverbs[index]);
                   },

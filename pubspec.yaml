@@ -72,5 +72,8 @@ flutter:
   
   assets:
     - assets/images/
+    - assets/music/images/
+    - assets/music/url/
+
 
 

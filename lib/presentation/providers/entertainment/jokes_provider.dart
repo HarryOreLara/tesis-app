@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:tesis_app/domain/entities/jokes_entitie.dart';
+
 
 final chistesProvider = FutureProvider<List<String>>((ref) async {
   final dio = Dio();

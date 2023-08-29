@@ -38,8 +38,8 @@ class _ObjectSearchGameState extends State<ObjectSearchGame> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(16),
-            child: Text(
+            padding: const EdgeInsets.all(16),
+            child: const Text(
               'Objetos a encontrar:',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
@@ -51,8 +51,8 @@ class _ObjectSearchGameState extends State<ObjectSearchGame> {
                 return ListTile(
                   title: Text(objectsToFind[index]),
                   trailing: foundObjects.contains(objectsToFind[index])
-                      ? Icon(Icons.check, color: Colors.green)
-                      : Icon(Icons.clear, color: Colors.red),
+                      ? const Icon(Icons.check, color: Colors.green)
+                      : const Icon(Icons.clear, color: Colors.red),
                   onTap: () {
                     _toggleObjectFound(objectsToFind[index]);
                   },

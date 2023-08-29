@@ -1,4 +1,14 @@
 
+export 'package:tesis_app/presentation/widgets/entertainment/musica/play_button.dart';
+
+export 'package:tesis_app/presentation/widgets/entertainment/musica/seekbar.dart';
+
+export 'package:tesis_app/presentation/widgets/entertainment/musica/play_list_card.dart';
+
+export 'package:tesis_app/presentation/widgets/entertainment/musica/card_music.dart';
+
+export 'package:tesis_app/presentation/widgets/entertainment/musica/section_header.dart';
+
 export 'package:tesis_app/presentation/widgets/assistant/her_message_bubble.dart';
 export 'package:tesis_app/presentation/widgets/assistant/my_message_bubble.dart';
 
