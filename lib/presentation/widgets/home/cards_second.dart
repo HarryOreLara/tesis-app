@@ -35,15 +35,15 @@ class CardsSecond extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 183,
                   height: 131,
                   child: Padding(
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: CircleAvatar(
                       radius: 50.0,
                       backgroundImage:
-                          AssetImage('assets/images/entertainment.jpg'),
+                          AssetImage('assets/images$ruta.jpg'),
                     ),
                   ),
                 ),
