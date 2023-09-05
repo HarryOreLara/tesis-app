@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 
@@ -28,13 +29,11 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   }
 
   void guardarBaseDatos() async {
-    var dio = Dio(BaseOptions(headers: {
-      'x-auth-token':
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0ZTJhNjgxMWUzNTBkOWIxYzFjMmZhZSIsImlhdCI6MTY5MjU3NTM2MX0.5rES-UtmnEAJZonUqPQ9cHll30wsNSY8zUVzIqXn5zo'
-    }));
+    var authService = AuthService();
+    final String token = authService.getToken().toString();
+    var dio = Dio(BaseOptions(headers: {'x-auth-token': token}));
     try {
-      var response = await dio
-          .post('https://tesis-xz3b.onrender.com/medicines/post', data: {
+      await dio.post('https://tesis-xz3b.onrender.com/medicines/post', data: {
         "nombre": state.nombreMedicine.value,
         "cantidadMedicamentos": state.cantidadPastillas.value,
         "horaInicio": state.horaInicio.value,

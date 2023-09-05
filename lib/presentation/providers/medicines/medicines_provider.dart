@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 import 'package:tesis_app/presentation/providers/medicines/medicines_repository_provider.dart';
 
@@ -11,16 +12,23 @@ final idPersonaProvider = Provider<String>((ref) {
 });
 
 //Guardar esto siempre, sirve mucho
-final medicinasProvider =
-    FutureProvider.autoDispose<List<Medicine>>((ref) async {
-  final idPersona = ref.read(idPersonaProvider);
-  // final url = 'https://tesis-xz3b.onrender.com/medicines/getList/$idPersona';
-  // final response = await Dio().get(url);
+// final medicinasProvider =
+//     FutureProvider.autoDispose<List<Medicine>>((ref) async {
+//       final authService = AuthService();
+//   //final idPersona = ref.read(idPersonaProvider);
+//   final idPersona = await authService.getUserId();
+//   final medicineDataSourceInfra = MedicineDbDatasourceInfra();
+//   final datita = medicineDataSourceInfra.getAllMedicine(idPersona);
+//   return datita;
+// });
+
+final medicinasProvider = FutureProvider.autoDispose<List<Medicine>>((ref) async {
+  final authService = AuthService();
+  final idPersonaNullable = await authService.getUserId(); // Puede ser String? (nullable)
+  final idPersona = idPersonaNullable ?? ""; // Si es nulo, asigna un valor por defecto
   final medicineDataSourceInfra = MedicineDbDatasourceInfra();
-  final datita = medicineDataSourceInfra.getAllMedicine(idPersona);
+  final datita = await medicineDataSourceInfra.getAllMedicine(idPersona);
   return datita;
-  //return medicineDataSourceInfra.JsonToMedicines(response.data);
-  //return JsonToMedicines(response.data); //Paso 2
 });
 
 

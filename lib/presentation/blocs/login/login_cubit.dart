@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 
 part 'login_state.dart';
@@ -11,6 +12,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<bool> login() async {
     var dio = Dio();
+    var authService = AuthService();
     try {
       var response = await dio
           .post('https://tesis-xz3b.onrender.com/auth/login', data: {
@@ -20,6 +22,9 @@ class LoginCubit extends Cubit<LoginState> {
 
       Map<String, dynamic> data = response.data;
       final bool ok = data.containsKey('ok') ? data['ok'] : false;
+      final String idUsername = data.containsKey('id') ? data['id'] : '';
+      final String token = data.containsKey('token') ? data['token'] : '';
+      authService.saveUserCredentials(token, idUsername);
       return ok;
     } catch (e) {
       return false;
@@ -41,7 +46,6 @@ class LoginCubit extends Cubit<LoginState> {
       return false;
     }
   }
-
 
   void dniLoginChange(String value) {
     final dniLogin = DniProfile.dirty(value);
