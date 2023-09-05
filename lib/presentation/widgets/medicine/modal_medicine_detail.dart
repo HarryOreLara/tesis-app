@@ -1,7 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
-import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
+import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
 
 class ModalMedicineDetail extends StatelessWidget {
   final Medicine itemMedicine;
@@ -16,6 +16,7 @@ class ModalMedicineDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final newMedicineCubit = context.watch<NewMedicinesCubit>();
     final String horaMedia =
         "la segunda pastilla se debe tomar a las ${itemMedicine.horaIntermedio} ";
     return SizedBox(
@@ -116,7 +117,7 @@ class ModalMedicineDetail extends StatelessWidget {
               Flexible(
                 child: ElevatedButton(
                     onPressed: () {
-                      deleteMedicine(itemMedicine.id);
+                      newMedicineCubit.deleteMedicine(itemMedicine.id);
                     },
                     child: const Text('Eliminar medicamento')),
               )
@@ -128,19 +129,20 @@ class ModalMedicineDetail extends StatelessWidget {
   }
 }
 
-void deleteMedicine(String medicineId) async {
-  MedicineDbDatasourceInfra medicineDbDatasourceInfra =
-      MedicineDbDatasourceInfra();
+// //TODO: BORRAR
+// void deleteMedicine(String medicineId) async {
+//   MedicineDbDatasourceInfra medicineDbDatasourceInfra =
+//       MedicineDbDatasourceInfra();
 
-  try {
-    final response = await medicineDbDatasourceInfra.deleteMedicine(medicineId);
+//   try {
+//     final response = await medicineDbDatasourceInfra.deleteMedicine(medicineId);
 
-    if (response) {
-      print('Eliminación exitosa');
-    } else {
-      print('Error en la eliminación');
-    }
-  } catch (error) {
-    print('Error: $error');
-  }
-}
+//     if (response) {
+//       print('Eliminación exitosa');
+//     } else {
+//       print('Error en la eliminación');
+//     }
+//   } catch (error) {
+//     print('Error: $error');
+//   }
+// }

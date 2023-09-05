@@ -1,9 +1,8 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
-import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
@@ -30,24 +29,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
         ])));
   }
 
-  // void guardarBaseDatos() async {
-  //   var authService = AuthService();
-  //   final tokenNullable = await authService.getToken();
-  //   final token = tokenNullable ?? "";
-  //   var dio = Dio(BaseOptions(headers: {'x-auth-token': token}));
-  //   try {
-  //     await dio.post('https://tesis-xz3b.onrender.com/medicines/post', data: {
-  //       "nombre": state.nombreMedicine.value,
-  //       "cantidadMedicamentos": state.cantidadPastillas.value,
-  //       "horaInicio": state.horaInicio.value,
-  //       "horaIntermedio": state.horaIntermedia.value,
-  //       "horaFin": state.horaFin.value,
-  //     });
-  //   } catch (error) {
-  //     print('Error al guardar en la base de datos: $error');
-  //   }
-  // }
-
   Future<bool> guardarBaseDatos() async {
     MedicineDbDatasourceInfra medicineDbDatasourceInfra =
         MedicineDbDatasourceInfra();
@@ -66,20 +47,15 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
     }
   }
 
-  void deleteMedicine(String? medicineId) async {
-    final dio = Dio(); // Instancia de Dio para las solicitudes
-
+//TODO:REVISAR
+  Future<bool> deleteMedicine(String medicineId) async {
+    MedicineDbDatasourceInfra medicineDbDatasourceInfra =
+        MedicineDbDatasourceInfra();
     try {
-      final response = await dio.delete(
-          'https://tesis-xz3b.onrender.com/medicines/delete/$medicineId');
-
-      if (response.statusCode == 200) {
-        print('Eliminación exitosa');
-      } else {
-        print('Error en la eliminación');
-      }
-    } catch (error) {
-      print('Error: $error');
+      final res = medicineDbDatasourceInfra.deleteMedicine(medicineId);
+      return res;
+    } catch (e) {
+      return false;
     }
   }
 

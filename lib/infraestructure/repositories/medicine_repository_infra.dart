@@ -16,10 +16,9 @@ class MedicineRepositoryInfra extends MedicineRepository {
   Future<List<Medicine>> getAllMedicine(String id) {
     return medicineDataSourceDomain.getAllMedicine(id);
   }
-  
+
   @override
   Future<bool> deleteMedicine(String id) {
-    // TODO: implement deleteMedicine
-    throw UnimplementedError();
+    return medicineDataSourceDomain.deleteMedicine(id);
   }
 }

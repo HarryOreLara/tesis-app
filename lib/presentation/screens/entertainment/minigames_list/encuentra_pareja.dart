@@ -13,7 +13,7 @@ class ParejaMinigameScreen extends StatelessWidget {
         title: const Text('Encuentra a la pareja'),
         centerTitle: true,
       ),
-      body: MemoryGame(),
+      body: const MemoryGame(),
     );
   }
 }
@@ -26,6 +26,8 @@ class CardItem {
 }
 
 class MemoryGame extends StatefulWidget {
+  const MemoryGame({super.key});
+
   @override
   _MemoryGameState createState() => _MemoryGameState();
 }

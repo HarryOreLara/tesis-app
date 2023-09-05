@@ -1,8 +1,10 @@
-import 'package:dio/dio.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 
 part 'profile_state.dart';
@@ -25,37 +27,22 @@ class ProfileCubit extends Cubit<ProfileState> {
           state.edadProfile,
           state.generoProfile
         ])));
-
-    //print('Todo llego al cubit $state');
   }
 
-//TODO: Tener en cuenta que esta forma de registor esta mal
-//Para ello vamos a tener que crear un login desde el incio para asi poder controlar
-//los tokens entrantes porque sino luego se complicara mas
-//mas abajo estan todas las funciones necesaria spara guardar y destruir los tokens
-  void guardarPersona() async {
-    var dio = Dio();
+//TODO:REVISAR
+  Future<bool> guardarPersona() async {
+    ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
+    Profile profile = Profile(
+        nombre: state.nombreProfile.value,
+        apellidos: state.apellidosProfile.value,
+        edad: state.edadProfile.value,
+        genero: state.generoProfile.value,
+        dni: state.dniProfile.value);
     try {
-      var response =
-          await dio.post('https://tesis-xz3b.onrender.com/persona/post', data: {
-        "nombre": state.nombreProfile.value,
-        "apellidos": state.apellidosProfile.value,
-        "edad": state.edadProfile.value,
-        "genero": state.generoProfile.value,
-        "dni": state.dniProfile.value
-      });
-
-      print(response.statusCode);
-      print(response.data.toString());
-
-      if (response.statusCode == 200) {
-        String token = response.data['token'];
-        SharedPreferences preferences = await SharedPreferences.getInstance();
-        await preferences.setString('token', token);
-        print('Token almacenado en sherdpreferences: $token');
-      }
+      final res = profileDatasourceInfra.postNewPersona(profile);
+      return res;
     } catch (e) {
-      print(e);
+      return false;
     }
   }
 
@@ -64,23 +51,6 @@ class ProfileCubit extends Cubit<ProfileState> {
     return prefs.getString('token');
   }
 
-// String? token = await obtenerToken();
-// if (token != null) {
-//   // Hacer algo con el token, como enviarlo en las solicitudes posteriores
-// }
-
-  void eliminarToken() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.remove('token');
-    print('Token eliminado de SharedPreferences.');
-  }
-
-// String? token = await obtenerToken();
-// if (token != null) {
-//   // Realizar operaciones utilizando el token
-// } else {
-//   // El usuario no ha iniciado sesión, redirigir a la pantalla de inicio de sesión
-// }
 
   void nombreProfileChange(String value) {
     final nombreProfile = NombreProfile.dirty(value);
