@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/presentation/blocs/profile_cubit/profile_cubit.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
@@ -9,9 +11,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final colors = Theme.of(context).colorScheme;
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
         backgroundColor: const Color(0xFF008FD5),
         appBar: AppBar(
@@ -90,12 +89,14 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(
                 height: 20,
-              ), 
-              Container(
+              ),
+              SizedBox(
                 width: 100,
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    print('Cerrando sesion');
+                    final router = GoRouter.of(context);
+                    cerrarSesion();
+                    router.go('/'); // Asegúrate de que '/login'
                   },
                   icon: const Icon(Icons.logout), // Ícono del botón
                   label: const Text('Cerrar Sesión'), // Etiqueta del botón
@@ -108,6 +109,11 @@ class ProfileScreen extends StatelessWidget {
           ),
         ));
   }
+}
+
+void cerrarSesion() {
+  AuthService authService = AuthService();
+  authService.clearUserCredentials();
 }
 
 class _FormProfile extends StatelessWidget {

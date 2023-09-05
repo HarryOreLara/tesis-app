@@ -11,17 +11,6 @@ final idPersonaProvider = Provider<String>((ref) {
   return '64e2a6811e350d9b1c1c2fae';
 });
 
-//Guardar esto siempre, sirve mucho
-// final medicinasProvider =
-//     FutureProvider.autoDispose<List<Medicine>>((ref) async {
-//       final authService = AuthService();
-//   //final idPersona = ref.read(idPersonaProvider);
-//   final idPersona = await authService.getUserId();
-//   final medicineDataSourceInfra = MedicineDbDatasourceInfra();
-//   final datita = medicineDataSourceInfra.getAllMedicine(idPersona);
-//   return datita;
-// });
-
 final medicinasProvider = FutureProvider.autoDispose<List<Medicine>>((ref) async {
   final authService = AuthService();
   final idPersonaNullable = await authService.getUserId(); // Puede ser String? (nullable)

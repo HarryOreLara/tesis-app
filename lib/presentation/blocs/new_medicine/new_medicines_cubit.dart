@@ -30,7 +30,8 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
 
   void guardarBaseDatos() async {
     var authService = AuthService();
-    final String token = authService.getToken().toString();
+    final tokenNullable = await authService.getToken();
+    final token = tokenNullable ?? "";
     var dio = Dio(BaseOptions(headers: {'x-auth-token': token}));
     try {
       await dio.post('https://tesis-xz3b.onrender.com/medicines/post', data: {

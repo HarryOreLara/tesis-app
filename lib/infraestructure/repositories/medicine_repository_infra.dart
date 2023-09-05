@@ -1,7 +1,6 @@
 import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
-import 'package:tesis_app/domain/respositories/medicines_repository_domain.dart';
-import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dart';
+import 'package:tesis_app/domain/repositories/medicines_repository_domain.dart';
 
 class MedicineRepositoryInfra extends MedicineRepository {
   final MedicineDataSourceDomain medicineDataSourceDomain;
@@ -9,7 +8,7 @@ class MedicineRepositoryInfra extends MedicineRepository {
   MedicineRepositoryInfra(this.medicineDataSourceDomain);
 
   @override
-  Future<MedicinesReponse> postNewMedicine(Medicine medicine) {
+  Future<bool> postNewMedicine(Medicine medicine) {
     return medicineDataSourceDomain.postNewMedicine(medicine);
   }
 

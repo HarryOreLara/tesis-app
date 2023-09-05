@@ -1,47 +1,35 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:tesis_app/infraestructure/auth/auth_service.dart';
-import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
+import 'package:tesis_app/domain/entities/auth/usuario_entitie.dart';
 
+import 'package:tesis_app/infraestructure/datasources/auth/login_datasource_infra.dart';
+import 'package:tesis_app/infraestructure/datasources/auth/register_datasource_infra.dart';
+import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(const LoginState());
 
   Future<bool> login() async {
-    var dio = Dio();
-    var authService = AuthService();
+    LoginDatasouceInfra loginDatasouceInfra = LoginDatasouceInfra();
+    Usuario usuario =
+        Usuario(state.dniProfile.value, state.passwordLogin.value);
     try {
-      var response = await dio
-          .post('https://tesis-xz3b.onrender.com/auth/login', data: {
-        "username": state.dniProfile.value,
-        "password": state.passwordLogin.value
-      });
-
-      Map<String, dynamic> data = response.data;
-      final bool ok = data.containsKey('ok') ? data['ok'] : false;
-      final String idUsername = data.containsKey('id') ? data['id'] : '';
-      final String token = data.containsKey('token') ? data['token'] : '';
-      authService.saveUserCredentials(token, idUsername);
-      return ok;
+      final res = loginDatasouceInfra.loginUsuario(usuario);
+      return res;
     } catch (e) {
       return false;
     }
   }
 
   Future<bool> register() async {
-    var dio = Dio();
+    RegisterDatasourceInfra registerDatasourceInfra = RegisterDatasourceInfra();
+    Usuario usuario =
+        Usuario(state.dniProfile.value, state.passwordLogin.value);
     try {
-      var response = await dio
-          .post('https://tesis-xz3b.onrender.com/auth/register', data: {
-        "username": state.dniProfile.value,
-        "password": state.passwordLogin.value
-      });
-      Map<String, dynamic> data = response.data;
-      final bool ok = data.containsKey('ok') ? data['ok'] : false;
-      return ok;
+      final res = registerDatasourceInfra.registerUsuario(usuario);
+      return res;
     } catch (e) {
       return false;
     }
