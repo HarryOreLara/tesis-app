@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 class ModalMedicineDetail extends StatelessWidget {
+  final Medicine itemMedicine;
+
   const ModalMedicineDetail({
     super.key,
     required this.size,
@@ -10,7 +13,6 @@ class ModalMedicineDetail extends StatelessWidget {
   });
 
   final Size size;
-  final Medicine itemMedicine;
 
   @override
   Widget build(BuildContext context) {
@@ -126,14 +128,14 @@ class ModalMedicineDetail extends StatelessWidget {
   }
 }
 
-void deleteMedicine(String? medicineId) async {
-  final dio = Dio(); // Instancia de Dio para las solicitudes
+void deleteMedicine(String medicineId) async {
+  MedicineDbDatasourceInfra medicineDbDatasourceInfra =
+      MedicineDbDatasourceInfra();
 
   try {
-    final response = await dio
-        .delete('https://tesis-xz3b.onrender.com/medicines/delete/$medicineId');
+    final response = await medicineDbDatasourceInfra.deleteMedicine(medicineId);
 
-    if (response.statusCode == 200) {
+    if (response) {
       print('Eliminación exitosa');
     } else {
       print('Error en la eliminación');

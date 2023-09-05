@@ -3,9 +3,10 @@ class Usuario {
   final String password;
 
   Usuario(this.username, this.password);
-    Map<String, dynamic> toJson() {
+  
+  Map<String, dynamic> toJson() {
     return {
-      'username': username ,
+      'username': username,
       'password': password,
     };
   }

@@ -6,6 +6,7 @@ import 'package:tesis_app/infraestructure/models/auth/auth_response.dart';
 
 class RegisterDatasourceInfra extends RegisterDatasourceDomain {
   AuthService authService = AuthService();
+  
   final dio = Dio(BaseOptions(
       baseUrl: 'https://tesis-xz3b.onrender.com',
       headers: {'Content-Type': 'application/json'}));

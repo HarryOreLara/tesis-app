@@ -8,8 +8,5 @@ class MedicineMapper {
       cantidadMedicamentos: medicineList.cantidadMedicamentos,
       horaInicio: medicineList.horaFin,
       horaIntermedio: medicineList.horaIntermedio,
-      horaFin: medicineList.horaFin,
-      creator: medicineList.creator,
-      createdAt: medicineList.createdAt,
-      v: medicineList.v);
+      horaFin: medicineList.horaFin);
 }

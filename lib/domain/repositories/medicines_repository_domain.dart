@@ -4,4 +4,6 @@ abstract class MedicineRepository {
   Future<bool> postNewMedicine(Medicine medicine);
 
   Future<List<Medicine>> getAllMedicine(String id);
+
+  Future<bool> deleteMedicine(String id);
 }

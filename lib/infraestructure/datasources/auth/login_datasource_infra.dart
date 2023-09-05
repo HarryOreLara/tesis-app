@@ -16,7 +16,6 @@ class LoginDatasouceInfra extends LoginDatasouceDomain {
   Future<bool> loginUsuario(Usuario usuario) async {
     try {
       final usuarioJson = usuario.toJson();
-
       final response = await dio.post('/auth/login', data: usuarioJson);
       final res = AuthResponse.fromJson(response.data);
       authService.saveUserCredentials(res.token, res.id);
