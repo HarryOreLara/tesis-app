@@ -31,12 +31,14 @@ class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
     return JsonToMedicines(response.data);
   }
 
-
 //TODO:Nos quedamos aca
-  Future<List<MedicineList>> getMedicines(String idUser) async {
+  Future<List<Medicine>> getMedicines(String idUser) async {
     final response = await dio.get('/medicines/getList/$idUser');
     final res = MedicinesReponse.fromJson(response.data);
-    return res.newMedicine;
+    final List<Medicine> medicinas = res.newMedicine
+        .map((medicinesDb) => MedicineMapper.medicineDbToEntity(medicinesDb))
+        .toList();
+    return medicinas;
   }
 
 

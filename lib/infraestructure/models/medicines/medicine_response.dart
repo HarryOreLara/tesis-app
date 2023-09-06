@@ -1,10 +1,10 @@
-import 'package:tesis_app/infraestructure/models/medicines/medicines_list_response.dart';
+import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 
 class MedicinesReponse {
   //MovieDbResponse
   final bool ok;
   final String msg;
-  final List<MedicineList> newMedicine;
+  final List<Medicine> newMedicine;
 
   MedicinesReponse(
       {required this.ok, required this.msg, required this.newMedicine});
@@ -14,7 +14,7 @@ factory MedicinesReponse.fromJson(Map<String, dynamic> json) =>
       ok: json["ok"] ?? '',
       msg: json["msg"] ?? '',
       newMedicine: (json["medicineList"] as List<dynamic>?)
-          ?.map((x) => MedicineList.fromJson(x))
+          ?.map((x) => Medicine.fromJson(x))
           .toList() ?? [],
     );
 

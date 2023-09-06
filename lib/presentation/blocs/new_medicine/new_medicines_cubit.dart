@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
@@ -47,11 +48,14 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
     }
   }
 
-  Future<List<MedicineList>> getMedicineByUser(String id) async {
+  Future<List<Medicine>> getMedicineByUser() async {
     MedicineDbDatasourceInfra medicineDbDatasourceInfra =
         MedicineDbDatasourceInfra();
+    final authService = AuthService();
+    final idPersonaNullable = await authService.getUserId();
+    final idPersona = idPersonaNullable ?? "";
     try {
-      final res = medicineDbDatasourceInfra.getMedicines(id);
+      final res = medicineDbDatasourceInfra.getMedicines(idPersona);
       return res;
     } catch (e) {
       return [];

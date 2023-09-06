@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
 import 'package:tesis_app/presentation/providers/providers.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
@@ -22,7 +24,10 @@ class MedicinesScreen extends StatelessWidget {
           ),
         ),
         //body: MedicinasList());
-        body: _CardTittleMedicamentos(size: size));
+        body: BlocProvider(
+          create: (context) => NewMedicinesCubit(),
+          child: _CardTittleMedicamentos(size: size),
+        ));
   }
 }
 
@@ -116,12 +121,61 @@ class _CardTittleMedicamentos extends StatelessWidget {
   }
 }
 
+class _Listita extends StatefulWidget {
+  const _Listita({super.key});
+
+  @override
+  State<_Listita> createState() => __ListitaState();
+}
+
+class __ListitaState extends State<_Listita> {
+  List<Medicine> medicines = [];
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<NewMedicinesCubit>().getMedicineByUser();
+  }
+
+  Future<void> loadMedicines() async {}
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: BlocBuilder<NewMedicinesCubit, NewMedicinesState>(
+        builder: (context, state) {
+          if (state is YourLoadedState) {
+            // Los datos están disponibles, puedes mostrarlos aquí
+            final medicines = state.medicines;
+            return ListView.builder(
+              itemCount: medicines.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(medicines[index]
+                      .nombre), // Ajusta según tu modelo Medicine
+                );
+              },
+            );
+          } else if (state is YourLoadingState) {
+            // Muestra una indicación de carga mientras se obtienen los datos
+            return Center(child: CircularProgressIndicator());
+          } else {
+            // Otro estado, como un estado de error
+            return Center(child: Text('Error al cargar los datos'));
+          }
+        },
+      ),
+    );
+  }
+}
+
 class _ListMedicines extends ConsumerWidget {
   const _ListMedicines();
 
   @override
   Widget build(BuildContext context, ref) {
     final medicinasAsyncValue = ref.watch(medicinasProvider); //Paso 1
+    final medicineCubit = context.watch<NewMedicinesCubit>();
 
     return medicinasAsyncValue.when(
       data: (medicinas) {
@@ -209,8 +263,11 @@ class _ListCustomItemsMedicine extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return FadeInRight(
-                        child: ModalMedicineDetail(
-                            size: size, itemMedicine: medicine),
+                        child: BlocProvider(
+                          create: (context) => NewMedicinesCubit(),
+                          child: ModalMedicineDetail(
+                              size: size, itemMedicine: medicine),
+                        ),
                       );
                     },
                   );
