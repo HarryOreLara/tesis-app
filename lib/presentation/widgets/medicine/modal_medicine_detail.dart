@@ -16,6 +16,7 @@ class ModalMedicineDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: REPARAR
     final newMedicineCubit = context.watch<NewMedicinesCubit>();
     final String horaMedia =
         "la segunda pastilla se debe tomar a las ${itemMedicine.horaIntermedio} ";

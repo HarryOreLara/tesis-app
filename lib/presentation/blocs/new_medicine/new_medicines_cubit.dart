@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
@@ -6,6 +5,7 @@ import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
+import 'package:tesis_app/infraestructure/models/medicines/medicines_list_response.dart';
 
 part 'new_medicines_state.dart';
 
@@ -44,6 +44,17 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
       return res;
     } catch (error) {
       return false;
+    }
+  }
+
+  Future<List<MedicineList>> getMedicineByUser(String id) async {
+    MedicineDbDatasourceInfra medicineDbDatasourceInfra =
+        MedicineDbDatasourceInfra();
+    try {
+      final res = medicineDbDatasourceInfra.getMedicines(id);
+      return res;
+    } catch (e) {
+      return [];
     }
   }
 

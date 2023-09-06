@@ -29,7 +29,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         ])));
   }
 
-//TODO:REVISAR
+
   Future<bool> guardarPersona() async {
     ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
     Profile profile = Profile(
