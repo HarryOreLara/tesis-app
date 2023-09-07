@@ -41,10 +41,7 @@ class _GameListScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return InkWell(
             onTap: () {
-              // Acción al tocar una tarjeta (puedes agregar navegación o acciones aquí)
-              print('Tocaste ${games[index]['title']}');
-              // print('/${games[index]['title']}');
-              context.go(
+              context.push(
                   '/minigames/${games[index]['title']}'); //CRUCIAL NO BORRAR NUNCA
             },
             child: Card(

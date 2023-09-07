@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
 import 'package:tesis_app/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
@@ -59,16 +60,15 @@ final appRouter = GoRouter(
             ),
           ]),
       GoRoute(
-        path: '/music',
-        name: MusicScreen.name,
-        builder: (context, state) => const MusicScreen(),
-        routes: [
-          GoRoute(
-            path: 'onemusic',
-            builder: (context, state) => const OneMusicScreen(),
-          )
-        ]
-      ),
+          path: '/music',
+          name: MusicScreen.name,
+          builder: (context, state) => const MusicScreen(),
+          routes: [
+            GoRoute(
+              path: 'onemusic',
+              builder: (context, state) => const OneMusicScreen(),
+            )
+          ]),
       GoRoute(
         path: '/forum',
         name: ForumScreen.name,
@@ -85,10 +85,17 @@ final appRouter = GoRouter(
         builder: (context, state) => const MedicinesScreen(),
       ),
       GoRoute(
-        path: '/message',
-        name: MessageScreen.name,
-        builder: (context, state) => const MessageScreen(),
-      ),
+          path: '/message',
+          name: MessageScreen.name,
+          builder: (context, state) => const MessageScreen(),
+          routes: [
+            GoRoute(
+              path: 'personas',
+              builder: (context, state) {
+                return ChatScreen();
+              },
+            ),
+          ]),
       GoRoute(
         path: '/profile',
         name: ProfileScreen.name,

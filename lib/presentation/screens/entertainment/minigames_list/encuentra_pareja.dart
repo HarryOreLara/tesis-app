@@ -3,7 +3,6 @@ import 'dart:async';
 import 'dart:math';
 
 class ParejaMinigameScreen extends StatelessWidget {
-
   const ParejaMinigameScreen({super.key});
 
   @override
