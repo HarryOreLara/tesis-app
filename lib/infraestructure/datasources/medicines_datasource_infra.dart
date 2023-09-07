@@ -4,7 +4,6 @@ import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/medicine_mapper.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dart';
-import 'package:tesis_app/infraestructure/models/medicines/medicines_list_response.dart';
 
 class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
   Dio nuevo(String token) {
@@ -31,7 +30,7 @@ class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
     return JsonToMedicines(response.data);
   }
 
-//TODO:Nos quedamos aca
+
   Future<List<Medicine>> getMedicines(String idUser) async {
     final response = await dio.get('/medicines/getList/$idUser');
     final res = MedicinesReponse.fromJson(response.data);

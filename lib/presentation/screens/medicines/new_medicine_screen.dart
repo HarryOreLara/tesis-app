@@ -97,7 +97,7 @@ class _FormMedicine extends StatelessWidget {
               SizedBox(
                 width: size.width * 0.4,
                 child: InputTextFormField(
-                  label: 'Hora Finnnn',
+                  label: 'Hora Fin',
                   onChanged: newMedicinesCubit.hoursEndChange,
                   erroMessage: horaFin.errorMessage,
                 ),

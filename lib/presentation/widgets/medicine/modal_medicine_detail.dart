@@ -129,21 +129,3 @@ class ModalMedicineDetail extends StatelessWidget {
     );
   }
 }
-
-// //TODO: BORRAR
-// void deleteMedicine(String medicineId) async {
-//   MedicineDbDatasourceInfra medicineDbDatasourceInfra =
-//       MedicineDbDatasourceInfra();
-
-//   try {
-//     final response = await medicineDbDatasourceInfra.deleteMedicine(medicineId);
-
-//     if (response) {
-//       print('Eliminación exitosa');
-//     } else {
-//       print('Error en la eliminación');
-//     }
-//   } catch (error) {
-//     print('Error: $error');
-//   }
-// }

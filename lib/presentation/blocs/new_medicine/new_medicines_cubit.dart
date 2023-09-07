@@ -6,7 +6,6 @@ import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
-import 'package:tesis_app/infraestructure/models/medicines/medicines_list_response.dart';
 
 part 'new_medicines_state.dart';
 

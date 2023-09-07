@@ -6,7 +6,6 @@ import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
 import 'package:tesis_app/presentation/providers/providers.dart';
-import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class MedicinesScreen extends StatelessWidget {
   static const String name = 'medicines_screen';
@@ -121,53 +120,6 @@ class _CardTittleMedicamentos extends StatelessWidget {
   }
 }
 
-class _Listita extends StatefulWidget {
-  const _Listita({super.key});
-
-  @override
-  State<_Listita> createState() => __ListitaState();
-}
-
-class __ListitaState extends State<_Listita> {
-  List<Medicine> medicines = [];
-
-  @override
-  void initState() {
-    super.initState();
-    context.read<NewMedicinesCubit>().getMedicineByUser();
-  }
-
-  Future<void> loadMedicines() async {}
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<NewMedicinesCubit, NewMedicinesState>(
-        builder: (context, state) {
-          if (state is YourLoadedState) {
-            // Los datos están disponibles, puedes mostrarlos aquí
-            final medicines = state.medicines;
-            return ListView.builder(
-              itemCount: medicines.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(medicines[index]
-                      .nombre), // Ajusta según tu modelo Medicine
-                );
-              },
-            );
-          } else if (state is YourLoadingState) {
-            // Muestra una indicación de carga mientras se obtienen los datos
-            return Center(child: CircularProgressIndicator());
-          } else {
-            // Otro estado, como un estado de error
-            return Center(child: Text('Error al cargar los datos'));
-          }
-        },
-      ),
-    );
-  }
-}
 
 class _ListMedicines extends ConsumerWidget {
   const _ListMedicines();
@@ -175,8 +127,6 @@ class _ListMedicines extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final medicinasAsyncValue = ref.watch(medicinasProvider); //Paso 1
-    final medicineCubit = context.watch<NewMedicinesCubit>();
-
     return medicinasAsyncValue.when(
       data: (medicinas) {
         return ListView.builder(
@@ -263,10 +213,120 @@ class _ListCustomItemsMedicine extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return FadeInRight(
-                        child: BlocProvider(
-                          create: (context) => NewMedicinesCubit(),
-                          child: ModalMedicineDetail(
-                              size: size, itemMedicine: medicine),
+                        child: SizedBox(
+                          height: 400.0,
+                          width: size.width * 1,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                width: size.width * 1,
+                                child: Center(
+                                  child: Text(
+                                    medicine.nombre,
+                                    style: const TextStyle(
+                                        fontSize: 25.0,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 16.0,
+                              ),
+                              SizedBox(
+                                height: size.height * 0.3,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: size.width * 0.45,
+                                        child: Card(
+                                          elevation: 3,
+                                          child: Column(
+                                            children: [
+                                              const Center(
+                                                child: Text(
+                                                  'Horario',
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20.0,
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  'La primera pastilla se debe de tomar en la hora ${medicine.horaInicio} am, ${medicine.horaIntermedio == "" ? '' : medicine.horaIntermedio} y la ultima se debe tomar a las ${medicine.horaFin}',
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      SizedBox(
+                                        width: size.width * 0.45,
+                                        child: Card(
+                                          elevation: 3,
+                                          child: Column(
+                                            children: [
+                                              const Center(
+                                                child: Text(
+                                                  'Cantidad de pastillas',
+                                                  textAlign: TextAlign.center,
+                                                  style:
+                                                      TextStyle(fontSize: 20.0),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                height: 20,
+                                              ),
+                                              Center(
+                                                child: Text(
+                                                  'La cantidad de pastillas que se debe de tomar en la hora especifica con ${medicine.cantidadMedicamentos}',
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Flexible(
+                                    child: ElevatedButton(
+                                      onPressed: () {},
+                                      child:
+                                          const Text('Actualizar medicamento'),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10.0,
+                                  ),
+                                  Flexible(
+                                    child: ElevatedButton(
+                                        onPressed: () {
+                                          NewMedicinesCubit()
+                                              .deleteMedicine(medicine.id);
+                                        },
+                                        child:
+                                            const Text('Eliminar medicamento')),
+                                  )
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       );
                     },
