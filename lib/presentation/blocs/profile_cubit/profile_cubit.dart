@@ -1,9 +1,9 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 
@@ -29,7 +29,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         ])));
   }
 
-
   Future<bool> guardarPersona() async {
     ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
     Profile profile = Profile(
@@ -51,6 +50,10 @@ class ProfileCubit extends Cubit<ProfileState> {
     return prefs.getString('token');
   }
 
+  void cerrarSesion() {
+    AuthService authService = AuthService();
+    authService.clearUserCredentials();
+  }
 
   void nombreProfileChange(String value) {
     final nombreProfile = NombreProfile.dirty(value);

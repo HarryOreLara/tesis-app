@@ -223,7 +223,7 @@ class _GridDashboard extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.transparent.withOpacity(0.3),
+                    color: const Color.fromARGB(0, 126, 126, 126).withOpacity(0.3),
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -1,4 +1,6 @@
 
+export 'package:tesis_app/presentation/widgets/profile.dart';
+
 export 'package:tesis_app/presentation/widgets/entertainment/musica/play_button.dart';
 
 export 'package:tesis_app/presentation/widgets/entertainment/musica/seekbar.dart';
@@ -21,3 +23,4 @@ export 'package:tesis_app/presentation/widgets/home/cards_second.dart';
 export 'package:tesis_app/presentation/widgets/home/card_first.dart';
 
 export 'package:tesis_app/presentation/widgets/medicine/input_text_form_field.dart';
+
