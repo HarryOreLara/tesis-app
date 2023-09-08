@@ -51,6 +51,7 @@ dependencies:
   rxdart: ^0.27.7
   just_audio: ^0.9.34
   get: ^4.6.5
+  google_fonts: ^5.1.0
 
 dev_dependencies:
   flutter_test:

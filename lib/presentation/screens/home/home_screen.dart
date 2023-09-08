@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -17,7 +19,8 @@ class HomeScreen extends StatelessWidget {
             end: Alignment.bottomLeft,
           ),
         ),
-        child: const _PrincipalInterface(),
+        // child: const _PrincipalInterface(),
+        child: const HomeInterface(),
       ),
     );
   }
@@ -93,4 +96,186 @@ class _PrincipalInterface extends StatelessWidget {
       ],
     );
   }
+}
+
+class HomeInterface extends StatefulWidget {
+  const HomeInterface({super.key});
+
+  @override
+  State<HomeInterface> createState() => _HomeInterfaceState();
+}
+
+class _HomeInterfaceState extends State<HomeInterface> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.blue,
+              Colors.purple.shade500
+            ], // Colores del degradado
+          ),
+        ),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 80.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, right: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Feliciana",
+                        style: GoogleFonts.montserrat(
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 38,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "Bienvenida",
+                        style: GoogleFonts.montserrat(
+                            textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 167, 167, 167),
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                      alignment: Alignment.topCenter,
+                      onPressed: () {
+                        context.push('/profile');
+                      },
+                      icon: const CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/perfil.webp'),
+                        radius: 40,
+                      ))
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            _GridDashboard()
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _GridDashboard extends StatelessWidget {
+  Item item1 = Item(
+      title: 'Mensajes',
+      subtitle: 'Interactua con las personas',
+      event: '/message',
+      img: 'assets/images/message.jpg');
+  Item item2 = Item(
+      title: 'Medicamentos',
+      subtitle: 'Programa tus tiempos adecuados',
+      event: '/medicines',
+      img: 'assets/images/medicines.jpg');
+  Item item3 = Item(
+      title: 'Entrentemiento',
+      subtitle: 'Diviertete con multiples opciones',
+      event: '/entertainment',
+      img: 'assets/images/entertainment.jpg');
+  Item item4 = Item(
+      title: 'Foro',
+      subtitle: 'Interactua en grupos de discucion',
+      event: '/forum',
+      img: 'assets/images/forum.jpg');
+  Item item5 = Item(
+      title: 'Asistente',
+      subtitle: 'Un asistente que te ayudara en tu dia a dia',
+      event: '/assistant',
+      img: 'assets/images/assistant.jpg');
+
+  @override
+  Widget build(BuildContext context) {
+    List<Item> myList = [item1, item2, item3, item4, item5];
+
+    return Flexible(
+      child: GridView.count(
+          childAspectRatio: 1.0,
+          padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+          crossAxisCount: 2,
+          mainAxisSpacing: 18,
+          crossAxisSpacing: 18,
+          children: myList.map((data) {
+            return GestureDetector(
+              onTap: () {
+                context.push(data.event);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.transparent.withOpacity(0.3),
+                    borderRadius: BorderRadius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      data.img,
+                      width: 42.0,
+                    ),
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    Text(
+                      data.title,
+                      style: GoogleFonts.montserrat(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        data.subtitle,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.montserrat(
+                            textStyle: const TextStyle(
+                                color: Colors.white38,
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 14.0,
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList()),
+    );
+  }
+}
+
+class Item {
+  String title;
+  String subtitle;
+  String event;
+  String img;
+
+  Item(
+      {required this.title,
+      required this.subtitle,
+      required this.event,
+      required this.img});
 }
