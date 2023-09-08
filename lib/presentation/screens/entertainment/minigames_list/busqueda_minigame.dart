@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BusquedaMinigameScreen extends StatelessWidget {
   const BusquedaMinigameScreen({super.key});
@@ -9,6 +10,11 @@ class BusquedaMinigameScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Encuentra a la Busqueda'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/minigames');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const ObjectSearchGame(),
     );

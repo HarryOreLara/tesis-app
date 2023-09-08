@@ -12,12 +12,17 @@ class MessageScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Mensajes'),
-          centerTitle: true,
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-          ],
-        ),
+            title: const Text('Mensajes'),
+            centerTitle: true,
+            leading: IconButton(
+              onPressed: () {
+                GoRouter.of(context).go('/home');
+              },
+              icon: Icon(Icons.arrow_back_ios),
+            ),
+            actions: [
+              IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+            ]),
         body: ListView.builder(
           itemCount: chats.length,
           itemBuilder: (context, index) {
@@ -25,10 +30,9 @@ class MessageScreen extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 final senderJs = chat.sender;
-                final senderJson = senderJs.toJson();
+                final user = senderJs.toJson();
                 // context.push('/message/personas', extra: {'senderJson':senderJson});
-                GoRouter.of(context)
-                    .go('/message/personas', extra: {'senderJson': senderJson});
+                GoRouter.of(context).go('/message/personas', extra: user);
               },
               child: Container(
                 padding:

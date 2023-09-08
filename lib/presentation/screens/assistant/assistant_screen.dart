@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/presentation/widgets/shared/message_field_box.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
@@ -11,9 +12,9 @@ class AssistantScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            Navigator.of(context).pop(); // Add this line to navigate back
+            context.go('/home'); // Add this line to navigate back
           },
         ),
         title: const Row(

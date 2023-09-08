@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:math';
 
+import 'package:go_router/go_router.dart';
+
 class ParejaMinigameScreen extends StatelessWidget {
   const ParejaMinigameScreen({super.key});
 
@@ -11,6 +13,11 @@ class ParejaMinigameScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Encuentra a la pareja'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/minigames');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const MemoryGame(),
     );

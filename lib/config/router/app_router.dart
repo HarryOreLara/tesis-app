@@ -92,7 +92,12 @@ final appRouter = GoRouter(
             GoRoute(
               path: 'personas',
               builder: (context, state) {
-                return ChatScreen();
+                Map<String, dynamic> userData =
+                    state.extra as Map<String, dynamic>;
+
+                // User user = state.extra as User;
+                User user = User.fromJson(userData);
+                return ChatScreen(object: user);
               },
             ),
           ]),

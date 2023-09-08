@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ForumScreen extends StatelessWidget {
   static const String name = 'forum_screen';
@@ -10,6 +11,12 @@ class ForumScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Foro'),
         centerTitle: true,
+        leading: IconButton(
+            color: Colors.black,
+            onPressed: () {
+              context.go('/home');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: _CuerpoForo(),
     );
@@ -63,8 +70,8 @@ class _CuerpoForo extends StatelessWidget {
                   children: [
                     Text(
                       posts[index].question,
-                      style:
-                          const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 8),
                     Text(

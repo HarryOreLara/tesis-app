@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
 
@@ -14,6 +15,11 @@ class JokesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Chistes'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/entertainment');
+            },
+            icon: Icon(Icons.arrow_back_ios)),
       ),
       body: const _ChistesScreen(),
     );

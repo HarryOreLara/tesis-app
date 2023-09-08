@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/musica_entitie.dart';
 import 'package:tesis_app/domain/entities/play_list_entitite.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
@@ -184,15 +185,12 @@ class _CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Colors.transparent,
       elevation: 0,
-      leading: GestureDetector(
-        onTap: () {
-          Navigator.of(context).pop();
-        },
-        child: const Icon(
-          Icons.arrow_back,
+      leading: IconButton(
           color: Colors.white,
-        ),
-      ),
+          onPressed: () {
+            context.go('/entertainment');
+          },
+          icon: Icon(Icons.arrow_back_ios)),
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),

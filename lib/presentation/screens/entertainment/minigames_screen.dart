@@ -12,6 +12,11 @@ class MinigamesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Minijuegos'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/entertainment');
+            },
+            icon: Icon(Icons.arrow_back_ios)),
       ),
       body: _GameListScreen(),
     );

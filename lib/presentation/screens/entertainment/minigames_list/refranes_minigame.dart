@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RefranesMinigameScreen extends StatelessWidget {
   const RefranesMinigameScreen({super.key});
@@ -9,6 +10,11 @@ class RefranesMinigameScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Refranes'),
         centerTitle: true,
+                leading: IconButton(
+            onPressed: () {
+              context.go('/minigames');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: CompleteProverbsGame(),
     );

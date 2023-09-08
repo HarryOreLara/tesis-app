@@ -21,17 +21,21 @@ List<Message> chats = [
   Message(
       sender: arlesUser,
       time: '9:37 PM',
-      text: 'Me revientas el poto?',
+      text: 'Hello',
       leido: false),
 ];
 
 //Estos son los mensajes que estan en los chats
 List<Message> messages = [
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: false),
+  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
   Message(
-      sender: currentUser, time: '9:37 PM', text: 'Hola arles', leido: false),
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: false),
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: false),
+      sender: currentUser, time: '9:37 PM', text: 'Hola arles', leido: true),
+  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
   Message(
-      sender: currentUser, time: '9:37 PM', text: 'Hola Arles', leido: false),
+      sender: arlesUser,
+      time: '9:37 PM',
+      text: 'Hola harry',
+      leido: true),
+  Message(
+      sender: currentUser, time: '9:37 PM', text: 'Hola Arles', leido: true),
 ];

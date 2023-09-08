@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -19,72 +20,83 @@ class ProfileScreen extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: Text(
                 'Perfil',
-                style: TextStyle(fontSize: 40, color: Color(0xff113984)),
+                style: TextStyle(
+                    fontSize: 40, color: Color.fromARGB(255, 255, 255, 255)),
               )),
+          leading: IconButton(
+              color: Colors.white,
+              onPressed: () {
+                context.go('/home');
+              },
+              icon: const Icon(Icons.arrow_back_ios)),
         ),
         body: BlocProvider(
           create: (context) => ProfileCubit(),
           child: ListView(
             children: [
-              Card(
-                color: Colors.white,
-                elevation: 4,
-                shadowColor: const Color.fromARGB(255, 0, 0, 0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color.fromARGB(255, 255, 255, 255),
-                        Color.fromARGB(255, 255, 255, 255)
-                      ],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
+              FadeInDownBig(
+                child: Card(
+                  color: Colors.white,
+                  elevation: 4,
+                  shadowColor: const Color.fromARGB(255, 0, 0, 0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      gradient: const LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 255, 255, 255),
+                          Color.fromARGB(255, 255, 255, 255)
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                     ),
-                  ),
-                  child: const Column(
-                    children: [
-                      SizedBox(
-                        width: 380,
-                        height: 200,
-                        child: Padding(
-                          padding: EdgeInsets.all(16.0),
-                          child: CircleAvatar(
-                            radius: 50.0,
-                            backgroundImage:
-                                AssetImage('assets/images/perfil.webp'),
+                    child: const Column(
+                      children: [
+                        SizedBox(
+                          width: 380,
+                          height: 200,
+                          child: Padding(
+                            padding: EdgeInsets.all(16.0),
+                            child: CircleAvatar(
+                              radius: 50.0,
+                              backgroundImage:
+                                  AssetImage('assets/images/perfil.webp'),
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 20),
-                        child: Text(
-                          'Buen dia, Feliciana',
-                          style: TextStyle(
-                              fontSize: 22.0,
-                              color: Color(0xff003976),
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 20),
+                          child: Text(
+                            'Buen dia, Feliciana',
+                            style: TextStyle(
+                                fontSize: 22.0,
+                                color: Color(0xff003976),
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              const Padding(
-                padding: EdgeInsets.only(right: 16, left: 0),
-                child: Card(
-                  color: Color.fromARGB(255, 255, 255, 255),
-                  shadowColor: Colors.blue,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(
-                            60)), // Controla el radio de las esquinas biseladas
+              Padding(
+                padding: const EdgeInsets.only(right: 16, left: 0),
+                child: FadeInLeft(
+                  child: const Card(
+                    color: Colors.transparent,
+                    shadowColor: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(
+                              60)), // Controla el radio de las esquinas biseladas
+                    ),
+                    elevation: 4,
+                    child: _FormProfile(),
                   ),
-                  elevation: 4,
-                  child: _FormProfile(),
                 ),
               ),
               const SizedBox(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RompecabezasMinigameScreen extends StatelessWidget {
   const RompecabezasMinigameScreen({super.key});
@@ -9,6 +10,11 @@ class RompecabezasMinigameScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Rompecabezas'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              context.go('/minigames');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const PuzzleScreen(),
     );
