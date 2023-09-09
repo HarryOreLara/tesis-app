@@ -32,15 +32,15 @@ class Post {
 
 class _CuerpoForo extends StatelessWidget {
   final List<Post> posts = [
-    Post('How to get started with Flutter?', [
+    Post('Que cosas debemos hacer para mejorar la salud?', [
       'Check out the official documentation.',
       'Join the Flutter community.'
     ]),
-    Post('Best practices for state management?', [
+    Post('Mejores peliculas para disfrutar', [
       'Use Provider or Riverpod for simple apps.',
       'Consider using BLoC for more complex apps.'
     ]),
-    Post('Flutter vs React Native: Which is better?', [
+    Post('Que se deberia hacer el fin de semana?', [
       'It depends on your project requirements.',
       'Both have their strengths and weaknesses.'
     ]),

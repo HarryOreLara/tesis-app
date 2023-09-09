@@ -15,13 +15,25 @@ class Message {
 
 //Estos son los chats que se veran en pantalla principal
 List<Message> chats = [
-  Message(sender: elisaUser, time: '5:30 PM', text: 'Hola', leido: true),
-  Message(sender: luisUser, time: '8:10 PM', text: 'Hola v2', leido: false),
-  Message(sender: johanUser, time: '10:24 PM', text: 'Hola v3', leido: true),
+  Message(
+      sender: elisaUser,
+      time: '5:30 PM',
+      text: 'Test de prueba 1',
+      leido: true),
+  Message(
+      sender: luisUser,
+      time: '8:10 PM',
+      text: 'Teste de prueba 2',
+      leido: false),
+  Message(
+      sender: johanUser,
+      time: '10:24 PM',
+      text: 'Teste de prueba 3',
+      leido: true),
   Message(
       sender: arlesUser,
       time: '9:37 PM',
-      text: 'Hello',
+      text: 'Tesde de prueba 4',
       leido: false),
 ];
 
@@ -31,11 +43,7 @@ List<Message> messages = [
   Message(
       sender: currentUser, time: '9:37 PM', text: 'Hola arles', leido: true),
   Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
-  Message(
-      sender: arlesUser,
-      time: '9:37 PM',
-      text: 'Hola harry',
-      leido: true),
+  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
   Message(
       sender: currentUser, time: '9:37 PM', text: 'Hola Arles', leido: true),
 ];
