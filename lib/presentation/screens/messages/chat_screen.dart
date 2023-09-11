@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/messages/message_entitie.dart';
 import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
+import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
 
-class ChatScreen extends StatefulWidget {
+class ChatScreen extends StatelessWidget {
   static const String name = 'chat_screen';
   final User object;
 
   const ChatScreen({super.key, required this.object});
 
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
@@ -30,11 +27,11 @@ class _ChatScreenState extends State<ChatScreen> {
               textAlign: TextAlign.center,
               text: TextSpan(children: [
                 TextSpan(
-                    text: widget.object.nombre,
+                    text: object.nombre,
                     style: const TextStyle(
                         fontSize: 22.0, fontWeight: FontWeight.w400)),
                 const TextSpan(text: '\n'),
-                widget.object.isOnline
+                object.isOnline
                     ? const TextSpan(
                         text: 'En linea',
                         style: TextStyle(
@@ -48,56 +45,87 @@ class _ChatScreenState extends State<ChatScreen> {
           elevation: 8,
           backgroundColor: Colors.blue,
         ),
-        body: Column(
-          children: [
-            Expanded(
-                child: ListView.builder(
-              reverse: true,
-              padding: const EdgeInsets.all(20.0),
-              itemCount: messages.length,
-              itemBuilder: (context, index) {
-                final Message message = messages[index];
-                final bool isMe = message.sender.id == currentUser.id;
-
-                if (isMe == true) {
-                  return _MeChat(
-                    message: message,
-                  );
-                } else {
-                  return _YourChat(
-                    message: message,
-                  );
-                }
-              },
-            )),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              height: 70.0,
-              color: Colors.white,
-              child: Row(
-                children: [
-                  IconButton(
-                      iconSize: 25.0,
-                      color: colors.primary,
-                      onPressed: () {},
-                      icon: const Icon(Icons.photo)),
-                  const Expanded(
-                    child: TextField(
-                      decoration: InputDecoration.collapsed(
-                          hintText: 'Escribe un mensaje'),
-                      textCapitalization: TextCapitalization.sentences,
-                    ),
-                  ),
-                  IconButton(
-                      iconSize: 25.0,
-                      color: colors.primary,
-                      onPressed: () {},
-                      icon: const Icon(Icons.send))
-                ],
-              ),
-            )
-          ],
+        body: BlocProvider(
+          create: (context) => MessageCubit(),
+          child: _BodyChat(colors: colors, object: object),
         ));
+  }
+}
+
+class _BodyChat extends StatefulWidget {
+  const _BodyChat({
+    required this.colors,
+    required this.object,
+  });
+
+  final ColorScheme colors;
+  final User object;
+
+  @override
+  State<_BodyChat> createState() => _BodyChatState();
+}
+
+class _BodyChatState extends State<_BodyChat> {
+  @override
+  Widget build(BuildContext context) {
+    final messageCubit = context.watch<MessageCubit>();
+    return Column(
+      children: [
+        Expanded(
+            child: ListView.builder(
+          reverse: true,
+          padding: const EdgeInsets.all(20.0),
+          itemCount: messages.length,
+          itemBuilder: (context, index) {
+            final Message message = messages[index];
+            final bool isMe = message.sender.id == currentUser.id;
+
+            if (isMe == true) {
+              return _MeChat(
+                message: message,
+              );
+            } else {
+              return _YourChat(
+                message: message,
+              );
+            }
+          },
+        )),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          height: 70.0,
+          color: Colors.white,
+          child: Row(
+            children: [
+              IconButton(
+                  iconSize: 25.0,
+                  color: widget.colors.primary,
+                  onPressed: () {},
+                  icon: const Icon(Icons.photo)),
+              Expanded(
+                child: TextField(
+                  onChanged: messageCubit.messageChange,
+                  decoration: const InputDecoration.collapsed(
+                      hintText: 'Escribe un mensaje'),
+                  textCapitalization: TextCapitalization.sentences,
+                ),
+              ),
+              IconButton(
+                  iconSize: 25.0,
+                  color: widget.colors.primary,
+                  onPressed: () {
+                    print("Enviando mensaje");
+                    print(widget.object.id);
+                    final room = widget.object.id;
+                    final response = messageCubit.sendMessage(room);
+                    print(response);
+                  },
+                  icon: const Icon(Icons.send))
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
 

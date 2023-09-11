@@ -1,3 +1,5 @@
+export 'package:tesis_app/infraestructure/formularios/inputs/messages/message_text_input.dart';
+
 export 'package:tesis_app/infraestructure/formularios/auth/password_input.dart';
 
 export 'package:tesis_app/infraestructure/formularios/inputs/profile/apellidos_input.dart';

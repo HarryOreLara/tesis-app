@@ -52,6 +52,8 @@ dependencies:
   just_audio: ^0.9.34
   get: ^4.6.5
   google_fonts: ^5.1.0
+  socket_io_client: ^2.0.3+1
+  web_socket_channel: ^2.4.0
 
 dev_dependencies:
   flutter_test:

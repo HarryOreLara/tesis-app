@@ -76,7 +76,7 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
             Expanded(
               child: Column(
                 children: [
-                  Container(
+                  SizedBox(
                     height: 100,
                     width: 100,
                     child: Stack(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tesis_app/presentation/widgets/widgets.dart';
+
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
@@ -26,77 +26,6 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-class _PrincipalInterface extends StatelessWidget {
-  const _PrincipalInterface();
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        const CardFirst(nombreCard: 'profile', ruta: '/profile'),
-        const SizedBox(
-          height: 20.0,
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          CardsSecond(
-            nombreCard: 'Mensajes',
-            ruta: '/message',
-            colorsList: [
-              Colors.white.withOpacity(0.8),
-              const Color(0xff008FD5).withOpacity(0.5),
-            ],
-          ),
-          CardsSecond(
-            nombreCard: 'Medicamentos',
-            ruta: '/medicines',
-            colorsList: [
-              Colors.white.withOpacity(0.8),
-              const Color(0xff008FD5).withOpacity(0.5),
-            ],
-          )
-        ]),
-        const SizedBox(
-          height: 16.0,
-        ),
-        Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-          CardsSecond(
-            nombreCard: 'Diversion',
-            ruta: '/entertainment',
-            colorsList: [
-              Colors.white.withOpacity(0.8),
-              const Color(0xff008FD5).withOpacity(0.5),
-            ],
-          ),
-          CardsSecond(
-            nombreCard: 'Foro',
-            ruta: '/forum',
-            colorsList: [
-              // Color.fromARGB(255, 255, 255, 255),
-              // Color.fromARGB(255, 255, 255, 255)
-              Colors.white.withOpacity(0.8),
-              const Color(0xff008FD5).withOpacity(0.5),
-            ],
-          )
-        ]),
-        const SizedBox(
-          height: 16.0,
-        ),
-        Center(
-            child: CardsSecond(
-          nombreCard: 'Asistente',
-          ruta: '/assistant',
-          colorsList: [
-            Colors.white.withOpacity(0.8),
-            const Color(0xff008FD5).withOpacity(0.5),
-          ],
-        )),
-        const SizedBox(
-          height: 15,
-        )
-      ],
-    );
-  }
-}
 
 class HomeInterface extends StatefulWidget {
   const HomeInterface({super.key});

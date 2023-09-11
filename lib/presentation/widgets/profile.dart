@@ -29,7 +29,7 @@ class InputProfile extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           filled: true, // Indica que el fondo debe ser llenado
-          fillColor: Color.fromARGB(255, 255, 0, 0),
+          fillColor:const Color.fromARGB(255, 255, 0, 0),
           enabledBorder: border,
           focusedBorder:
               border.copyWith(borderSide: BorderSide(color: colors.primary)),

@@ -190,7 +190,7 @@ class _CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {
             context.go('/entertainment');
           },
-          icon: Icon(Icons.arrow_back_ios)),
+          icon:const Icon(Icons.arrow_back_ios)),
       actions: [
         Container(
           margin: const EdgeInsets.only(right: 20),

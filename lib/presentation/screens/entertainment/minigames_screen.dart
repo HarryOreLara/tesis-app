@@ -16,7 +16,7 @@ class MinigamesScreen extends StatelessWidget {
             onPressed: () {
               context.go('/entertainment');
             },
-            icon: Icon(Icons.arrow_back_ios)),
+            icon:const Icon(Icons.arrow_back_ios)),
       ),
       body: _GameListScreen(),
     );

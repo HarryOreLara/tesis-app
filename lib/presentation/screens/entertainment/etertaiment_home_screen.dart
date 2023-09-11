@@ -16,7 +16,7 @@ class EntertainmentScreen extends StatelessWidget {
             onPressed: () {
               context.go('/home');
             },
-            icon: Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const DiversionSlider(),
     );
