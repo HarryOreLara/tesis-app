@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:tesis_app/domain/entities/messages/message_entitie.dart';
 import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
 import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
@@ -114,10 +115,14 @@ class _BodyChatState extends State<_BodyChat> {
                   iconSize: 25.0,
                   color: widget.colors.primary,
                   onPressed: () {
-                    print("Enviando mensaje");
-                    print(widget.object.id);
                     final room = widget.object.id;
-                    final response = messageCubit.sendMessage(room);
+                    User user = User(
+                        id: room,
+                        nombre: widget.object.nombre,
+                        imgUrl: widget.object.imgUrl,
+                        isOnline: widget.object.isOnline);
+                    print(widget.object.id);
+                    final response = messageCubit.sendMessage(room, user);
                     print(response);
                   },
                   icon: const Icon(Icons.send))
@@ -260,6 +265,41 @@ class __YourChatState extends State<_YourChat> {
           ],
         )
       ],
+    );
+  }
+}
+
+//TODO_ PRUEBAS DE SOCKETS
+class _Probando extends StatefulWidget {
+  const _Probando({super.key});
+
+  @override
+  State<_Probando> createState() => __ProbandoState();
+}
+
+class __ProbandoState extends State<_Probando> {
+  final socket =
+      io.io("https://tesis-xz3b.onrender.com/sendMessage/sendMessage/fdsfdf");
+
+  @override
+  void initState() {
+    super.initState();
+    socket.on('newMessage', (data) => {print('Mensaje recibido: $data')});
+  }
+
+  @override
+  void dispose() {
+    socket.disconnect();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chat en tiempo real'),
+      ),
+      // Construye la interfaz de usuario de tu aplicación aquí
     );
   }
 }
