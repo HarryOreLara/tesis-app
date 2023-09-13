@@ -2,6 +2,7 @@ class Chat {
   final String message;
   final String room;
 
+
   Chat({required this.message, required this.room});
 
   factory Chat.fromJson(Map<String, dynamic> json) =>

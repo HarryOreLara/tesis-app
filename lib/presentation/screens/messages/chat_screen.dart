@@ -68,6 +68,16 @@ class _BodyChat extends StatefulWidget {
 
 class _BodyChatState extends State<_BodyChat> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final messageCubit = context.watch<MessageCubit>();
     return Column(
@@ -115,15 +125,8 @@ class _BodyChatState extends State<_BodyChat> {
                   iconSize: 25.0,
                   color: widget.colors.primary,
                   onPressed: () {
-                    final room = widget.object.id;
-                    User user = User(
-                        id: room,
-                        nombre: widget.object.nombre,
-                        imgUrl: widget.object.imgUrl,
-                        isOnline: widget.object.isOnline);
-                    print(widget.object.id);
-                    final response = messageCubit.sendMessage(room, user);
-                    print(response);
+                    messageCubit.sendMessage();
+                    messageCubit.getMensajesByUser();
                   },
                   icon: const Icon(Icons.send))
             ],

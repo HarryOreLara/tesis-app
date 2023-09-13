@@ -1,28 +1,37 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tesis_app/domain/entities/messages/message_entitie.dart';
-import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
-
 import 'package:tesis_app/infraestructure/datasources/messages/message_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 import 'package:formz/formz.dart';
+import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 part 'message_state.dart';
 
 class MessageCubit extends Cubit<MessageState> {
   MessageCubit() : super(const MessageState());
 
-  Future<void> sendMessage(String room, User user) async {
+  Future<void> sendMessage() async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
-    final datTime = DateTime.now();
-    final datString = datTime.toString();
     final message = state.messageText.value;
-    Message newMessage =
-        Message(sender: user, time: datString, text: message, leido: false);
+    MessageModel messageModel = MessageModel(
+        mensaje: message, emisor: "idHarry", receptor: "idElisa", leido: false);
 
     try {
-      final res = messageDatasourceInfra.sendMessage(newMessage);
+      //final res = messageDatasourceInfra.sendMessage(newMessage);
+      final res = messageDatasourceInfra.sendMessage(messageModel);
       print(res);
     } catch (e) {}
+  }
+
+  Future<List<MessageModel>> getMensajesByUser() async {
+    MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
+    MessageModel messageModel = MessageModel(
+        mensaje: "message",
+        emisor: "idHarry",
+        receptor: "idElisa",
+        leido: false);
+
+    final res = await messageDatasourceInfra.getListMessagesbyId(messageModel);
+    return res;
   }
 
   void messageChange(String value) {
