@@ -6,11 +6,15 @@ import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
+import 'package:tesis_app/infraestructure/repositories/medicine_repository_infra.dart';
 
 part 'new_medicines_state.dart';
 
 class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   NewMedicinesCubit() : super(const NewMedicinesState());
+
+  MedicineRepositoryInfra medicineRepositoryInfra =
+      MedicineRepositoryInfra(MedicineDbDatasourceInfra());
 
   void onSubmit() async {
     emit(state.copyWith(
@@ -30,8 +34,6 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   }
 
   Future<bool> guardarBaseDatos() async {
-    MedicineDbDatasourceInfra medicineDbDatasourceInfra =
-        MedicineDbDatasourceInfra();
     Medicine medicine = Medicine(
         id: '',
         nombre: state.nombreMedicine.value,
@@ -40,7 +42,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
         horaIntermedio: state.horaIntermedia.value,
         horaFin: state.horaFin.value);
     try {
-      final res = medicineDbDatasourceInfra.postNewMedicine(medicine);
+      final res = medicineRepositoryInfra.postNewMedicine(medicine);
       return res;
     } catch (error) {
       return false;
@@ -48,25 +50,20 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   }
 
   Future<List<Medicine>> getMedicineByUser() async {
-    MedicineDbDatasourceInfra medicineDbDatasourceInfra =
-        MedicineDbDatasourceInfra();
     final authService = AuthService();
     final idPersonaNullable = await authService.getUserId();
     final idPersona = idPersonaNullable ?? "";
     try {
-      final res = medicineDbDatasourceInfra.getMedicines(idPersona);
+      final res = medicineRepositoryInfra.getMedicines(idPersona);
       return res;
     } catch (e) {
       return [];
     }
   }
 
-//TODO:REVISAR
   Future<bool> deleteMedicine(String medicineId) async {
-    MedicineDbDatasourceInfra medicineDbDatasourceInfra =
-        MedicineDbDatasourceInfra();
     try {
-      final res = medicineDbDatasourceInfra.deleteMedicine(medicineId);
+      final res = medicineRepositoryInfra.deleteMedicine(medicineId);
       return res;
     } catch (e) {
       return false;

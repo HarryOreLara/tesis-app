@@ -5,7 +5,7 @@ import 'package:tesis_app/domain/repositories/profile/profile_repository_domain.
 class ProfileRepositoryInfra extends ProfileRepositoryDomain {
   final ProfileDatasourceDomain profileDatasourceDomain;
 
-  ProfileRepositoryInfra({required this.profileDatasourceDomain});
+  ProfileRepositoryInfra(this.profileDatasourceDomain);
 
   @override
   Future<bool> deletePersona(String id) {

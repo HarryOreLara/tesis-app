@@ -54,11 +54,11 @@ List<Message> chats = [
 
 //Estos son los mensajes que estan en los chats
 List<Message> messages = [
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
-  Message(
-      sender: currentUser, time: '9:37 PM', text: 'Hola arles', leido: true),
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
-  Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
-  Message(
-      sender: currentUser, time: '9:37 PM', text: 'Hola Arles', leido: true),
+  // Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
+  // Message(
+  //     sender: currentUser, time: '9:37 PM', text: 'Hola arles', leido: true),
+  // Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
+  // Message(sender: arlesUser, time: '9:37 PM', text: 'Hola harry', leido: true),
+  // Message(
+  //     sender: currentUser, time: '9:37 PM', text: 'Hola Arles', leido: true),
 ];

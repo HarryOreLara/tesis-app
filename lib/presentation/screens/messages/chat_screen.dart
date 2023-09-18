@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
-import 'package:tesis_app/domain/entities/messages/message_entitie.dart';
+
 import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
+import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -80,17 +81,29 @@ class _BodyChatState extends State<_BodyChat> {
   @override
   Widget build(BuildContext context) {
     final messageCubit = context.watch<MessageCubit>();
-    return Column(
+    // final messagesModel = messageCubit.getMensajesByUser();
+
+    return FutureBuilder(
+        future: messageCubit.getMensajesByUser(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            // Muestra un indicador de carga mientras se obtienen los mensajes.
+            return CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            // Maneja errores si ocurren durante la obtención de mensajes.
+            return Text('Error: ${snapshot.error}');
+          } else {
+            final messagesModel = snapshot.data ?? [];
+                return Column(
       children: [
         Expanded(
             child: ListView.builder(
           reverse: true,
           padding: const EdgeInsets.all(20.0),
-          itemCount: messages.length,
+          itemCount: messagesModel.length,
           itemBuilder: (context, index) {
-            final Message message = messages[index];
-            final bool isMe = message.sender.id == currentUser.id;
-
+            final MessageModel message = messagesModel[index];
+            final bool isMe = message.emisor == currentUser.id;
             if (isMe == true) {
               return _MeChat(
                 message: message,
@@ -134,11 +147,13 @@ class _BodyChatState extends State<_BodyChat> {
         )
       ],
     );
+          }
+        });
   }
 }
 
 class _MeChat extends StatefulWidget {
-  final Message message;
+  final MessageModel message;
 
   const _MeChat({super.key, required this.message});
 
@@ -169,7 +184,7 @@ class __MeChatState extends State<_MeChat> {
                       blurRadius: 5)
                 ]),
             child: Text(
-              widget.message.text,
+              widget.message.mensaje,
               style: const TextStyle(color: Colors.white),
             ),
           ),
@@ -177,9 +192,9 @@ class __MeChatState extends State<_MeChat> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Text(
-              widget.message.time,
-              style: const TextStyle(fontSize: 12.00, color: Colors.black45),
+            const Text(
+              "15:00",
+              style: TextStyle(fontSize: 12.00, color: Colors.black45),
             ),
             const SizedBox(
               width: 10.0,
@@ -206,7 +221,7 @@ class __MeChatState extends State<_MeChat> {
 }
 
 class _YourChat extends StatefulWidget {
-  final Message message;
+  final MessageModel message;
 
   const _YourChat({super.key, required this.message});
 
@@ -236,7 +251,7 @@ class __YourChatState extends State<_YourChat> {
                       blurRadius: 5)
                 ]),
             child: Text(
-              widget.message.text,
+              widget.message.mensaje,
               style: const TextStyle(color: Colors.black54),
             ),
           ),
@@ -261,9 +276,9 @@ class __YourChatState extends State<_YourChat> {
             const SizedBox(
               width: 10.0,
             ),
-            Text(
-              widget.message.time,
-              style: const TextStyle(fontSize: 12.00, color: Colors.black45),
+            const Text(
+              "16:00",
+              style: TextStyle(fontSize: 12.00, color: Colors.black45),
             ),
           ],
         )
@@ -300,7 +315,7 @@ class __ProbandoState extends State<_Probando> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat en tiempo real'),
+        title: const Text('Chat en tiempo real'),
       ),
       // Construye la interfaz de usuario de tu aplicación aquí
     );

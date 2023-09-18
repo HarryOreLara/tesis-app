@@ -6,11 +6,15 @@ import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
+import 'package:tesis_app/infraestructure/repositories/profile/profile_reposiroty_infra.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(const ProfileState());
+
+  ProfileRepositoryInfra profileRepositoryInfra =
+      ProfileRepositoryInfra(ProfileDatasourceInfra());
 
   void onSubmit() async {
     emit(state.copyWith(
@@ -30,7 +34,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<bool> guardarPersona() async {
-    ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
+
     Profile profile = Profile(
         nombre: state.nombreProfile.value,
         apellidos: state.apellidosProfile.value,
@@ -38,7 +42,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         genero: state.generoProfile.value,
         dni: state.dniProfile.value);
     try {
-      final res = profileDatasourceInfra.postNewPersona(profile);
+      final res = profileRepositoryInfra.postNewPersona(profile);
       return res;
     } catch (e) {
       return false;

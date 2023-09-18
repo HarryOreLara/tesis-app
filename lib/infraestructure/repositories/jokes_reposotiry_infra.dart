@@ -1,14 +1,20 @@
+import 'package:tesis_app/domain/datasources/jokes_datasource_domain.dart';
 import 'package:tesis_app/domain/entities/jokes_entitie.dart';
 
 import 'package:tesis_app/domain/repositories/jokes_repository_domain.dart';
 
 class JokeRepositoryInfra extends JokeRepositoryDomain {
-  final JokeRepositoryDomain jokeRepositoryDomain;
+  final JokesDataSourceDomain jokesDataSourceDomain;
 
-  JokeRepositoryInfra(this.jokeRepositoryDomain);
+  JokeRepositoryInfra(this.jokesDataSourceDomain);
 
   @override
   Future<Joke> getOneJoke(int id) {
-    throw UnimplementedError();
+    return jokesDataSourceDomain.getOneJoke(id);
+  }
+
+  @override
+  Future<void> initCarga(String seleccion, String id) {
+    return jokesDataSourceDomain.initCarga(seleccion, id);
   }
 }

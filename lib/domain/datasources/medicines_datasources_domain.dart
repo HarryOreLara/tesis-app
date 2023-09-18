@@ -6,4 +6,6 @@ abstract class MedicineDataSourceDomain {
   Future<List<Medicine>> getAllMedicine(String id);
 
   Future<bool> deleteMedicine(String id);
+
+  Future<List<Medicine>> getMedicines(String idUser);
 }

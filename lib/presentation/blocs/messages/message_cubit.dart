@@ -1,13 +1,19 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+
+import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/datasources/messages/message_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
 import 'package:formz/formz.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
+import 'package:tesis_app/infraestructure/repositories/medicine_repository_infra.dart';
 part 'message_state.dart';
 
 class MessageCubit extends Cubit<MessageState> {
   MessageCubit() : super(const MessageState());
+
+  MedicineRepositoryInfra medicineRepositoryInfra =
+      MedicineRepositoryInfra(MedicineDbDatasourceInfra());
 
   Future<void> sendMessage() async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
@@ -22,6 +28,7 @@ class MessageCubit extends Cubit<MessageState> {
     } catch (e) {}
   }
 
+  //Para obtener la lista de mensajes
   Future<List<MessageModel>> getMensajesByUser() async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
     MessageModel messageModel = MessageModel(
@@ -29,7 +36,6 @@ class MessageCubit extends Cubit<MessageState> {
         emisor: "idHarry",
         receptor: "idElisa",
         leido: false);
-
     final res = await messageDatasourceInfra.getListMessagesbyId(messageModel);
     return res;
   }

@@ -21,4 +21,9 @@ class MedicineRepositoryInfra extends MedicineRepository {
   Future<bool> deleteMedicine(String id) {
     return medicineDataSourceDomain.deleteMedicine(id);
   }
+
+  @override
+  Future<List<Medicine>> getMedicines(String idUser) {
+    return medicineDataSourceDomain.getMedicines(idUser);
+  }
 }

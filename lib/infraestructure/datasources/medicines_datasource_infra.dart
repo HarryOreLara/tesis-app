@@ -30,7 +30,7 @@ class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
     return JsonToMedicines(response.data);
   }
 
-
+  @override
   Future<List<Medicine>> getMedicines(String idUser) async {
     final response = await dio.get('/medicines/getList/$idUser');
     final res = MedicinesReponse.fromJson(response.data);
