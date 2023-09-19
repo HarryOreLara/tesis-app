@@ -1,4 +1,5 @@
 class Profile {
+  final String id;
   final String nombre;
   final String apellidos;
   final String edad;
@@ -6,14 +7,24 @@ class Profile {
   final String dni;
 
   Profile(
-      {required this.nombre,
+      {required this.id,
+      required this.nombre,
       required this.apellidos,
       required this.edad,
       required this.genero,
       required this.dni});
 
+  factory Profile.fromJson(Map<String, dynamic> json) => Profile(
+    id: json["_id"] ?? '',
+      nombre: json["nombre"] ?? '',
+      apellidos: json["apellidos"] ?? '',
+      edad: json["edad"] ?? '',
+      genero: json["genero"] ?? '',
+      dni: json["dni"] ?? '');
+
   Map<String, dynamic> toJson() {
     return {
+      
       'nombre': nombre,
       'apellidos': apellidos,
       'edad': edad,

@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/messages/message_datasource_domain.dart';
+import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/mensaje_mapper.dart';
+import 'package:tesis_app/infraestructure/mappers/persona_mapper.dart';
 import 'package:tesis_app/infraestructure/models/messages/chat_response.dart';
 import 'package:tesis_app/infraestructure/models/messages/mensaje_response.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
+import 'package:tesis_app/infraestructure/models/user/persona_response.dart';
 
 class MessageDatasourceInfra extends MessageDatasourceDomain {
   AuthService authService = AuthService();
@@ -41,5 +44,14 @@ class MessageDatasourceInfra extends MessageDatasourceDomain {
     return mensajes;
   }
 
-
+  @override
+  Future<List<Profile>> searchPerson(String query) async {
+    final response =
+        await dio.get('/sendMessage/search/$query');
+    final res = PersonaResponse.fromJson(response.data);
+    final List<Profile> profile = res.personaList
+        .map((profileDb) => PersonaMapper.personaDbToEntity(profileDb))
+        .toList();
+    return profile;
+  }
 }

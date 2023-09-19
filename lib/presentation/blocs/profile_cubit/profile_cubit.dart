@@ -34,8 +34,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<bool> guardarPersona() async {
-
     Profile profile = Profile(
+        id: "",
         nombre: state.nombreProfile.value,
         apellidos: state.apellidosProfile.value,
         edad: state.edadProfile.value,
