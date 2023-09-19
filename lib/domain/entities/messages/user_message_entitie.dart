@@ -21,16 +21,4 @@ class User {
   }
 }
 
-//YO
-final User currentUser =
-    User(id: 'idHarry', nombre: 'Harry', imgUrl: '', isOnline: true);
 
-//OTROS
-final User elisaUser =
-    User(id: 'idElisa', nombre: 'Elisa', imgUrl: '', isOnline: true);
-final User luisUser =
-    User(id: 'idLuis', nombre: 'Luis', imgUrl: '', isOnline: false);
-final User johanUser =
-    User(id: 'idJohan', nombre: 'Johan', imgUrl: '', isOnline: true);
-final User arlesUser =
-    User(id: 'idArles', nombre: 'Arles', imgUrl: '', isOnline: false);

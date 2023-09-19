@@ -18,7 +18,7 @@ class MessageScreen extends StatelessWidget {
               onPressed: () {
                 GoRouter.of(context).go('/home');
               },
-              icon: Icon(Icons.arrow_back_ios),
+              icon: const Icon(Icons.arrow_back_ios),
             ),
             actions: [
               IconButton(onPressed: () {}, icon: const Icon(Icons.search)),

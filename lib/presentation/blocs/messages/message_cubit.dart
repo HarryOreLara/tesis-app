@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/datasources/messages/message_datasource_infra.dart';
@@ -15,17 +16,20 @@ class MessageCubit extends Cubit<MessageState> {
   MedicineRepositoryInfra medicineRepositoryInfra =
       MedicineRepositoryInfra(MedicineDbDatasourceInfra());
 
-  Future<void> sendMessage() async {
+  Future<void> sendMessage(String idReceptor) async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
+    final authService = AuthService();
+    final idPersonaNullable = await authService.getUserId();
+    final idEmisor = idPersonaNullable ?? "";
     final message = state.messageText.value;
     MessageModel messageModel = MessageModel(
-        mensaje: message, emisor: "idHarry", receptor: "idElisa", leido: false);
-
+        mensaje: message, emisor: idEmisor, receptor: idReceptor, leido: false);
     try {
       //final res = messageDatasourceInfra.sendMessage(newMessage);
-      final res = messageDatasourceInfra.sendMessage(messageModel);
-      print(res);
-    } catch (e) {}
+      messageDatasourceInfra.sendMessage(messageModel);
+    } catch (e) {
+      print(e);
+    }
   }
 
   //Para obtener la lista de mensajes

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 
 import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
 
@@ -86,67 +87,68 @@ class _BodyChatState extends State<_BodyChat> {
     return FutureBuilder(
         future: messageCubit.getMensajesByUser(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // Muestra un indicador de carga mientras se obtienen los mensajes.
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
+          if (snapshot.hasError) {
             // Maneja errores si ocurren durante la obtención de mensajes.
             return Text('Error: ${snapshot.error}');
           } else {
             final messagesModel = snapshot.data ?? [];
-                return Column(
-      children: [
-        Expanded(
-            child: ListView.builder(
-          reverse: true,
-          padding: const EdgeInsets.all(20.0),
-          itemCount: messagesModel.length,
-          itemBuilder: (context, index) {
-            final MessageModel message = messagesModel[index];
-            final bool isMe = message.emisor == currentUser.id;
-            if (isMe == true) {
-              return _MeChat(
-                message: message,
-              );
-            } else {
-              return _YourChat(
-                message: message,
-              );
-            }
-          },
-        )),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          height: 70.0,
-          color: Colors.white,
-          child: Row(
-            children: [
-              IconButton(
-                  iconSize: 25.0,
-                  color: widget.colors.primary,
-                  onPressed: () {},
-                  icon: const Icon(Icons.photo)),
-              Expanded(
-                child: TextField(
-                  onChanged: messageCubit.messageChange,
-                  decoration: const InputDecoration.collapsed(
-                      hintText: 'Escribe un mensaje'),
-                  textCapitalization: TextCapitalization.sentences,
-                ),
-              ),
-              IconButton(
-                  iconSize: 25.0,
-                  color: widget.colors.primary,
-                  onPressed: () {
-                    messageCubit.sendMessage();
-                    messageCubit.getMensajesByUser();
+            return Column(
+              children: [
+                Expanded(
+                    child: ListView.builder(
+                  reverse: true,
+                  padding: const EdgeInsets.all(20.0),
+                  itemCount: messagesModel.length,
+                  itemBuilder: (context, index) {
+                    final MessageModel message = messagesModel[index];
+                    final authService = AuthService();
+                    final idPersonaNullable = authService.getUserId();
+                    final idEmisor = idPersonaNullable;
+                    final bool isMe = message.emisor == idEmisor.toString();
+                    if (isMe == true) {
+                      return _MeChat(
+                        message: message,
+                      );
+                    } else {
+                      return _YourChat(
+                        message: message,
+                      );
+                    }
                   },
-                  icon: const Icon(Icons.send))
-            ],
-          ),
-        )
-      ],
-    );
+                )),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  height: 70.0,
+                  color: Colors.white,
+                  child: Row(
+                    children: [
+                      IconButton(
+                          iconSize: 25.0,
+                          color: widget.colors.primary,
+                          onPressed: () {},
+                          icon: const Icon(Icons.photo)),
+                      Expanded(
+                        child: TextField(
+                          onChanged: messageCubit.messageChange,
+                          decoration: const InputDecoration.collapsed(
+                              hintText: 'Escribe un mensaje'),
+                          textCapitalization: TextCapitalization.sentences,
+                        ),
+                      ),
+                      IconButton(
+                          iconSize: 25.0,
+                          color: widget.colors.primary,
+                          onPressed: () {
+                            messageCubit.sendMessage(widget.object.id);
+                            print(widget.object.id);
+                            messageCubit.getMensajesByUser();
+                          },
+                          icon: const Icon(Icons.send))
+                    ],
+                  ),
+                )
+              ],
+            );
           }
         });
   }
