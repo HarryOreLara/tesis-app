@@ -98,6 +98,13 @@ final appRouter = GoRouter(
                 return ChatScreen(object: user);
               },
             ),
+            GoRoute(
+              path: 'chat/:id',
+              builder: (context, state) {
+                final idReceptor = state.pathParameters['id'] ?? '';
+                return ChatScreenV2(idReceptor: idReceptor,);
+              },
+            ),
           ]),
       GoRoute(
         path: '/profile',
