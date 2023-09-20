@@ -35,7 +35,7 @@ class MessageScreen extends ConsumerWidget {
                                     messageRepository.searchPerson))
                         .then((profile) {
                       if (profile == null) return;
-                      GoRouter.of(context).go('/message/${profile.id}');
+                      GoRouter.of(context).go('/message/chat/${profile.id}');
                     });
                   },
                   icon: const Icon(Icons.search)),

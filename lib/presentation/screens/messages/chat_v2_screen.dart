@@ -10,7 +10,6 @@ class ChatScreenV2 extends StatefulWidget {
 }
 
 class _ChatScreenV2State extends State<ChatScreenV2> {
-
   @override
   void initState() {
     //Peticion de chats
@@ -26,7 +25,10 @@ class _ChatScreenV2State extends State<ChatScreenV2> {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Center(
+        child: Text(widget.idReceptor),
+      ),
+    );
   }
 }
-

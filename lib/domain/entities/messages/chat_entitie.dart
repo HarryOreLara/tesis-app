@@ -1,14 +1,26 @@
-class Chat {
-  final String message;
-  final String room;
+class Chats {
+  final String idEmisor;
+  final String idReceptor;
+  final String nombreReceptor;
+  final String nombreEmisor;
 
+  Chats({required this.nombreEmisor, 
+      required this.nombreReceptor,
+      required this.idEmisor,
+      required this.idReceptor});
 
-  Chat({required this.message, required this.room});
-
-  factory Chat.fromJson(Map<String, dynamic> json) =>
-      Chat(message: json["message"] ?? '', room: json["room"] ?? '');
+  factory Chats.fromJson(Map<String, dynamic> json) => Chats(
+      idEmisor: json["idEmisor"] ?? '',
+      idReceptor: json["idReceptor"] ?? '',
+      nombreEmisor: json["nombreEmisor"] ?? '',
+      nombreReceptor: json["nombreReceptor"] ?? '');
 
   Map<String, dynamic> toJson() {
-    return {"message": message, "room": room};
+    return {
+      "idEmisor": idEmisor,
+      "idReceptor": idReceptor,
+      "nombreReceptor": nombreReceptor,
+      "nombreEmisor":nombreEmisor
+    };
   }
 }

@@ -21,4 +21,9 @@ class ProfileRepositoryInfra extends ProfileRepositoryDomain {
   Future<bool> updatPersona(String id) {
     return profileDatasourceDomain.updatPersona(id);
   }
+
+  @override
+  Future<Profile> getOnePersona(String id) {
+    return profileDatasourceDomain.getOnePersona(id);
+  }
 }
