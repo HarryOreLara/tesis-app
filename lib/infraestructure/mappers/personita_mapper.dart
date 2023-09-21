@@ -7,5 +7,6 @@ class PersonitaMapper {
       apellidos: profile.apellidos,
       edad: profile.edad,
       genero: profile.genero,
-      dni: profile.dni);
+      dni: profile.dni,
+      idUsuario: profile.idUsuario);
 }

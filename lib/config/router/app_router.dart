@@ -99,10 +99,11 @@ final appRouter = GoRouter(
               },
             ),
             GoRoute(
-              path: 'chat/:id',
+              path: 'chat/:id/:nombre',
               builder: (context, state) {
                 final idReceptor = state.pathParameters['id'] ?? '';
-                return ChatScreenV2(idReceptor: idReceptor,);
+                final nombreReceptor = state.pathParameters['nombre'] ?? '';
+                return ChatScreenV2(idReceptor: idReceptor,nombreReceptor: nombreReceptor,);
               },
             ),
           ]),

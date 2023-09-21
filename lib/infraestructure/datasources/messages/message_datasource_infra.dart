@@ -44,6 +44,8 @@ class MessageDatasourceInfra extends MessageDatasourceDomain {
     return mensajes;
   }
 
+
+//Buscar la persona para inicar el chat
   @override
   Future<List<Profile>> searchPerson(String query) async {
     final response =

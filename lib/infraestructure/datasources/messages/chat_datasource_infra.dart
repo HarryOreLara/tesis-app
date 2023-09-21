@@ -11,12 +11,13 @@ class ChatDatasourceInfra extends ChatDatasourceDomain {
   @override
   Future<void> saveChat(Chats chats) async {
     final chatJson = chats.toJson();
-    await dio.post('chat/newChat', data: chatJson);
+    final res = await dio.post('/chat/newChat', data: chatJson);
+    print(res);
   }
 
   @override
   Future<List<Chats>> allChats(String idEmisor) async {
-    final response = await dio.get('chat/allChats/$idEmisor');
+    final response = await dio.get('/chat/allChats/$idEmisor');
     final res = ChatListResponse.fromJson(response.data);
     final List<Chats> listChats = res.listChats
         .map((chatDb) => ChatMapper.chatDbToEntity(chatDb))

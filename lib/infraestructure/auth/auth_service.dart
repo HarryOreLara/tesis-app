@@ -21,6 +21,8 @@ Future<String?> getUserId() async {
   return prefs.getString('userId');
 }
 
+
+
 // Borrar datos al cerrar sesión
 void clearUserCredentials() async {
   final prefs = await SharedPreferences.getInstance();

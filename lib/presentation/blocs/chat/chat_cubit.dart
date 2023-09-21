@@ -16,24 +16,25 @@ class ChatCubit extends Cubit<ChatState> {
   ChatRepositoryInfra chatRepositoryInfra =
       ChatRepositoryInfra(ChatDatasourceInfra());
 
-  ProfileRepositoryInfra profileRepositoryInfra = ProfileRepositoryInfra(ProfileDatasourceInfra());
+  ProfileRepositoryInfra profileRepositoryInfra =
+      ProfileRepositoryInfra(ProfileDatasourceInfra());
 
   AuthService authService = AuthService();
 
   Future<void> saveChat(String idReceptor, String nombreReceptor) async {
-    final idPersonaNullable = await authService.getUserId();
-    final idEmisor = idPersonaNullable ?? "";
-    final Profile profile =await profileRepositoryInfra.getOnePersona(idEmisor);
-    final nombre = profile.nombre.toString();
+    //TODO: Se esta cargando el idUser y necesitamos el idPersona
+    final idUserNull = await authService.getUserId();
+    final idUser = idUserNull ?? "";
+    final profile = await profileRepositoryInfra.getOnePersona(idUser);
+    final nombre = profile.nombre;
+    final idEmisor = profile.id;
 
+//Aca ya tengo el nombre de a quien voy a enviar el mensjae
     Chats chat = Chats(
-        nombreReceptor: nombreReceptor,
-        idEmisor: idEmisor,
+        nombreReceptor: nombreReceptor, //l
+        idEmisor: idEmisor, //l
         nombreEmisor: nombre,
         idReceptor: idReceptor);
     chatRepositoryInfra.saveChat(chat);
   }
-
-
-
 }

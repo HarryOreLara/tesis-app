@@ -15,6 +15,7 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   ProfileRepositoryInfra profileRepositoryInfra =
       ProfileRepositoryInfra(ProfileDatasourceInfra());
+  AuthService authService = AuthService();
 
   void onSubmit() async {
     emit(state.copyWith(
@@ -34,13 +35,16 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<bool> guardarPersona() async {
+        final idPersonaNullable = await authService.getUserId();
+    final idUsuario = idPersonaNullable ?? "";
     Profile profile = Profile(
         id: "",
         nombre: state.nombreProfile.value,
         apellidos: state.apellidosProfile.value,
         edad: state.edadProfile.value,
         genero: state.generoProfile.value,
-        dni: state.dniProfile.value);
+        dni: state.dniProfile.value,
+        idUsuario: idUsuario);
     try {
       final res = profileRepositoryInfra.postNewPersona(profile);
       return res;
