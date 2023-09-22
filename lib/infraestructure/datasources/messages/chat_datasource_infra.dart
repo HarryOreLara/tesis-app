@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/messages/chat_datasource_domain.dart';
 import 'package:tesis_app/domain/entities/messages/chat_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/chat_mapper.dart';
 import 'package:tesis_app/infraestructure/models/messages/chat_list_response.dart';
 
 class ChatDatasourceInfra extends ChatDatasourceDomain {
+  AuthService authService = AuthService();
+
   final dio = Dio(BaseOptions(
       baseUrl: 'https://tesis-xz3b.onrender.com',
       headers: {'Content-Type': 'application/json', 'x-auth-token': 'token'}));
@@ -26,8 +29,11 @@ class ChatDatasourceInfra extends ChatDatasourceDomain {
   }
 
   @override
-  Future<Chats> oneChat(String idReceptor, String idEmisor) {
-    // TODO: implement oneChat
-    throw UnimplementedError();
+  Future<Chats> oneChat(String idReceptor, String idEmisor) async {
+    final response = await dio.get('/chat/oneChat/$idEmisor/$idReceptor');
+    final res = ChatListResponse.fromJson(response.data);
+    final List<Chats> listChats = res.listChats;
+    final Chats chats = ChatMapper.chatDbToEntity(listChats[0]);
+    return chats;
   }
 }

@@ -1,4 +1,7 @@
 
+export 'package:tesis_app/presentation/widgets/message/Me_chat.dart';
+export 'package:tesis_app/presentation/widgets/message/your_chat.dart';
+
 export 'package:tesis_app/presentation/widgets/profile.dart';
 
 export 'package:tesis_app/presentation/widgets/entertainment/musica/play_button.dart';

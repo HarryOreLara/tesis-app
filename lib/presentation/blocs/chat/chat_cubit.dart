@@ -27,6 +27,7 @@ class ChatCubit extends Cubit<ChatState> {
     final profile = await profileRepositoryInfra.getOnePersona(idUser);
     final nombre = profile.nombre;
     final idEmisor = profile.id;
+
     Chats chat = Chats(
         nombreReceptor: nombreReceptor, //l
         idEmisor: idEmisor, //l
@@ -35,15 +36,25 @@ class ChatCubit extends Cubit<ChatState> {
     chatRepositoryInfra.saveChat(chat);
   }
 
-
-  Future<List<Chats>> listChats() async{
+//Lista de contactos con quien la persona conversa
+  Future<List<Chats>> listChats() async {
     final idUserNull = await authService.getUserId();
     final idUser = idUserNull ?? "";
     final profile = await profileRepositoryInfra.getOnePersona(idUser);
     final idEmisor = profile.id;
     final response = await chatRepositoryInfra.allChats(idEmisor);
-    final List<Chats> listita = response.map((e) => ChatMapper.chatDbToEntity(e)).toList();
+    final List<Chats> listita =
+        response.map((e) => ChatMapper.chatDbToEntity(e)).toList();
     return listita;
+  }
 
-  } 
+  Future<bool> validarChat(String idReceptor) async {
+    final idUserNull = await authService.getPersonaId();
+    final idEmisor = idUserNull ?? "";
+    final Chats chat = await chatRepositoryInfra.oneChat(idReceptor, idEmisor);
+    if (chat.idReceptor == "") {
+      return true;
+    }
+    return false;
+  }
 }

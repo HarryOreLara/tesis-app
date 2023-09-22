@@ -12,14 +12,14 @@ part 'message_state.dart';
 
 class MessageCubit extends Cubit<MessageState> {
   MessageCubit() : super(const MessageState());
-
+  AuthService authService = AuthService();
   MedicineRepositoryInfra medicineRepositoryInfra =
       MedicineRepositoryInfra(MedicineDbDatasourceInfra());
 
   Future<void> sendMessage(String idReceptor) async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
     final authService = AuthService();
-    final idPersonaNullable = await authService.getUserId();
+    final idPersonaNullable = await authService.getPersonaId();
     final idEmisor = idPersonaNullable ?? "";
     final message = state.messageText.value;
     MessageModel messageModel = MessageModel(
@@ -27,17 +27,18 @@ class MessageCubit extends Cubit<MessageState> {
     try {
       messageDatasourceInfra.sendMessage(messageModel);
     } catch (e) {
-      print(e);
+      return;
     }
   }
 
-
-  Future<List<MessageModel>> getMensajesByUser() async {
+  Future<List<MessageModel>> getMensajesByUser(String idReceptor) async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
+    final idUserNull = await authService.getPersonaId();
+    final idEmisor = idUserNull ?? "";
     MessageModel messageModel = MessageModel(
         mensaje: "message",
-        emisor: "idHarry",
-        receptor: "idElisa",
+        emisor: idEmisor,
+        receptor: idReceptor,
         leido: false);
     final res = await messageDatasourceInfra.getListMessagesbyId(messageModel);
     return res;

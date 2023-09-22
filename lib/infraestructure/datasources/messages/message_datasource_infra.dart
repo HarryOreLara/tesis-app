@@ -18,22 +18,17 @@ class MessageDatasourceInfra extends MessageDatasourceDomain {
 
   @override
   Future<void> sendMessage(MessageModel messageModel) async {
-    // try {
-    //   final chatJson = messageModel.toJson();
-
-    //   final response = await dio.post('/sendMessage/mensaje', data: chatJson);
-    //   final res = ChatResponse.fromJson(response.data);
-    //   print(res.ok);
-    // } catch (e) {
-    //   return;
-    // }
+    try {
+      final chatJson = messageModel.toJson();
+      await dio.post('/sendMessage/mensaje', data: chatJson);
+    } catch (e) {
+      return;
+    }
   }
 
   @override
   Future<List<MessageModel>> getListMessagesbyId(
       MessageModel messageModel) async {
-    //final List<MessageModel> listaVacia = [];
-
     final chatJson = messageModel.toJson();
     final response = await dio.get('/sendMessage/msgList', data: chatJson);
     final res = MensajeResponse.fromJson(response.data);
