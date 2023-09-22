@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesis_app/domain/entities/messages/chat_entitie.dart';
-import 'package:tesis_app/presentation/providers/message/chat_respository_provider.dart';
 
 // final chatSaveProvider =
 //     StateNotifierProvider< Map<String, Chats>>((ref) {

@@ -8,11 +8,11 @@ class ChatDatasourceInfra extends ChatDatasourceDomain {
   final dio = Dio(BaseOptions(
       baseUrl: 'https://tesis-xz3b.onrender.com',
       headers: {'Content-Type': 'application/json', 'x-auth-token': 'token'}));
+
   @override
   Future<void> saveChat(Chats chats) async {
     final chatJson = chats.toJson();
-    final res = await dio.post('/chat/newChat', data: chatJson);
-    print(res);
+    dio.post('/chat/newChat', data: chatJson);
   }
 
   @override

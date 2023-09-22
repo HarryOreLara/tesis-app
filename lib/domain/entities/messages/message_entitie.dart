@@ -23,14 +23,3 @@ class Message {
   }
 }
 
-User user = User(id: "idLuis", nombre: "Luis", imgUrl: "", isOnline: true);
-User user2 = User(id: "idElisa", nombre: "Stinger", imgUrl: "", isOnline: true);
-User user3 = User(id: "idJohan", nombre: "Stinger", imgUrl: "", isOnline: true);
-
-// //Estos son los chats que se veran en pantalla principalbuen
-List<Message> chats = [
-  Message(sender: user, time: "time", text: "HOla que tal", leido: true),
-  Message(sender: user2, time: "time", text: "HOla que tal", leido: true),
-  Message(sender: user3, time: "time", text: "HOla que tal", leido: true),
-];
-

@@ -4,7 +4,6 @@ import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/mensaje_mapper.dart';
 import 'package:tesis_app/infraestructure/mappers/persona_mapper.dart';
-import 'package:tesis_app/infraestructure/models/messages/chat_response.dart';
 import 'package:tesis_app/infraestructure/models/messages/mensaje_response.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 import 'package:tesis_app/infraestructure/models/user/persona_response.dart';
@@ -19,15 +18,15 @@ class MessageDatasourceInfra extends MessageDatasourceDomain {
 
   @override
   Future<void> sendMessage(MessageModel messageModel) async {
-    try {
-      final chatJson = messageModel.toJson();
+    // try {
+    //   final chatJson = messageModel.toJson();
 
-      final response = await dio.post('/sendMessage/mensaje', data: chatJson);
-      final res = ChatResponse.fromJson(response.data);
-      print(res.ok);
-    } catch (e) {
-      return;
-    }
+    //   final response = await dio.post('/sendMessage/mensaje', data: chatJson);
+    //   final res = ChatResponse.fromJson(response.data);
+    //   print(res.ok);
+    // } catch (e) {
+    //   return;
+    // }
   }
 
   @override

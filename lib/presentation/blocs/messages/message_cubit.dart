@@ -25,14 +25,13 @@ class MessageCubit extends Cubit<MessageState> {
     MessageModel messageModel = MessageModel(
         mensaje: message, emisor: idEmisor, receptor: idReceptor, leido: false);
     try {
-      //final res = messageDatasourceInfra.sendMessage(newMessage);
       messageDatasourceInfra.sendMessage(messageModel);
     } catch (e) {
       print(e);
     }
   }
 
-  //Para obtener la lista de mensajes
+
   Future<List<MessageModel>> getMensajesByUser() async {
     MessageDatasourceInfra messageDatasourceInfra = MessageDatasourceInfra();
     MessageModel messageModel = MessageModel(
