@@ -21,29 +21,23 @@ class ChatScreenV2 extends StatefulWidget {
 class _ChatScreenV2State extends State<ChatScreenV2> {
   ChatCubit chatCubit = ChatCubit();
 
-  Future<bool> validar() async {
-    return await chatCubit.validarChat(widget.idReceptor);
-  }
-
   @override
   void initState() {
     //Peticion de chats
     //Peticion de Receptor para msotrar el mostrar elo nombre
     //Guardar chat
     super.initState();
-    _iniciarProceso();
+    final res = chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
+    print(res);
   }
 
-  Future<void> _iniciarProceso() async {
-    try {
-      bool chatValido = await validar();
-      if (chatValido == true) {
-        chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
-      }
-    } catch (e) {
-      return;
-    }
-  }
+  // Future<void> _iniciarProceso() async {
+  //   try {
+  //       chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
+  //   } catch (e) {
+  //     return;
+  //   }
+  // }
 
   @override
   void dispose() {
