@@ -30,6 +30,7 @@ class ProfileDatasourceInfra extends ProfileDatasourceDomain {
       final response =
           await conexion(token).post('/persona/post', data: profileJson);
       final res = ProfileResponse.fromJson(response.data);
+      authService.savePersonaId(res.id);
       return res.ok;
     } catch (e) {
       return false;
@@ -42,10 +43,10 @@ class ProfileDatasourceInfra extends ProfileDatasourceDomain {
   }
 
   @override
-  Future<Profile> getOnePersona(String idUser) async {
+  Future<Profile> getOnePersona(String id) async {
     final tokenNullable = await authService.getToken();
     final token = tokenNullable ?? "";
-    final response = await conexion(token).get('/persona/getPersonaIdUser/$idUser');
+    final response = await conexion(token).get('/persona/getPersonaIdUser/$id');
     final data = PersonaResponse.fromJson(response.data);
     final List<Profile> listProfile = data.personaList;
     final Profile profile = PersonaMapper.personaDbToEntity(listProfile[0]);

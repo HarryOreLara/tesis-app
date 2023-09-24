@@ -34,5 +34,6 @@ class AuthService {
     final prefs = await SharedPreferences.getInstance();
     prefs.remove('token');
     prefs.remove('userId');
+    prefs.remove('personaId');
   }
 }

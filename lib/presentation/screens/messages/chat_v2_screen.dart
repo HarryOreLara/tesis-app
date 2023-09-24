@@ -5,7 +5,6 @@ import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 import 'package:tesis_app/presentation/blocs/chat/chat_cubit.dart';
 import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
-import 'package:tesis_app/presentation/widgets/message/Me_chat.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class ChatScreenV2 extends StatefulWidget {
@@ -38,12 +37,11 @@ class _ChatScreenV2State extends State<ChatScreenV2> {
   Future<void> _iniciarProceso() async {
     try {
       bool chatValido = await validar();
-      if (chatValido) {
+      if (chatValido == true) {
         chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
       }
     } catch (e) {
-      // Manejo de errores, puedes imprimir un mensaje de error o realizar alguna otra acción
-      print('Error al validar el chat: $e');
+      return;
     }
   }
 
@@ -89,6 +87,7 @@ class __BodyChatState extends State<_BodyChat> {
   AuthService authService = AuthService();
   MessageCubit messageCubit = MessageCubit();
   String idEmisor = "";
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   void initState() {
@@ -99,6 +98,7 @@ class __BodyChatState extends State<_BodyChat> {
 
   @override
   void dispose() {
+    _textEditingController.dispose();
     super.dispose();
   }
 
@@ -124,7 +124,7 @@ class __BodyChatState extends State<_BodyChat> {
           children: [
             Expanded(
                 child: ListView.builder(
-              reverse: true,
+              reverse: false,
               padding: const EdgeInsets.all(20.0),
               itemCount: messageModel.length,
               itemBuilder: (context, index) {
@@ -150,6 +150,7 @@ class __BodyChatState extends State<_BodyChat> {
                       icon: const Icon(Icons.photo)),
                   Expanded(
                     child: TextField(
+                      controller: _textEditingController,
                       onChanged: messageCubit.messageChange,
                       decoration: const InputDecoration.collapsed(
                           hintText: 'Escribe un mensaje'),
@@ -162,6 +163,7 @@ class __BodyChatState extends State<_BodyChat> {
                       onPressed: () {
                         messageCubit.sendMessage(widget.idReceptor);
                         messageCubit.getMensajesByUser(widget.idReceptor);
+                        _textEditingController.clear();
                       },
                       icon: const Icon(Icons.send))
                 ],
@@ -172,4 +174,26 @@ class __BodyChatState extends State<_BodyChat> {
       },
     );
   }
+
 }
+
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return BlocBuilder<MessageCubit, MessageState>(
+  //     builder: (context, state) {
+  //       if (state is MessageLoadSuccess) {
+  //         final mensajes = state.mensajes;
+  //         return ListView.builder(
+  //           itemCount: mensajes.length,
+  //           itemBuilder: (context, index) {
+  //             return ListTile(
+  //               title: Text(mensajes[index].mensaje),
+  //             );
+  //           },
+  //         );
+  //       }
+  //       return Container(); // Devuelve un widget vacío en caso de otro estado.
+  //     },
+  //   );
+  // }

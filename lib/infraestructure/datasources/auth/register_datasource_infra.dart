@@ -21,7 +21,6 @@ class RegisterDatasourceInfra extends RegisterDatasourceDomain {
       final response = await dio.post('/auth/register', data: usuarioJson);
       final res = AuthResponse.fromJson(response.data);
       authService.saveUserCredentials(res.token, res.id);
-      obtenerPersona();
       return res.ok;
     } catch (e) {
       return false;

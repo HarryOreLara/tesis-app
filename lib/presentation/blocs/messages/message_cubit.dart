@@ -26,6 +26,8 @@ class MessageCubit extends Cubit<MessageState> {
         mensaje: message, emisor: idEmisor, receptor: idReceptor, leido: false);
     try {
       messageDatasourceInfra.sendMessage(messageModel);
+      final mensajesActualizado = await getMensajesByUser(idReceptor);
+      emit(MessageLoadSuccess(mensajesActualizado));
     } catch (e) {
       return;
     }
@@ -44,9 +46,19 @@ class MessageCubit extends Cubit<MessageState> {
     return res;
   }
 
+
   void messageChange(String value) {
     final messageText = MessageText.dirty(value);
     emit(state.copyWith(
         messageText: messageText, isValid: Formz.validate([messageText])));
   }
+}
+
+class MessageLoadSuccess extends MessageState {
+  final List<MessageModel> mensajes;
+
+  MessageLoadSuccess(this.mensajes);
+
+  @override
+  List<Object> get props => [mensajes];
 }

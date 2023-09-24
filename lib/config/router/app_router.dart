@@ -90,20 +90,14 @@ final appRouter = GoRouter(
           builder: (context, state) => const MessageScreen(),
           routes: [
             GoRoute(
-              path: 'personas',
-              builder: (context, state) {
-                Map<String, dynamic> userData =
-                    state.extra as Map<String, dynamic>;
-                User user = User.fromJson(userData);
-                return ChatScreen(object: user);
-              },
-            ),
-            GoRoute(
               path: 'chat/:id/:nombre',
               builder: (context, state) {
                 final idReceptor = state.pathParameters['id'] ?? '';
                 final nombreReceptor = state.pathParameters['nombre'] ?? '';
-                return ChatScreenV2(idReceptor: idReceptor,nombreReceptor: nombreReceptor,);
+                return ChatScreenV2(
+                  idReceptor: idReceptor,
+                  nombreReceptor: nombreReceptor,
+                );
               },
             ),
           ]),
