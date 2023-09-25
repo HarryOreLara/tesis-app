@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
 
@@ -25,7 +24,6 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
 
 class HomeInterface extends StatefulWidget {
   const HomeInterface({super.key});
@@ -133,10 +131,15 @@ class _GridDashboard extends StatelessWidget {
       subtitle: 'Un asistente que te ayudara en tu dia a dia',
       event: '/assistant',
       img: 'assets/images/assistant.jpg');
+  Item item6 = Item(
+      title: 'Cuestionarios',
+      subtitle: 'Preguntas que nos ayudara a conocerte',
+      event: '/cuestionario',
+      img: 'assets/images/cuestionario.jpg');
 
   @override
   Widget build(BuildContext context) {
-    List<Item> myList = [item1, item2, item3, item4, item5];
+    List<Item> myList = [item1, item2, item3, item4, item5, item6];
 
     return Flexible(
       child: GridView.count(
@@ -152,7 +155,8 @@ class _GridDashboard extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(0, 126, 126, 126).withOpacity(0.3),
+                    color:
+                        const Color.fromARGB(0, 126, 126, 126).withOpacity(0.3),
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

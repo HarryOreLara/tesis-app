@@ -117,6 +117,28 @@ final appRouter = GoRouter(
         builder: (context, state) => const NewMedicineScreen(),
       ),
       GoRoute(
+          path: '/cuestionario',
+          name: CuestionarioScreen.name,
+          builder: (context, state) => const CuestionarioScreen(),
+          routes: [
+            GoRoute(
+              path: 'soledad',
+              builder: (context, state) {
+                final idReceptor = state.pathParameters['id'] ?? '';
+                final nombreReceptor = state.pathParameters['nombre'] ?? '';
+                return SoledadCuestionarioScreen();
+              },
+            ),
+            GoRoute(
+              path: 'depresion',
+              builder: (context, state) {
+                final idReceptor = state.pathParameters['id'] ?? '';
+                final nombreReceptor = state.pathParameters['nombre'] ?? '';
+                return DepresionCuestionarioScreen();
+              },
+            ),
+          ]),
+      GoRoute(
         path: '/movies',
         name: MoviesScreen.name,
         builder: (context, state) => const MoviesScreen(),
