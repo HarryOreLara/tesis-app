@@ -99,6 +99,12 @@ class PostDetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Post Details'),
+        leading: IconButton(
+            color: Colors.black,
+            onPressed: () {
+              context.go('/forum');
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
