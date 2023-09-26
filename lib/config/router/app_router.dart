@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
 import 'package:tesis_app/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
@@ -124,17 +123,13 @@ final appRouter = GoRouter(
             GoRoute(
               path: 'soledad',
               builder: (context, state) {
-                final idReceptor = state.pathParameters['id'] ?? '';
-                final nombreReceptor = state.pathParameters['nombre'] ?? '';
-                return SoledadCuestionarioScreen();
+                return const SoledadCuestionarioScreen();
               },
             ),
             GoRoute(
               path: 'depresion',
               builder: (context, state) {
-                final idReceptor = state.pathParameters['id'] ?? '';
-                final nombreReceptor = state.pathParameters['nombre'] ?? '';
-                return DepresionCuestionarioScreen();
+                return const DepresionCuestionarioScreen();
               },
             ),
           ]),

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tesis_app/presentation/widgets/shared/message_field_box.dart';
-import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class AssistantScreen extends StatelessWidget {
   static const String name = 'assistant_screen';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:tesis_app/domain/entities/home/home_entitite.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home_screen';
@@ -106,32 +107,33 @@ class _HomeInterfaceState extends State<HomeInterface> {
 }
 
 class _GridDashboard extends StatelessWidget {
-  Item item1 = Item(
+  
+  Home home1 = Home(
       title: 'Mensajes',
       subtitle: 'Interactua con las personas',
       event: '/message',
       img: 'assets/images/message.jpg');
-  Item item2 = Item(
+  Home home2 = Home(
       title: 'Medicamentos',
       subtitle: 'Programa tus tiempos adecuados',
       event: '/medicines',
       img: 'assets/images/medicines.jpg');
-  Item item3 = Item(
+  Home home3 = Home(
       title: 'Entrentemiento',
       subtitle: 'Diviertete con multiples opciones',
       event: '/entertainment',
       img: 'assets/images/entertainment.jpg');
-  Item item4 = Item(
+  Home home4 = Home(
       title: 'Foro',
       subtitle: 'Interactua en grupos de discucion',
       event: '/forum',
       img: 'assets/images/forum.jpg');
-  Item item5 = Item(
+  Home home5 = Home(
       title: 'Asistente',
       subtitle: 'Un asistente que te ayudara en tu dia a dia',
       event: '/assistant',
       img: 'assets/images/assistant.jpg');
-  Item item6 = Item(
+  Home home6 = Home(
       title: 'Cuestionarios',
       subtitle: 'Preguntas que nos ayudara a conocerte',
       event: '/cuestionario',
@@ -139,7 +141,7 @@ class _GridDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Item> myList = [item1, item2, item3, item4, item5, item6];
+    List<Home> myList = [home1, home2, home3, home4, home5, home6];
 
     return Flexible(
       child: GridView.count(
@@ -200,15 +202,3 @@ class _GridDashboard extends StatelessWidget {
   }
 }
 
-class Item {
-  String title;
-  String subtitle;
-  String event;
-  String img;
-
-  Item(
-      {required this.title,
-      required this.subtitle,
-      required this.event,
-      required this.img});
-}
