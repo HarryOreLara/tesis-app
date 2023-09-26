@@ -155,10 +155,30 @@ class _BodyScreenState extends State<BodyScreen> {
               children: [
                 ElevatedButton(
                     onPressed: () {
-                      depresionCubit.sendRespuestasDepresion(
+                      final data = depresionCubit.sendRespuestasDepresion(
                           currentDepresionId, contenidoPregunta, true);
-                      handleSiButton();
-                      cargarNuevaPregunta();
+                      if (data == false) {
+                        handleSiButton();
+                        cargarNuevaPregunta();
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text('Seleccionaste:'),
+                              content: const Text("Ya no quedan mas preguntas"),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    context.go("/cuestionario");
+                                  },
+                                  child: const Text('Volver al inicio'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
                     },
                     child: const Text("Si")),
                 ElevatedButton(

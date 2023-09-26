@@ -12,12 +12,12 @@ class EntertainmentConstant {
 }
 
 const itemsEntertainmentConstant = <EntertainmentConstant>[
-  EntertainmentConstant(
-      nombre: 'Videos',
-      idEntertainment: '1',
-      ruta: '/videos',
-      imagen:
-          'https://img.freepik.com/vector-premium/logotipo-corte-pelicula-concepto-pelicula-tijeras_759725-352.jpg?w=2000'),
+  // EntertainmentConstant(
+  //     nombre: 'Videos',
+  //     idEntertainment: '1',
+  //     ruta: '/videos',
+  //     imagen:
+  //         'https://img.freepik.com/vector-premium/logotipo-corte-pelicula-concepto-pelicula-tijeras_759725-352.jpg?w=2000'),
   EntertainmentConstant(
       nombre: 'Minijuegos',
       idEntertainment: '2',
@@ -36,10 +36,10 @@ const itemsEntertainmentConstant = <EntertainmentConstant>[
       ruta: '/jokes',
       imagen:
           'https://img.freepik.com/vector-gratis/dibujado-mano-ilustracion-dia-mundial-libertad-prensa_23-2148904426.jpg'),
-  EntertainmentConstant(
-      nombre: 'Peliculas',
-      idEntertainment: '5',
-      ruta: '/movies',
-      imagen:
-          'https://img.freepik.com/vector-gratis/logotipo-produccion-cine-creativo_23-2149509983.jpg'),
+  // EntertainmentConstant(
+  //     nombre: 'Peliculas',
+  //     idEntertainment: '5',
+  //     ruta: '/movies',
+  //     imagen:
+  //         'https://img.freepik.com/vector-gratis/logotipo-produccion-cine-creativo_23-2149509983.jpg'),
 ];

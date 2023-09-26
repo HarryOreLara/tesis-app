@@ -63,14 +63,14 @@ class Data extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return AlertDialog(
-                        title: Text('Seleccionaste:'),
+                        title: const Text('Seleccionaste:'),
                         content: Text(suggestions[index]),
                         actions: [
                           TextButton(
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            child: Text('Cerrar'),
+                            child: const Text('Cerrar'),
                           ),
                         ],
                       );
@@ -81,11 +81,11 @@ class Data extends StatelessWidget {
             },
           ),
         ),
-        Divider(),
+        const Divider(),
         Padding(
           padding: const EdgeInsets.all(16.0),
           child: TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               hintText: 'Escribe tu pregunta aquí...',
               border: OutlineInputBorder(),
             ),
@@ -95,14 +95,14 @@ class Data extends StatelessWidget {
                 context: context,
                 builder: (context) {
                   return AlertDialog(
-                    title: Text('Pregunta enviada:'),
+                    title: const Text('Pregunta enviada:'),
                     content: Text(text),
                     actions: [
                       TextButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        child: Text('Cerrar'),
+                        child: const Text('Cerrar'),
                       ),
                     ],
                   );

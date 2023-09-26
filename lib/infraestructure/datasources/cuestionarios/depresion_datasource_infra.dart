@@ -20,11 +20,9 @@ class DepresionDatasourceInfra extends DepresionDatasourceDomain {
           .toList(),
     };
 
-    final response = await dio.post('/assistent/resDepresion/$idPersona',
+    await dio.post('/assistent/resDepresion/$idPersona',
         data: preguntasPuntuadas);
 
     preguntasPuntuadasDepresion.clear();
-
-    print(response);
   }
 }
