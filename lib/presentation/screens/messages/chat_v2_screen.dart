@@ -168,7 +168,6 @@ class __BodyChatState extends State<_BodyChat> {
       },
     );
   }
-
 }
 
 
