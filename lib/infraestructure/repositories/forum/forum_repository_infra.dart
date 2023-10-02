@@ -9,7 +9,7 @@ class ForumRepositoryInfra extends ForumRepositoryDomain {
   ForumRepositoryInfra(this.forumDatasourceDomain);
 
   @override
-  Future<Forum> createForum(Forum forum) {
+  Future<bool> createForum(Forum forum) {
     return forumDatasourceDomain.createForum(forum);
   }
 

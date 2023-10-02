@@ -1,4 +1,6 @@
 
+export 'package:tesis_app/presentation/widgets/forum/modal_creator_new.dart';
+
 export 'package:tesis_app/presentation/widgets/message/Me_chat.dart';
 export 'package:tesis_app/presentation/widgets/message/your_chat.dart';
 
@@ -26,4 +28,3 @@ export 'package:tesis_app/presentation/widgets/home/cards_second.dart';
 export 'package:tesis_app/presentation/widgets/home/card_first.dart';
 
 export 'package:tesis_app/presentation/widgets/medicine/input_text_form_field.dart';
-

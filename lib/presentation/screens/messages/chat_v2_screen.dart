@@ -23,21 +23,12 @@ class _ChatScreenV2State extends State<ChatScreenV2> {
 
   @override
   void initState() {
-    //Peticion de chats
-    //Peticion de Receptor para msotrar el mostrar elo nombre
-    //Guardar chat
+
     super.initState();
     final res = chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
     print(res);
   }
 
-  // Future<void> _iniciarProceso() async {
-  //   try {
-  //       chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
-  //   } catch (e) {
-  //     return;
-  //   }
-  // }
 
   @override
   void dispose() {

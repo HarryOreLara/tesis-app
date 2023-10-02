@@ -2,7 +2,7 @@ import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
 import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 
 abstract class ForumRepositoryDomain {
-  Future<Forum> createForum(Forum forum);
+  Future<bool> createForum(Forum forum);
 
   Future<List<Forum>> readAllForum();
 
