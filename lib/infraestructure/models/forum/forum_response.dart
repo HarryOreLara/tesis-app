@@ -6,12 +6,22 @@ class ForumResponse {
 
   ForumResponse({required this.ok, required this.foro});
 
-  factory ForumResponse.fromJson(Map<String, dynamic> json) => ForumResponse(
-      ok: json["ok"] ?? '',
-      foro: (json["foro"] as List<dynamic>?)
-              ?.map((foro) => Forum.fromJson(foro))
-              .toList() ??
-          []);
+  factory ForumResponse.fromJson(Map<String, dynamic> json) {
+    final forumList = json["foro"];
+    if (forumList == null) {
+      return ForumResponse(ok: json["ok"] ?? false, foro: []);
+    }
+
+    if (forumList is List<dynamic>) {
+      return ForumResponse(
+        ok: json["ok"] ?? false,
+        foro: forumList.map((e) => Forum.fromJson(e)).toList(),
+      );
+    } else {
+      // Manejar el caso en el que json["foro"] no es una lista, por ejemplo, puedes retornar una lista vacía.
+      return ForumResponse(ok: json["ok"] ?? false, foro: []);
+    }
+  }
 
   Map<String, dynamic> toJson() => {"ok": ok, "foro": foro};
 }

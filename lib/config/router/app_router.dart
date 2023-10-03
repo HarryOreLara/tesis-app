@@ -75,9 +75,16 @@ final appRouter = GoRouter(
           routes: [
             GoRoute(
               path: 'newForum',
-              name: NuevoForoScreen.name,
               builder: (context, state) => const NuevoForoScreen(),
-            )
+            ),
+            GoRoute(
+              path: 'respuestas/:id/:titulo',
+              builder: (context, state) {
+                final id = state.pathParameters["id"] ?? '';
+                final titulo = state.pathParameters["titulo"] ?? '';
+                return RespuestasForumScreen(id: id,titulo: titulo,);
+              },
+            ),
           ]),
       GoRoute(
         path: '/videos',

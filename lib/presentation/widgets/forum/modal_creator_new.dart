@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/presentation/blocs/forum_v2/forum_v2_cubit.dart';
 
 class NewForumModal extends StatelessWidget {
-  NewForumModal({super.key});
+  const NewForumModal({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +55,14 @@ class Alerta extends StatelessWidget {
           child: const Text('Cancelar'),
         ),
         TextButton(
-          onPressed: () {
-            forumCubit.createForum(
+          onPressed: () async {
+            final validar = await forumCubit.createForum(
                 _titleController.text, _descriptionController.text);
+            if (validar) {
+              context.go('/forum');
+            }
           },
-          child: Text('Guardar'),
+          child: const Text('Guardar'),
         ),
       ],
     );

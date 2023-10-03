@@ -1,3 +1,5 @@
+export 'package:tesis_app/presentation/screens/forum/respuestas_forum_screen.dart';
+
 export 'package:tesis_app/presentation/screens/forum/newForum_screen.dart';
 
 export 'package:tesis_app/presentation/screens/cuestionario/cuestionario_screen.dart';
@@ -28,4 +30,3 @@ export 'package:tesis_app/presentation/screens/medicines/medicines_screen.dart';
 export 'package:tesis_app/presentation/screens/messages/message_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/profile_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/settings_screen.dart';
-

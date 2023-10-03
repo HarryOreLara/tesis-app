@@ -29,7 +29,7 @@ class ForumScreen extends StatelessWidget {
             showDialog(
               context: context,
               builder: (BuildContext context) {
-                return NewForumModal(); // Abre el modal de Nuevo Foro
+                return const NewForumModal(); // Abre el modal de Nuevo Foro
               },
             );
           },
@@ -67,8 +67,7 @@ class CuerpoForo extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
-                  // Aquí puedes manejar la navegación o acciones cuando se toca un foro
-                  print("Tratando de entrar a un foro");
+                  context.go('/forum/respuestas/${forum.id}/${forum.titulo}');
                 },
                 child: Card(
                   elevation: 3,

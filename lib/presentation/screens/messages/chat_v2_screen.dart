@@ -59,6 +59,7 @@ class _ChatScreenV2State extends State<ChatScreenV2> {
   }
 }
 
+
 class _BodyChat extends StatefulWidget {
   final ColorScheme colors;
   final String idReceptor;
