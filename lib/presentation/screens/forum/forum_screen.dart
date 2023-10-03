@@ -40,8 +40,15 @@ class ForumScreen extends StatelessWidget {
   }
 }
 
-class CuerpoForo extends StatelessWidget {
+
+class CuerpoForo extends StatefulWidget {
   const CuerpoForo({super.key});
+
+  @override
+  State<CuerpoForo> createState() => _CuerpoForoState();
+}
+
+class _CuerpoForoState extends State<CuerpoForo> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -67,7 +74,7 @@ class CuerpoForo extends StatelessWidget {
               ),
               child: GestureDetector(
                 onTap: () {
-                  context.go('/forum/respuestas/${forum.id}/${forum.titulo}');
+                  context.go('/respuestas/${forum.id}/${forum.titulo}');
                 },
                 child: Card(
                   elevation: 3,

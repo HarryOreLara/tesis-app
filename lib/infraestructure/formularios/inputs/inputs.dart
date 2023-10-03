@@ -1,3 +1,8 @@
+export 'package:tesis_app/infraestructure/formularios/inputs/forum/description_input.dart';
+export 'package:tesis_app/infraestructure/formularios/inputs/forum/title_input.dart';
+
+export 'package:tesis_app/infraestructure/formularios/inputs/forum/contenido_input.dart';
+
 export 'package:tesis_app/infraestructure/formularios/inputs/messages/message_text_input.dart';
 
 export 'package:tesis_app/infraestructure/formularios/auth/password_input.dart';

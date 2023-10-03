@@ -6,6 +6,7 @@ import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/forum_mapper.dart';
 import 'package:tesis_app/infraestructure/mappers/respuesta_foro_mapper.dart';
 import 'package:tesis_app/infraestructure/models/forum/forum_response.dart';
+import 'package:tesis_app/infraestructure/models/forum/response_reponse.dart';
 import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_response.dart';
 
 class ForumDatasourceInfra extends ForumDatasourceDomain {
@@ -34,8 +35,18 @@ class ForumDatasourceInfra extends ForumDatasourceDomain {
   }
 
   @override
-  Future<RespuestaForo> createRespuestaForum(RespuestaForo respuestaForo) {
-    throw UnimplementedError();
+  Future<bool> createRespuestaForum(RespuestaForo respuestaForo) async {
+    final tokenNull = await authService.getToken();
+    final token = tokenNull ?? '';
+
+    final respuestaJson = respuestaForo.toJson();
+    final idForo = respuestaForo.idForo;
+
+    final response = await nuevo(token)
+        .post("/responseForum/create/$idForo", data: respuestaJson);
+    final res = ResponseReponse.fromJson(response.data);
+
+    return res.ok;
   }
 
   @override
@@ -51,8 +62,8 @@ class ForumDatasourceInfra extends ForumDatasourceDomain {
   }
 
   @override
-  Future<List<RespuestaForo>> readAllRespuestForum(String id) async{
-        final tokenNull = await authService.getToken();
+  Future<List<RespuestaForo>> readAllRespuestForum(String id) async {
+    final tokenNull = await authService.getToken();
     final token = tokenNull ?? '';
     final response = await nuevo(token).get('/responseForum/readAll/$id');
     final res = RespuestaForumReponse.fromJson(response.data);
