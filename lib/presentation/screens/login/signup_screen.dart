@@ -133,10 +133,8 @@ class _FormRegister extends StatelessWidget {
             onPressed: () async {
               bool ok = await loginCubit.register();
               if (ok) {
-                // ignore: use_build_context_synchronously
                 context.push('/home');
               } else {
-                // ignore: use_build_context_synchronously
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Error en el inicio de sesión')),
                 );
