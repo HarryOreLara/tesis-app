@@ -23,6 +23,7 @@ class RespuestasForumScreen extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios)),
         ),
         body: BlocProvider(
+
           create: (context) => ResponseForumCubit(),
           child: BodyRespuestas(
             id: id,
@@ -108,5 +109,6 @@ class _BodyRespuestasState extends State<BodyRespuestas> {
         );
       },
     );
+
   }
 }

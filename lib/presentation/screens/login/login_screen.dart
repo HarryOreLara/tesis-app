@@ -164,7 +164,7 @@ class _FormLoginState extends State<_FormLogin> {
             onTap: () async {
               bool ok = await loginCubit.login();
               if (ok) {
-                context.push('/home');
+                context.go('/home');
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(content: Text('Error en el inicio de sesión')),

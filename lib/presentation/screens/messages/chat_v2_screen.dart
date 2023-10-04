@@ -163,22 +163,3 @@ class __BodyChatState extends State<_BodyChat> {
 }
 
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return BlocBuilder<MessageCubit, MessageState>(
-  //     builder: (context, state) {
-  //       if (state is MessageLoadSuccess) {
-  //         final mensajes = state.mensajes;
-  //         return ListView.builder(
-  //           itemCount: mensajes.length,
-  //           itemBuilder: (context, index) {
-  //             return ListTile(
-  //               title: Text(mensajes[index].mensaje),
-  //             );
-  //           },
-  //         );
-  //       }
-  //       return Container(); // Devuelve un widget vacío en caso de otro estado.
-  //     },
-  //   );
-  // }

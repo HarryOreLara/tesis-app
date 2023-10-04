@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:formz/formz.dart';
 import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/forum/forum_datasource_infra.dart';
@@ -43,5 +44,25 @@ class ForumV2Cubit extends Cubit<ForumV2State> {
   }
 
 
+
   
+
+  Future<List<RespuestaForo>> readAllRespuestas(String id) async {
+    final response = await forumRepositoryInfra.readAllRespuestForum(id);
+    return response;
+  }
+
+  void sendResponse(String idForo) async {
+    final idPersonaNull = await authService.getPersonaId();
+    final creator = idPersonaNull ?? '';
+    final respuestaForo = RespuestaForo(
+        contenido: state.descriptionForum.value,
+        id: "",
+        creator: creator,
+        idForo: idForo,
+        createdAt: "");
+    forumRepositoryInfra.createRespuestaForum(respuestaForo);
+  }
+
+
 }
