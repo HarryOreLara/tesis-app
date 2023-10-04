@@ -14,7 +14,7 @@ class ForumRepositoryInfra extends ForumRepositoryDomain {
   }
 
   @override
-  Future<RespuestaForo> createRespuestaForum(RespuestaForo respuestaForo) {
+  Future<bool> createRespuestaForum(RespuestaForo respuestaForo) {
     return forumDatasourceDomain.createRespuestaForum(respuestaForo);
   }
 

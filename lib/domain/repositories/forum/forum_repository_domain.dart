@@ -9,7 +9,7 @@ abstract class ForumRepositoryDomain {
   Future<Forum> readOneForum(String id);
 
   //Respuesta
-  Future<RespuestaForo> createRespuestaForum(RespuestaForo respuestaForo);
+  Future<bool> createRespuestaForum(RespuestaForo respuestaForo);
   
   Future<List<RespuestaForo>> readAllRespuestForum(String id);
 }

@@ -69,19 +69,21 @@ final appRouter = GoRouter(
             )
           ]),
       GoRoute(
-          path: '/forum',
-          name: ForumScreen.name,
-          builder: (context, state) => const ForumScreen(),
-          routes: [
-            GoRoute(
-              path: 'respuestas/:id/:titulo',
-              builder: (context, state) {
-                final id = state.pathParameters["id"] ?? '';
-                final titulo = state.pathParameters["titulo"] ?? '';
-                return RespuestasForumScreen(id: id,titulo: titulo,);
-              },
-            ),
-          ]),
+        path: '/forum',
+        name: ForumScreen.name,
+        builder: (context, state) => const ForumScreen(),
+      ),
+      GoRoute(
+        path: '/respuestas/:id/:titulo',
+        builder: (context, state) {
+          final id = state.pathParameters["id"] ?? '';
+          final titulo = state.pathParameters["titulo"] ?? '';
+          return RespuestasForumScreen(
+            id: id,
+            titulo: titulo,
+          );
+        },
+      ),
       GoRoute(
         path: '/videos',
         name: VideosScreen.name,
