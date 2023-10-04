@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:formz/formz.dart';
 import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
+import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/forum/forum_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/forum/description_input.dart';
