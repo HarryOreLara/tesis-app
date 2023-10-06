@@ -35,7 +35,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   Future<bool> guardarPersona() async {
-        final idPersonaNullable = await authService.getUserId();
+    final idPersonaNullable = await authService.getUserId();
     final idUsuario = idPersonaNullable ?? "";
     Profile profile = Profile(
         id: "",
@@ -51,6 +51,15 @@ class ProfileCubit extends Cubit<ProfileState> {
     } catch (e) {
       return false;
     }
+  }
+
+  void getOnePersona() async {
+    final idPersonaNullable = await authService.getUserId();
+    final idUsuario = idPersonaNullable ?? "";
+    final response = await profileRepositoryInfra.getOnePersona(idUsuario);
+
+    final nombreProfile = NombreProfile.dirty(response.nombre);
+    emit(state.copyWith(nombreProfile: nombreProfile));
   }
 
   Future<String?> obtenerToken() async {
