@@ -1,3 +1,5 @@
+import 'package:tesis_app/core/utils/typedef.dart';
+
 class ProfileResponse {
     final bool ok;
     final String id;
@@ -13,7 +15,7 @@ class ProfileResponse {
         required this.token,
     });
 
-    factory ProfileResponse.fromJson(Map<String, dynamic> json) => ProfileResponse(
+    factory ProfileResponse.fromJson(DataMap json) => ProfileResponse(
         ok: json["ok"] ?? '',
         id: json["id"] ?? '',
         nombre: json["nombre"] ?? '',

@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
-import 'package:meta/meta.dart';
 import 'package:tesis_app/infraestructure/datasources/forum/forum_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/repositories/forum/forum_repository_infra.dart';
 
@@ -29,7 +28,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
         add(LoadForums());
       } else {
         // Manejar el caso en el que no se pudo crear el foro
-        emit(ForumError('No se pudo crear el foro.'));
+        emit(const ForumError('No se pudo crear el foro.'));
       }
     });
   }

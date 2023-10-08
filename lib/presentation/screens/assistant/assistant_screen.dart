@@ -45,6 +45,8 @@ class Data extends StatelessWidget {
     // Agrega más sugerencias aquí
   ];
 
+   Data({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(

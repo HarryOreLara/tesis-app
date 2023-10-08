@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/assistant/message.dart';
 
 class YesNoModel {
@@ -11,7 +12,7 @@ class YesNoModel {
   final bool forced;
   final String image;
 
-  factory YesNoModel.fromJsonMap(Map<String, dynamic> json) => YesNoModel(
+  factory YesNoModel.fromJsonMap(DataMap json) => YesNoModel(
         answer: json["answer"],
         forced: json["forced"],
         image: json["image"],

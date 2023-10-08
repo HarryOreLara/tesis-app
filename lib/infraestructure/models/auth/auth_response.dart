@@ -1,4 +1,6 @@
 
+import 'package:tesis_app/core/utils/typedef.dart';
+
 class AuthResponse {
   final bool ok;
   final String id;
@@ -14,7 +16,7 @@ class AuthResponse {
       required this.token});
 
       
-    factory AuthResponse.fromJson(Map<String, dynamic> json) => AuthResponse(
+    factory AuthResponse.fromJson(DataMap json) => AuthResponse(
         ok: json["ok"],
         id: json["id"],
         username: json["username"],

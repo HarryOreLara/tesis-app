@@ -27,7 +27,7 @@ class JokesScreen extends StatelessWidget {
 }
 
 class _ChistesScreen extends StatefulWidget {
-  const _ChistesScreen({super.key});
+  const _ChistesScreen();
 
   @override
   State<_ChistesScreen> createState() => __ChistesScreenState();

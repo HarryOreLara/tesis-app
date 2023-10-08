@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
 
 class MensajeResponse {
@@ -6,7 +7,7 @@ class MensajeResponse {
 
   MensajeResponse({required this.ok, required this.mensajeList});
 
-  factory MensajeResponse.fromJson(Map<String, dynamic> json) =>
+  factory MensajeResponse.fromJson(DataMap json) =>
       MensajeResponse(
           ok: json['ok'] ?? '',
           mensajeList: (json["mensajeList"] as List<dynamic>?)

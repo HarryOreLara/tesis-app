@@ -1,7 +1,5 @@
 export 'package:tesis_app/presentation/screens/forum/respuestas_forum_screen.dart';
 
-export 'package:tesis_app/presentation/screens/forum/newForum_screen.dart';
-
 export 'package:tesis_app/presentation/screens/cuestionario/cuestionario_screen.dart';
 export 'package:tesis_app/presentation/screens/cuestionario/depresion_cuestionario.dart';
 export 'package:tesis_app/presentation/screens/cuestionario/soledad_cuestionario.dart';

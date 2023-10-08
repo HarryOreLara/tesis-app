@@ -45,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
 }
 
 class _ProfileInterface extends StatefulWidget {
-  const _ProfileInterface({super.key});
+  const _ProfileInterface();
 
   @override
   State<_ProfileInterface> createState() => __ProfileInterfaceState();

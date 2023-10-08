@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/messages/chat_entitie.dart';
 
 class ChatListResponse {
@@ -6,7 +7,7 @@ class ChatListResponse {
 
   ChatListResponse({required this.ok, required this.listChats});
 
-  factory ChatListResponse.fromJson(Map<String, dynamic> json) =>
+  factory ChatListResponse.fromJson(DataMap json) =>
       ChatListResponse(
           ok: json["ok"] ?? '',
           listChats: (json["listChats"] as List<dynamic>?)

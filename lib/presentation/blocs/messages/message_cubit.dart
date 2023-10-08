@@ -57,7 +57,7 @@ class MessageCubit extends Cubit<MessageState> {
 class MessageLoadSuccess extends MessageState {
   final List<MessageModel> mensajes;
 
-  MessageLoadSuccess(this.mensajes);
+  const MessageLoadSuccess(this.mensajes);
 
   @override
   List<Object> get props => [mensajes];

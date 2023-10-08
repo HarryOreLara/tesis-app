@@ -62,7 +62,7 @@ class _HomeInterfaceState extends State<HomeInterface> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Feliciana",
+                        "Bienvenido",
                         style: GoogleFonts.montserrat(
                             textStyle: const TextStyle(
                                 color: Colors.white,
@@ -73,7 +73,7 @@ class _HomeInterfaceState extends State<HomeInterface> {
                         height: 4,
                       ),
                       Text(
-                        "Bienvenida",
+                        "",
                         style: GoogleFonts.montserrat(
                             textStyle: const TextStyle(
                                 color: Color.fromARGB(255, 167, 167, 167),
@@ -106,8 +106,8 @@ class _HomeInterfaceState extends State<HomeInterface> {
   }
 }
 
+// ignore: must_be_immutable
 class _GridDashboard extends StatelessWidget {
-  
   Home home1 = Home(
       title: 'Mensajes',
       subtitle: 'Interactua con las personas',
@@ -201,4 +201,3 @@ class _GridDashboard extends StatelessWidget {
     );
   }
 }
-

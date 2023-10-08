@@ -1,3 +1,5 @@
+import 'package:tesis_app/core/utils/typedef.dart';
+
 class MessageModel {
   final String mensaje;
   final String emisor;
@@ -10,7 +12,7 @@ class MessageModel {
       required this.receptor,
       required this.leido});
 
-  factory MessageModel.fromJson(Map<String, dynamic> json) => MessageModel(
+  factory MessageModel.fromJson(DataMap json) => MessageModel(
       mensaje: json["mensaje"] ?? '',
       emisor: json["emisor"] ?? '',
       receptor: json["receptor"] ?? '',

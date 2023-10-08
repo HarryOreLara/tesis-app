@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
 
 class JokeList {
@@ -31,7 +32,7 @@ class JokeList {
         required this.v,
     });
 
-    factory JokeList.fromJson(Map<String, dynamic> json) => JokeList(
+    factory JokeList.fromJson(DataMap json) => JokeList(
         votos: Votos.fromJson(json["votos"]),
         id: json["_id"] ?? '',
         contenido: json["contenido"] ?? '',

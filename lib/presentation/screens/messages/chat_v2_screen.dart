@@ -25,8 +25,7 @@ class _ChatScreenV2State extends State<ChatScreenV2> {
   void initState() {
 
     super.initState();
-    final res = chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
-    print(res);
+    chatCubit.saveChat(widget.idReceptor, widget.nombreReceptor);
   }
 
 

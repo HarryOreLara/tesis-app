@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 
 
@@ -7,7 +8,7 @@ class RespuestaForumReponse {
 
   RespuestaForumReponse({required this.ok, required this.foro});
 
-  factory RespuestaForumReponse.fromJson(Map<String, dynamic> json) {
+  factory RespuestaForumReponse.fromJson(DataMap json) {
     final forumList = json["foro"];
 
     if (forumList == null) {

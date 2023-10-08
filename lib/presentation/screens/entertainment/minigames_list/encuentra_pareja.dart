@@ -35,10 +35,10 @@ class MemoryGame extends StatefulWidget {
   const MemoryGame({super.key});
 
   @override
-  _MemoryGameState createState() => _MemoryGameState();
+   MemoryGameState createState() =>  MemoryGameState();
 }
 
-class _MemoryGameState extends State<MemoryGame> {
+class  MemoryGameState extends State<MemoryGame> {
   List<CardItem> cards = [];
   List<CardItem> flippedCards = [];
   bool isFlipping = false;

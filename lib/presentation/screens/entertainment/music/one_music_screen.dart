@@ -15,7 +15,6 @@ class OneMusicScreen extends StatefulWidget {
 
 class _OneMusicScreenState extends State<OneMusicScreen> {
   AudioPlayer audioPlayer = AudioPlayer();
-  //TODO: Aca debo implementar los aprametros  min 45:00 dle video
   Musica musica = Musica.musicas[1];
 
   @override

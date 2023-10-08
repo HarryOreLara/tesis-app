@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
 
 class ForumResponse {
@@ -6,7 +7,7 @@ class ForumResponse {
 
   ForumResponse({required this.ok, required this.foro});
 
-  factory ForumResponse.fromJson(Map<String, dynamic> json) {
+  factory ForumResponse.fromJson(DataMap json) {
     final forumList = json["foro"];
     if (forumList == null) {
       return ForumResponse(ok: json["ok"] ?? false, foro: []);

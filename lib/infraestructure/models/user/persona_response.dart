@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 
 class PersonaResponse {
@@ -6,7 +7,7 @@ class PersonaResponse {
 
   PersonaResponse({required this.ok, required this.personaList});
 
-  factory PersonaResponse.fromJson(Map<String, dynamic> json) {
+  factory PersonaResponse.fromJson(DataMap json) {
     final profileList = json["persona"];
     if (profileList == null) {
       return PersonaResponse(ok: json["ok"] ?? false, personaList: []);

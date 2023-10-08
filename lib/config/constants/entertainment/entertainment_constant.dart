@@ -24,12 +24,12 @@ const itemsEntertainmentConstant = <EntertainmentConstant>[
       ruta: '/minigames',
       imagen:
           'https://img.freepik.com/free-vector/retro-gaming-poster-template_23-2148800296.jpg?w=2000'),
-  EntertainmentConstant(
-      nombre: 'Musica',
-      idEntertainment: '3',
-      ruta: '/music',
-      imagen:
-          'https://yt3.googleusercontent.com/ytc/AOPolaRjDGRAirY8mVsWNKt75HUglcd8sDs85NRoJgVxrQ=s900-c-k-c0x00ffffff-no-rj'),
+  // EntertainmentConstant(
+  //     nombre: 'Musica',
+  //     idEntertainment: '3',
+  //     ruta: '/music',
+  //     imagen:
+  //         'https://yt3.googleusercontent.com/ytc/AOPolaRjDGRAirY8mVsWNKt75HUglcd8sDs85NRoJgVxrQ=s900-c-k-c0x00ffffff-no-rj'),
   EntertainmentConstant(
       nombre: 'Chistes',
       idEntertainment: '4',

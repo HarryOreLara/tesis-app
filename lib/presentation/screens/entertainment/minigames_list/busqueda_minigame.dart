@@ -25,10 +25,10 @@ class ObjectSearchGame extends StatefulWidget {
   const ObjectSearchGame({super.key});
 
   @override
-  _ObjectSearchGameState createState() => _ObjectSearchGameState();
+   ObjectSearchGameState createState() =>  ObjectSearchGameState();
 }
 
-class _ObjectSearchGameState extends State<ObjectSearchGame> {
+class  ObjectSearchGameState extends State<ObjectSearchGame> {
   List<String> objectsToFind = [
     'Llave',
     'Reloj',
