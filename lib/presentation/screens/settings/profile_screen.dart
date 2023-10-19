@@ -52,8 +52,6 @@ class _ProfileInterface extends StatefulWidget {
 }
 
 class __ProfileInterfaceState extends State<_ProfileInterface> {
-
-
   @override
   void initState() {
     super.initState();
@@ -113,7 +111,7 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
                     height: 15.0,
                   ),
                   Text(
-                    'Feliciana',
+                    'Hola como estas?',
                     style: GoogleFonts.montserrat(
                         textStyle: const TextStyle(
                             fontSize: 40,
