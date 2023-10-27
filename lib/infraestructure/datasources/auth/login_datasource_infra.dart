@@ -23,9 +23,6 @@ class LoginDatasouceInfra extends LoginDatasouceDomain {
       final response = await dio.post('/auth/login', data: usuarioJson);
       final res = AuthResponse.fromJson(response.data);
       authService.saveUserCredentials(res.token, res.id);
-      final profile = await profileRepositoryInfra.getOnePersona(res.id);
-      final personaId = profile.id;
-      authService.savePersonaId(personaId);
       return res.ok;
     } catch (e) {
       return false;
