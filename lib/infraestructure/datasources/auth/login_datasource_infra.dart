@@ -2,14 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/auth/login_datasource_domain.dart';
 import 'package:tesis_app/domain/entities/auth/usuario_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
-import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/models/auth/auth_response.dart';
-import 'package:tesis_app/infraestructure/repositories/profile/profile_reposiroty_infra.dart';
+
 
 class LoginDatasouceInfra extends LoginDatasouceDomain {
   AuthService authService = AuthService();
-  ProfileRepositoryInfra profileRepositoryInfra =
-      ProfileRepositoryInfra(ProfileDatasourceInfra());
   final dio = Dio(
     BaseOptions(
         baseUrl: 'https://tesis-xz3b.onrender.com',
