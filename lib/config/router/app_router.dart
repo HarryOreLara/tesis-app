@@ -122,11 +122,6 @@ final appRouter = GoRouter(
         builder: (context, state) => const SettingScreen(),
       ),
       GoRoute(
-        path: '/newMedicine',
-        name: NewMedicineScreen.name,
-        builder: (context, state) => const NewMedicineScreen(),
-      ),
-      GoRoute(
           path: '/cuestionario',
           name: CuestionarioScreen.name,
           builder: (context, state) => const CuestionarioScreen(),

@@ -14,7 +14,6 @@ export 'package:tesis_app/presentation/screens/entertainment/minigames_list/encu
 export 'package:tesis_app/presentation/screens/login/login_screen.dart';
 export 'package:tesis_app/presentation/screens/login/signup_screen.dart';
 export 'package:tesis_app/presentation/screens/entertainment/movies_screen.dart';
-export 'package:tesis_app/presentation/screens/medicines/new_medicine_screen.dart';
 export 'package:tesis_app/presentation/screens/entertainment/etertaiment_home_screen.dart';
 export 'package:tesis_app/presentation/screens/assistant/assistant_screen.dart';
 export 'package:tesis_app/presentation/screens/entertainment/jokes_screen.dart';

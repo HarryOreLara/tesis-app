@@ -74,6 +74,28 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   
+  fonts:
+    - family: Gotham-Light
+      fonts:
+        - asset: assets/fonts/Gotham-Light.otf
+
+    - family: Gotham-Black
+      fonts:
+        - asset: assets/fonts/Gotham-Black.otf
+
+    - family: Gotham-Medium
+      fonts:
+        - asset: assets/fonts/Gotham-Medium.otf
+
+    - family: Gotham-Book
+      fonts:
+        - asset: assets/fonts/Gotham-Book.otf
+
+    - family: Gotham-Bold
+      fonts:
+        - asset: assets/fonts/Gotham-Bold.otf
+
+
   assets:
     - assets/images/
     - assets/music/images/

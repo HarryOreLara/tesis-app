@@ -1,11 +1,12 @@
-import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+
+import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
 abstract class MedicineRepository {
-  Future<bool> postNewMedicine(Medicine medicine);
+  Future<bool> postNewMedicine(MedicineModel medicine);
 
-  Future<List<Medicine>> getAllMedicine(String id);
+  Future<List<MedicineModel>> getAllMedicine(String id);
 
   Future<bool> deleteMedicine(String id);
 
-  Future<List<Medicine>> getMedicines(String idUser);
+  Future<List<MedicineModel>> getMedicines(String idUser);
 }

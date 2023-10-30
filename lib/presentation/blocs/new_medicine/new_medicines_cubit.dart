@@ -6,6 +6,7 @@ import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 
 import 'package:tesis_app/infraestructure/formularios/inputs/inputs.dart';
+import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 import 'package:tesis_app/infraestructure/repositories/medicine_repository_infra.dart';
 
 part 'new_medicines_state.dart';
@@ -34,7 +35,7 @@ class NewMedicinesCubit extends Cubit<NewMedicinesState> {
   }
 
   Future<bool> guardarBaseDatos() async {
-    Medicine medicine = Medicine(
+    MedicineModel medicine = MedicineModel(
         id: '',
         nombre: state.nombreMedicine.value,
         cantidadMedicamentos: state.cantidadPastillas.value,

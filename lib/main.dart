@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesis_app/config/router/app_router.dart';
 import 'package:tesis_app/config/theme/app_theme.dart';
+import 'package:tesis_app/presentation/bloc/bloc/medicine_bloc.dart';
 import 'package:tesis_app/presentation/bloc/login/login_bloc.dart';
 
 void main() {
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => MedicineBloc(),
         )
       ],
       child: MaterialApp.router(

@@ -15,12 +15,12 @@ class LoginState extends Equatable {
           {bool? loading,
           String? error,
           bool? add,
-          List<Usuario>? listPersona}) =>
+          List<Usuario>? listUsuario}) =>
       LoginState(
           loading: loading ?? this.loading,
           error: error ?? this.error,
           add: add ?? this.add,
-          listUsuario: listPersona ?? this.listUsuario);
+          listUsuario: listUsuario ?? this.listUsuario);
   @override
   List<Object> get props => [loading, error, add, listUsuario];
 }

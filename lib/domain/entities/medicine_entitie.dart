@@ -1,4 +1,6 @@
-class Medicine {
+import 'package:equatable/equatable.dart';
+
+class Medicine extends Equatable {
   final String id;
   final String nombre;
   final String cantidadMedicamentos;
@@ -6,8 +8,16 @@ class Medicine {
   final String horaIntermedio;
   final String horaFin;
 
-  Medicine(
-    {
+  const Medicine.empty()
+      : this(
+            id: "1",
+            nombre: "_empty_dni",
+            cantidadMedicamentos: "1",
+            horaInicio: "00:00",
+            horaIntermedio: "00:00",
+            horaFin: "00:00");
+
+  const Medicine({
     required this.id,
     required this.nombre,
     required this.cantidadMedicamentos,
@@ -15,22 +25,9 @@ class Medicine {
     required this.horaIntermedio,
     required this.horaFin,
   });
-  factory Medicine.fromJson(Map<String, dynamic> json) => Medicine(
-        id: json["_id"] ?? '',
-        nombre: json["nombre"] ?? '',
-        cantidadMedicamentos: json["cantidadMedicamentos"] ?? '',
-        horaInicio: json["horaInicio"] ?? '',
-        horaIntermedio: json["horaIntermedio"] ?? '',
-        horaFin: json["horaFin"] ?? '',
-      );
-      
-  Map<String, dynamic> toJson() {
-    return {
-      "nombre": nombre,
-      "cantidadMedicamentos": cantidadMedicamentos,
-      "horaInicio": horaInicio,
-      "horaIntermedio": horaIntermedio,
-      "horaFin": horaFin
-    };
-  }
+
+
+  @override
+  List<Object?> get props =>
+      [id, nombre, cantidadMedicamentos, horaInicio, horaIntermedio, horaFin];
 }

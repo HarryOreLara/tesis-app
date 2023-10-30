@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/errors/exception.dart';
 import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
-import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/medicine_mapper.dart';
+import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_response.dart';
 
 class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
@@ -16,38 +17,55 @@ class MedicineDbDatasourceInfra extends MedicineDataSourceDomain {
       baseUrl: 'https://tesis-xz3b.onrender.com',
       headers: {'Content-Type': 'application/json', 'x-auth-token': 'token'}));
 
-  List<Medicine> JsonToMedicines(Map<String, dynamic> json) {
+  List<MedicineModel> JsonToMedicines(Map<String, dynamic> json) {
     final medicineResponse = MedicinesReponse.fromJson(json);
-    final List<Medicine> medicines = medicineResponse.newMedicine
+    final List<MedicineModel> medicines = medicineResponse.newMedicine
         .map((medicinesDb) => MedicineMapper.medicineDbToEntity(medicinesDb))
         .toList();
     return medicines;
   }
 
   @override
-  Future<List<Medicine>> getAllMedicine(String id) async {
-    final response = await dio.get('/medicines/getList/$id'); //ok, medicineList
-    return JsonToMedicines(response.data);
+  Future<List<MedicineModel>> getAllMedicine(String id) async {
+    try {
+      final response =
+          await dio.get('/medicines/getList/$id'); //ok, medicineList
+
+      if (response.statusCode != 200) {
+        throw APIException(
+            message: response.statusMessage, statusCode: response.statusCode);
+      }
+      return JsonToMedicines(response.data);
+    } on APIException {
+      rethrow;
+    } catch (e) {
+      throw APIException(message: e.toString(), statusCode: 505);
+    }
   }
 
   @override
-  Future<List<Medicine>> getMedicines(String idUser) async {
-    final response = await dio.get('/medicines/getList/$idUser');
-    final res = MedicinesReponse.fromJson(response.data);
-    final List<Medicine> medicinas = res.newMedicine
-        .map((medicinesDb) => MedicineMapper.medicineDbToEntity(medicinesDb))
-        .toList();
-    return medicinas;
+  Future<List<MedicineModel>> getMedicines(String idUser) async {
+    try {
+      final response = await dio.get('/medicines/getList/$idUser');
+      final res = MedicinesReponse.fromJson(response.data);
+      final List<MedicineModel> medicinas = res.newMedicine
+          .map((medicinesDb) => MedicineMapper.medicineDbToEntity(medicinesDb))
+          .toList();
+      return medicinas;
+    } on APIException {
+      rethrow;
+    } catch (e) {
+      throw APIException(message: e.toString(), statusCode: 505);
+    }
   }
 
-
   @override
-  Future<bool> postNewMedicine(Medicine medicine) async {
+  Future<bool> postNewMedicine(MedicineModel medicine) async {
     final authService = AuthService();
     final tokenNullable = await authService.getToken();
     final token = tokenNullable ?? "";
     try {
-      final medicineJson = medicine.toJson();
+      final medicineJson = medicine.toMap();
       // final response = await dio.post('/medicines/post', data: medicineJson);
       final response =
           await nuevo(token).post('/medicines/post', data: medicineJson);
