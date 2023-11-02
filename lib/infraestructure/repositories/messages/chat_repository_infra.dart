@@ -1,24 +1,24 @@
-import 'package:tesis_app/domain/datasources/messages/conversaciones_datasource_domain.dart';
-import 'package:tesis_app/domain/repositories/messages/conversaciones_repository_domain.dart';
-import 'package:tesis_app/infraestructure/models/conversaciones/conversaciones_model.dart';
+import 'package:tesis_app/domain/datasources/messages/chat_datasource_domain.dart';
+import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+import 'package:tesis_app/domain/repositories/messages/chat_repository_domain.dart';
+import 'package:tesis_app/infraestructure/models/messages/chat_model.dart';
 
-class ChatRepositoryInfra extends ConversacionesRepositoryDomain {
-  final ConversacionesDatasourceDomain chatDatasourceDomain;
-
+class ChatRepositoryInfra extends MessageRepositoryDomain {
+  final ChatDatasourceDomain chatDatasourceDomain;
   ChatRepositoryInfra(this.chatDatasourceDomain);
 
   @override
-  Future<void> saveChat(ConversacionesModel chats) {
-    return chatDatasourceDomain.saveChat(chats);
+  Future<List<Profile>> searchPerson(String query) {
+    return chatDatasourceDomain.searchPerson(query);
   }
 
   @override
-  Future<List<ConversacionesModel>> allChats(String idEmisor) {
-    return chatDatasourceDomain.allChats(idEmisor);
+  Future<List<ChatModel>> getListChatsbyId(ChatModel messageModel) {
+    return chatDatasourceDomain.getListChatsbyId(messageModel);
   }
 
   @override
-  Future<ConversacionesModel> oneChat(String idReceptor, String idEmisor) {
-    return chatDatasourceDomain.oneChat(idReceptor, idEmisor);
+  Future<void> sendChat(ChatModel messageModel) {
+    return chatDatasourceDomain.sendChat(messageModel);
   }
 }

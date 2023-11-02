@@ -1,6 +1,6 @@
 part of 'conversaciones_bloc.dart';
 
-sealed class ConversacionesEvent extends Equatable {
+abstract class ConversacionesEvent extends Equatable {
   const ConversacionesEvent();
 
   @override
@@ -16,3 +16,11 @@ class GetOneConversacion extends ConversacionesEvent {
 }
 
 class GetAllConversaciones extends ConversacionesEvent {}
+
+class SaveConversaciones extends ConversacionesEvent {
+  final String idReceptor;
+  final String nombreReceptor;
+
+  const SaveConversaciones(
+      {required this.idReceptor, required this.nombreReceptor});
+}

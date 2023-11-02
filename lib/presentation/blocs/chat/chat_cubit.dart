@@ -5,7 +5,7 @@ import 'package:tesis_app/infraestructure/datasources/messages/conversaciones_da
 import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/mappers/conversaciones_mapper.dart';
 import 'package:tesis_app/infraestructure/models/conversaciones/conversaciones_model.dart';
-import 'package:tesis_app/infraestructure/repositories/messages/chat_repository_infra.dart';
+import 'package:tesis_app/infraestructure/repositories/messages/conversaciones_repository_infra.dart';
 import 'package:tesis_app/infraestructure/repositories/profile/profile_reposiroty_infra.dart';
 
 part 'chat_state.dart';
@@ -35,14 +35,14 @@ class ChatCubit extends Cubit<ChatState> {
         idEmisor: idEmisor, //l
         nombreEmisor: nombre,
         idReceptor: idReceptor);
-    chatRepositoryInfra.saveChat(chat);
+    chatRepositoryInfra.saveConversaciones(chat);
   }
 
 //Lista de contactos con quien la persona conversa
   Future<List<ConversacionesModel>> listChats() async {
     final idPersonaNull = await authService.getPersonaId();
     final idEmisor = idPersonaNull ?? '';
-    final response = await chatRepositoryInfra.allChats(idEmisor);
+    final response = await chatRepositoryInfra.allConversaciones(idEmisor);
     final List<ConversacionesModel> listita =
         response.map((e) => ConversacionesMapper.chatDbToEntity(e)).toList();
     return listita;
@@ -52,7 +52,7 @@ class ChatCubit extends Cubit<ChatState> {
     final idUserNull = await authService.getPersonaId();
     final idEmisor = idUserNull ?? "";
     final ConversacionesModel chat =
-        await chatRepositoryInfra.oneChat(idReceptor, idEmisor);
+        await chatRepositoryInfra.oneConversacion(idReceptor, idEmisor);
     if (chat.idEmisor == "") {
       return true;
     }

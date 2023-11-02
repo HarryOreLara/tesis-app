@@ -1,10 +1,11 @@
-import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
+import 'package:tesis_app/infraestructure/models/messages/chat_model.dart';
 
-class MensajeMapper {
-  static MessageModel messageDbToEntity(MessageModel messageModel) =>
-      MessageModel(
-          mensaje: messageModel.mensaje,
-          emisor: messageModel.emisor,
-          receptor: messageModel.receptor,
-          leido: messageModel.leido);
+class ChatMapper {
+  static ChatModel messageDbToEntity(ChatModel messageModel) => ChatModel(
+      id: messageModel.id,
+      mensaje: messageModel.mensaje,
+      leido: messageModel.leido,
+      tiempo: messageModel.tiempo,
+      emisor: messageModel.emisor,
+      receptor: messageModel.receptor);
 }

@@ -13,13 +13,13 @@ class ConversacionesDatasourceInfra extends ConversacionesDatasourceDomain {
       headers: {'Content-Type': 'application/json', 'x-auth-token': 'token'}));
 
   @override
-  Future<void> saveChat(ConversacionesModel chats) async {
+  Future<void> saveConversaciones(ConversacionesModel chats) async {
     final chatJson = chats.toJson();
     dio.post('/chat/newChat', data: chatJson);
   }
 
   @override
-  Future<List<ConversacionesModel>> allChats(String idEmisor) async {
+  Future<List<ConversacionesModel>> allConversaciones(String idEmisor) async {
     final response = await dio.get('/chat/allChats/$idEmisor');
     final res = ConversacionestListResponse.fromJson(response.data);
     final List<ConversacionesModel> listChats = res.listChats
@@ -29,7 +29,7 @@ class ConversacionesDatasourceInfra extends ConversacionesDatasourceDomain {
   }
 
   @override
-  Future<ConversacionesModel> oneChat(String idReceptor, String idEmisor) async {
+  Future<ConversacionesModel> oneConversacion(String idReceptor, String idEmisor) async {
     final response = await dio.get('/chat/oneChat/$idEmisor/$idReceptor');
     final res = ConversacionestListResponse.fromJson(response.data);
     final List<ConversacionesModel> listChats = res.listChats;

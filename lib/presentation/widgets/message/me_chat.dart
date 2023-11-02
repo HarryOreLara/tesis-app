@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tesis_app/infraestructure/models/messages/message_model.dart';
+import 'package:tesis_app/infraestructure/models/messages/chat_model.dart';
 
 class MeChat extends StatefulWidget {
-  final MessageModel message;
+  final ChatModel message;
 
   const MeChat({super.key, required this.message});
 

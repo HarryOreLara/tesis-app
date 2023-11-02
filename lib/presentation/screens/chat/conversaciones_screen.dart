@@ -37,8 +37,8 @@ class ConversacionesScreen extends ConsumerWidget {
                                   messageRepository.searchPerson))
                       .then((profile) {
                     if (profile == null) return;
-                    GoRouter.of(context)
-                        .go('/message/chat/${profile.id}/${profile.nombre}');
+
+                    context.push('/chat/${profile.id}/${profile.nombre}');
                   });
                 },
                 icon: const Icon(Icons.search)),
