@@ -29,11 +29,3 @@ class MessageModel {
 }
 
 
-List<MessageModel> messagesModel = [
-  MessageModel(mensaje: "Hola como estas", emisor: "idHarry", receptor: "idArles", leido: true),
-  MessageModel(mensaje: "Todo bien", emisor: "idArles", receptor: "idHarry", leido: true),
-  MessageModel(mensaje: "y tu como estas?", emisor: "idArles", receptor: "idHarry", leido: true),
-  MessageModel(mensaje: "Bien de igual forma", emisor: "idHarry", receptor: "idArles", leido: true),
-
-];
-

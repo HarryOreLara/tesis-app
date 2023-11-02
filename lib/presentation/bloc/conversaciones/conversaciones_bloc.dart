@@ -25,11 +25,6 @@ class ConversacionesBloc
 
     on<GetAllConversaciones>((event, emit) async {
       final authService = AuthService();
-
-      // final idPersonaNull = await authService.getPersonaId();
-      // final idEmisor = idPersonaNull ?? '';
-      //const idEmisor = '650cb7ee85491dc4f81be7f2';
-
       try {
         emit(state.copyWith(loading: true));
         final idUsuarioNull = await authService.getUserId();

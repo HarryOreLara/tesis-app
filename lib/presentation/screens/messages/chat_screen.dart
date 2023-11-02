@@ -7,18 +7,21 @@ import 'package:tesis_app/presentation/blocs/chat/chat_cubit.dart';
 import 'package:tesis_app/presentation/blocs/messages/message_cubit.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
-class ChatScreenV2 extends StatefulWidget {
+class ChatScreen extends StatefulWidget {
   final String idReceptor;
   final String nombreReceptor;
 
-  const ChatScreenV2(
+  static const String name = 'chat_screen';
+
+
+  const ChatScreen(
       {super.key, required this.idReceptor, required this.nombreReceptor});
 
   @override
-  State<ChatScreenV2> createState() => _ChatScreenV2State();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
-class _ChatScreenV2State extends State<ChatScreenV2> {
+class _ChatScreenState extends State<ChatScreen> {
   ChatCubit chatCubit = ChatCubit();
 
   @override

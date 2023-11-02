@@ -196,17 +196,20 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
             width: 100,
             child: ElevatedButton.icon(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                backgroundColor: MaterialStateProperty.all(Colors.white),
               ),
               onPressed: () {
                 final router = GoRouter.of(context);
                 profileCubit.cerrarSesion();
                 router.go('/'); // Asegúrate de que '/login'
               },
-              icon: const Icon(Icons.logout), // Ícono del botón
+              icon: const Icon(
+                Icons.logout,
+                color: Colors.black,
+              ), // Ícono del botón
               label: const Text(
                 'Cerrar Sesión',
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
+                style: TextStyle(color: Colors.black, fontSize: 20.0),
               ), // Etiqueta del botón
             ),
           ),

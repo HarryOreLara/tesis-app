@@ -96,26 +96,19 @@ final appRouter = GoRouter(
         builder: (context, state) => const MedicinesScreen(),
       ),
       GoRoute(
-          path: '/message',
-          name: MessageScreen.name,
-          builder: (context, state) => const MessageScreen(),
-          routes: [
-            GoRoute(
-              path: 'chat/:id/:nombre',
-              builder: (context, state) {
-                final idReceptor = state.pathParameters['id'] ?? '';
-                final nombreReceptor = state.pathParameters['nombre'] ?? '';
-                return ChatScreenV2(
-                  idReceptor: idReceptor,
-                  nombreReceptor: nombreReceptor,
-                );
-              },
-            ),
-          ]),
-      GoRoute(
         path: '/conversacion',
         name: ConversacionesScreen.name,
         builder: (context, state) => const ConversacionesScreen(),
+      ),
+      GoRoute(
+        path: '/chat/:id/:nombre',
+        name: ChatScreen.name,
+        builder: (context, state) {
+          final idReceptor = state.pathParameters['id'] ?? '';
+          final nombreReceptor = state.pathParameters['nombre'] ?? '';
+          return ChatScreen(
+              idReceptor: idReceptor, nombreReceptor: nombreReceptor);
+        },
       ),
       GoRoute(
         path: '/profile',

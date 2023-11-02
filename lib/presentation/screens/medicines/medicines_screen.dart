@@ -76,7 +76,9 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
           body: state.loading
               ? const CustomCircularProgres()
               : state.listMedicine.isEmpty
-                  ? const NingunElementoNotification()
+                  ? const NingunElementoNotification(
+                      mensaje: "No hay medicinas",
+                    )
                   : Column(
                       children: [
                         FadeInDown(

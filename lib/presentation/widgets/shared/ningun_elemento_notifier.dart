@@ -2,8 +2,10 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
 class NingunElementoNotification extends StatefulWidget {
+  final String mensaje;
   const NingunElementoNotification({
     super.key,
+    required this.mensaje,
   });
 
   @override
@@ -37,9 +39,9 @@ class _NingunElementoNotificationState extends State<NingunElementoNotification>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              "No hay medicinas",
-              style: TextStyle(
+            Text(
+              widget.mensaje,
+              style: const TextStyle(
                 fontSize: 20.0,
                 color: Colors.red,
               ),

@@ -88,7 +88,7 @@ class _ListConversacionesState extends State<ListConversaciones> {
               ..add(GetAllConversaciones());
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text(
-                "Medicina agregada",
+                "Conversacion agregada",
                 style: TextStyle(color: Colors.white),
               ),
               backgroundColor: Color.fromARGB(255, 0, 0, 0),
@@ -99,65 +99,73 @@ class _ListConversacionesState extends State<ListConversaciones> {
         return state.loading
             ? const CustomCircularProgres()
             : state.listConversaciones.isEmpty
-                ? const NingunElementoNotification()
+                ? const NingunElementoNotification(
+                    mensaje: "No hay conversaciones",
+                  )
                 : ListView.builder(
                     itemCount: state.listConversaciones.length,
                     itemBuilder: (context, index) {
                       final conversacion = state.listConversaciones[index];
                       return FadeIn(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 5.0),
-                          child: Container(
-                            decoration: BoxDecoration(boxShadow: [
-                              BoxShadow(
-                                  blurRadius: 20,
-                                  offset: const Offset(1, 1),
-                                  color:
-                                      const Color(0xFF333333).withOpacity(0.2))
-                            ]),
-                            height: 100.0,
-                            child: Card(
-                              color: const Color(0xFF333333),
-                              elevation: 1,
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 20.0),
-                                child: Row(
-                                  children: [
-                                    const CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      radius: 30.0,
-                                      child: Icon(
-                                        Icons.person,
-                                        size: 30.0,
-                                        color: Color.fromARGB(255, 0, 0, 0),
+                        child: GestureDetector(
+                          onTap: () {
+                            context.push(
+                                '/chat/${conversacion.idReceptor}/${conversacion.nombreReceptor}');
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20.0, vertical: 5.0),
+                            child: Container(
+                              decoration: BoxDecoration(boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 20,
+                                    offset: const Offset(1, 1),
+                                    color: const Color(0xFF333333)
+                                        .withOpacity(0.2))
+                              ]),
+                              height: 100.0,
+                              child: Card(
+                                color: const Color(0xFF333333),
+                                elevation: 1,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 20.0),
+                                  child: Row(
+                                    children: [
+                                      const CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        radius: 30.0,
+                                        child: Icon(
+                                          Icons.person,
+                                          size: 30.0,
+                                          color: Color.fromARGB(255, 0, 0, 0),
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(
-                                      width: 30.0,
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(conversacion.nombreReceptor,
+                                      const SizedBox(
+                                        width: 30.0,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(conversacion.nombreReceptor,
+                                              style: const TextStyle(
+                                                  fontSize: 25.0,
+                                                  fontFamily: 'Gotham-Book',
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold)),
+                                          Text(
+                                            conversacion.nombreEmisor,
                                             style: const TextStyle(
-                                                fontSize: 25.0,
-                                                fontFamily: 'Gotham-Book',
                                                 color: Colors.white,
-                                                fontWeight: FontWeight.bold)),
-                                        Text(
-                                          conversacion.nombreEmisor,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15.0,
-                                              fontFamily: 'Gotham-Light'),
-                                        )
-                                      ],
-                                    )
-                                  ],
+                                                fontSize: 15.0,
+                                                fontFamily: 'Gotham-Light'),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
