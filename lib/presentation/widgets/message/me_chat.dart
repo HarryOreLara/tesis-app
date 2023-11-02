@@ -58,8 +58,7 @@ class _MeChatState extends State<MeChat> {
               ]),
               child: const CircleAvatar(
                 radius: 15,
-                backgroundImage: NetworkImage(
-                    'https://img.allvipp.com/www-promipool-de/image/upload/w_580,f_webp,q_auto:eco/Liam_Neeson_His_Best_Roles_200604_gfgbns85i1'),
+                child: Icon(Icons.person),
               ),
             ),
           ],

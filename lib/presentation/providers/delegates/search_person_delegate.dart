@@ -88,13 +88,11 @@ class _PersonaItem extends StatelessWidget {
             SizedBox(
               width: size.width * 0.2,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  'https://tipsparatuviaje.com/wp-content/uploads/2019/07/trujillo-peru-1.jpg',
-                  loadingBuilder: (context, child, loadingProgress) =>
-                      FadeIn(child: child),
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: const Icon(
+                    Icons.person_add_alt_rounded,
+                    color: Colors.black,
+                  )),
             ),
             const SizedBox(
               width: 10.0,
