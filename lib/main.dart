@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tesis_app/config/router/app_router.dart';
 import 'package:tesis_app/config/theme/app_theme.dart';
-import 'package:tesis_app/presentation/bloc/bloc/medicine_bloc.dart';
+import 'package:tesis_app/presentation/bloc/conversaciones/conversaciones_bloc.dart';
 import 'package:tesis_app/presentation/bloc/login/login_bloc.dart';
+import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
+
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => MedicineBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ConversacionesBloc(),
         )
       ],
       child: MaterialApp.router(

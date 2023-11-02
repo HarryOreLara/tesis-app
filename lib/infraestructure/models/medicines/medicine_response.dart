@@ -1,3 +1,4 @@
+import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
 class MedicinesReponse {
@@ -9,7 +10,7 @@ class MedicinesReponse {
   MedicinesReponse(
       {required this.ok, required this.msg, required this.newMedicine});
 
-  factory MedicinesReponse.fromJson(Map<String, dynamic> json) =>
+  factory MedicinesReponse.fromJson(DataMap json) =>
       MedicinesReponse(
         ok: json["ok"] ?? '',
         msg: json["msg"] ?? '',

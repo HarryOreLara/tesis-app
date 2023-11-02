@@ -111,7 +111,7 @@ class _GridDashboard extends StatelessWidget {
   Home home1 = Home(
       title: 'Mensajes',
       subtitle: 'Interactua con las personas',
-      event: '/message',
+      event: '/conversacion',
       img: 'assets/images/message.jpg');
   Home home2 = Home(
       title: 'Medicamentos',

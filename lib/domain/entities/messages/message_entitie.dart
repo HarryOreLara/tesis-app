@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:tesis_app/domain/entities/messages/user_message_entitie.dart';
 
-class Message {
+class Message extends Equatable{
   final User sender;
   final String time;
   final String text;
@@ -21,5 +22,9 @@ class Message {
   Map<String, dynamic> toJson() {
     return {"sender": sender, "time": time, "text": text, "leido": leido};
   }
+  
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw UnimplementedError();
 }
 

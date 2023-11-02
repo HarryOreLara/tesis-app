@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
-import 'package:tesis_app/domain/entities/medicine_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
@@ -14,6 +13,7 @@ class MedicineBloc extends Bloc<MedicineEvent, MedicineState> {
 
   MedicineBloc() : super(const MedicineState()) {
     _medicineDataSourceDomain = MedicineDbDatasourceInfra();
+    
     on<MedicineInit>((event, emit) {
       emit(state.copyWith(add: false, loading: false, error: ''));
     });

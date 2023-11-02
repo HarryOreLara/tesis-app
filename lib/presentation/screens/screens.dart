@@ -5,7 +5,6 @@ export 'package:tesis_app/presentation/screens/cuestionario/depresion_cuestionar
 export 'package:tesis_app/presentation/screens/cuestionario/soledad_cuestionario.dart';
 
 export 'package:tesis_app/presentation/screens/messages/chat_v2_screen.dart';
-export 'package:tesis_app/presentation/screens/messages/chat_screen.dart';
 export 'package:tesis_app/presentation/screens/entertainment/music/one_music_screen.dart';
 export 'package:tesis_app/presentation/screens/entertainment/minigames_list/refranes_minigame.dart';
 export 'package:tesis_app/presentation/screens/entertainment/minigames_list/busqueda_minigame.dart';

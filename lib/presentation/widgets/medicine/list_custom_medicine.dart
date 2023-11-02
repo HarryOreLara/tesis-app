@@ -2,7 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tesis_app/domain/entities/medicine_entitie.dart';
-import 'package:tesis_app/presentation/bloc/bloc/medicine_bloc.dart';
+import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
 
 class ListCustomItemsMedicine extends StatelessWidget {
   final Medicine medicine;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:tesis_app/presentation/screens/messages/conversaciones_screen.dart';
 import 'package:tesis_app/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
@@ -111,6 +112,11 @@ final appRouter = GoRouter(
               },
             ),
           ]),
+      GoRoute(
+        path: '/conversacion',
+        name: ConversacionesScreen.name,
+        builder: (context, state) => const ConversacionesScreen(),
+      ),
       GoRoute(
         path: '/profile',
         name: ProfileScreen.name,

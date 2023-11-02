@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
-import 'package:tesis_app/presentation/bloc/bloc/medicine_bloc.dart';
+import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
 
 class AddMedicineDialog extends StatefulWidget {
   final TextEditingController nombreController;

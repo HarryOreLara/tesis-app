@@ -55,7 +55,7 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
   @override
   void initState() {
     super.initState();
-    context.read<ProfileCubit>().getOnePersona();
+    // context.read<ProfileCubit>().getOnePersona();
   }
 
   @override

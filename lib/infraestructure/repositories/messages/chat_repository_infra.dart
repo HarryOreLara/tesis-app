@@ -1,24 +1,24 @@
-import 'package:tesis_app/domain/datasources/messages/chat_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/messages/chat_entitie.dart';
-import 'package:tesis_app/domain/repositories/messages/chat_repository_domain.dart';
+import 'package:tesis_app/domain/datasources/messages/conversaciones_datasource_domain.dart';
+import 'package:tesis_app/domain/repositories/messages/conversaciones_repository_domain.dart';
+import 'package:tesis_app/infraestructure/models/conversaciones/conversaciones_model.dart';
 
-class ChatRepositoryInfra extends ChatRepositoryDomain {
-  final ChatDatasourceDomain chatDatasourceDomain;
+class ChatRepositoryInfra extends ConversacionesRepositoryDomain {
+  final ConversacionesDatasourceDomain chatDatasourceDomain;
 
   ChatRepositoryInfra(this.chatDatasourceDomain);
 
   @override
-  Future<void> saveChat(Chats chats) {
+  Future<void> saveChat(ConversacionesModel chats) {
     return chatDatasourceDomain.saveChat(chats);
   }
 
   @override
-  Future<List<Chats>> allChats(String idEmisor) {
+  Future<List<ConversacionesModel>> allChats(String idEmisor) {
     return chatDatasourceDomain.allChats(idEmisor);
   }
 
   @override
-  Future<Chats> oneChat(String idReceptor, String idEmisor) {
+  Future<ConversacionesModel> oneChat(String idReceptor, String idEmisor) {
     return chatDatasourceDomain.oneChat(idReceptor, idEmisor);
   }
 }

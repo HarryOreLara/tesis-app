@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tesis_app/domain/entities/messages/chat_entitie.dart';
 import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+import 'package:tesis_app/infraestructure/models/conversaciones/conversaciones_model.dart';
 import 'package:tesis_app/presentation/blocs/chat/chat_cubit.dart';
 import 'package:tesis_app/presentation/providers/delegates/search_person_delegate.dart';
 import 'package:tesis_app/presentation/providers/message/message_provider.dart';
@@ -56,7 +56,7 @@ class _ListChats extends StatelessWidget {
   const _ListChats();
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Chats>>(
+    return FutureBuilder<List<ConversacionesModel>>(
       future: context.read<ChatCubit>().listChats(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {

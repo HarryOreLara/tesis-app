@@ -4,7 +4,7 @@ class MedicineState extends Equatable {
   final bool loading;
   final String error;
   final bool add;
-  final List<Medicine> listMedicine;
+  final List<MedicineModel> listMedicine;
   const MedicineState(
       {this.loading = false,
       this.error = '',
@@ -15,7 +15,7 @@ class MedicineState extends Equatable {
           {bool? loading,
           String? error,
           bool? add,
-          List<Medicine>? listMedicine}) =>
+          List<MedicineModel>? listMedicine}) =>
       MedicineState(
           loading: loading ?? this.loading,
           error: error ?? this.error,
