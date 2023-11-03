@@ -82,42 +82,40 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                   : Column(
                       children: [
                         FadeInDown(
-                            child: Container(
-                          child: SizedBox(
-                            width: size.width * 1,
-                            height: size.height * 0.3,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(120)),
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(255, 7, 197, 255),
-                                        Color.fromARGB(255, 0, 109, 255),
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight)),
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Center(
+                            child: SizedBox(
+                              width: size.width * 1,
+                              height: size.height * 0.3,
+                              child: Container(
+                                decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(120)),
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          Color.fromARGB(255, 7, 197, 255),
+                                          Color.fromARGB(255, 0, 109, 255),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight)),
+                                child: const Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Center(
+                                        child: Text(
+                                      'MEDICAMENTOS',
+                                      style: TextStyle(
+                                          fontSize: 35, color: Colors.white),
+                                    )),
+                                    Center(
                                       child: Text(
-                                    'MEDICAMENTOS',
-                                    style: TextStyle(
-                                        fontSize: 35, color: Colors.white),
-                                  )),
-                                  Center(
-                                    child: Text(
-                                        'Por que tu salud es muy importante'),
-                                  ),
-                                  SizedBox(
-                                    height: 50,
-                                  ),
-                                ],
+                                          'Por que tu salud es muy importante'),
+                                    ),
+                                    SizedBox(
+                                      height: 50,
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ),
-                        )),
+                            )),
                         const SizedBox(
                           height: 20,
                         ),

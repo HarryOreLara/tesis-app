@@ -31,7 +31,6 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
   DateTime selectedDate = DateTime.now();
   bool isDateSelected = false;
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MedicineBloc, MedicineState>(
@@ -104,7 +103,7 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
                     label: Text(
                       isHoraIIntermediaSelected
                           ? 'Hora seleccionada: ${selectedHoraIntermedia!.format(context)}'
-                          : 'Ingrese hora de inicio',
+                          : 'Ingrese hora intermedia',
                     ),
                     icon: const Icon(Icons.date_range),
                   ),
@@ -128,7 +127,7 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
                     label: Text(
                       isHoraFinSelected
                           ? 'Hora seleccionada: ${selectedHoraFin!.format(context)}'
-                          : 'Ingrese hora de inicio',
+                          : 'Ingrese hora final',
                     ),
                     icon: const Icon(Icons.date_range),
                   ),
