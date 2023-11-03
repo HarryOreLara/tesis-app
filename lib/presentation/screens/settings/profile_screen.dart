@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tesis_app/presentation/blocs/profile_cubit/profile_cubit.dart';
-import 'package:tesis_app/presentation/widgets/widgets.dart';
+import 'package:tesis_app/presentation/bloc/profile/profile_bloc.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const String name = 'profile_screen';
@@ -17,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
           leading: IconButton(
               color: Colors.white,
               onPressed: () {
-                context.go('/home');
+                context.pop(context);
               },
               icon: const Icon(
                 Icons.arrow_back_ios,
@@ -36,9 +35,10 @@ class ProfileScreen extends StatelessWidget {
               ], // Colores del degradado
             ),
           ),
-          child: BlocProvider(
-            create: (context) => ProfileCubit(),
-            child: const _ProfileInterface(),
+          child: BlocBuilder<ProfileBloc, ProfileState>(
+            builder: (context, state) {
+              return const _ProfileInterface();
+            },
           ),
         ));
   }
@@ -52,21 +52,19 @@ class _ProfileInterface extends StatefulWidget {
 }
 
 class __ProfileInterfaceState extends State<_ProfileInterface> {
+  final nombreController = TextEditingController();
+  final apellidosController = TextEditingController();
+  final edadController = TextEditingController();
+  final generoController = TextEditingController();
+  final dniController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    // context.read<ProfileCubit>().getOnePersona();
   }
 
   @override
   Widget build(BuildContext context) {
-    final profileCubit = context.watch<ProfileCubit>();
-    final nombreProfile = profileCubit.state.nombreProfile;
-    final apellidoProfile = profileCubit.state.apellidosProfile;
-    final dniProfile = profileCubit.state.dniProfile;
-    final edadProfile = profileCubit.state.edadProfile;
-    final generoProfile = profileCubit.state.generoProfile;
-
     return ListView(
       children: [
         const SizedBox(
@@ -131,42 +129,62 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(
               children: [
-                InputTextFormField(
-                  label: 'Nombre',
-                  onChanged: profileCubit.nombreProfileChange,
-                  erroMessage: nombreProfile.errorMessage,
+                TextFormField(
+                  controller: nombreController,
+                  decoration: InputDecoration(
+                      hintText: "Ingrese su nombre",
+                      filled: true, // Indica que el fondo debe ser llenado
+                      fillColor: const Color.fromARGB(255, 255, 255, 255),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0))),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10.0,
                 ),
-                InputTextFormField(
-                  label: 'Apellidos',
-                  onChanged: profileCubit.apellidoProfilechange,
-                  erroMessage: apellidoProfile.errorMessage,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                InputTextFormField(
-                  label: 'Edad',
-                  onChanged: profileCubit.edadProfileChange,
-                  erroMessage: edadProfile.errorMessage,
+                TextFormField(
+                  controller: apellidosController,
+                  decoration: InputDecoration(
+                      hintText: "Ingrese sus apellidos",
+                      filled: true, // Indica que el fondo debe ser llenado
+                      fillColor: const Color.fromARGB(255, 255, 255, 255),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0))),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10.0,
                 ),
-                InputTextFormField(
-                  label: 'Genero',
-                  onChanged: profileCubit.generoProfileChange,
-                  erroMessage: generoProfile.errorMessage,
+                TextFormField(
+                  controller: edadController,
+                  decoration: InputDecoration(
+                      hintText: "Ingrese su edad",
+                      filled: true, // Indica que el fondo debe ser llenado
+                      fillColor: const Color.fromARGB(255, 255, 255, 255),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0))),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10.0,
                 ),
-                InputTextFormField(
-                  label: 'Dni',
-                  onChanged: profileCubit.dniProfileChange,
-                  erroMessage: dniProfile.errorMessage,
+                TextFormField(
+                  controller: generoController,
+                  decoration: InputDecoration(
+                      hintText: "Ingrese su genero",
+                      filled: true, // Indica que el fondo debe ser llenado
+                      fillColor: const Color.fromARGB(255, 255, 255, 255),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0))),
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                TextFormField(
+                  controller: dniController,
+                  decoration: InputDecoration(
+                      hintText: "Ingrese su DNI",
+                      filled: true, // Indica que el fondo debe ser llenado
+                      fillColor: const Color.fromARGB(255, 255, 255, 255),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(20.0))),
                 ),
                 const SizedBox(
                   height: 20,
@@ -174,9 +192,13 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                   onPressed: () {
-                    // Acción al presionar el botón
-                    //profileCubit.onSubmit();
-                    profileCubit.guardarPersona();
+                    context.read<ProfileBloc>().add(SaveProfile(
+                          nombre: nombreController.text.trim(),
+                          apellidos: apellidosController.text.trim(),
+                          edad: edadController.text.trim(),
+                          genero: generoController.text.trim(),
+                          dni: dniController.text.trim(),
+                        ));
                   },
                   child: const Text(
                     'Guardar Datos',
@@ -199,9 +221,8 @@ class __ProfileInterfaceState extends State<_ProfileInterface> {
                 backgroundColor: MaterialStateProperty.all(Colors.white),
               ),
               onPressed: () {
-                final router = GoRouter.of(context);
-                profileCubit.cerrarSesion();
-                router.go('/'); // Asegúrate de que '/login'
+                context.read<ProfileBloc>().add(CerrarSesion());
+                context.push('/');
               },
               icon: const Icon(
                 Icons.logout,

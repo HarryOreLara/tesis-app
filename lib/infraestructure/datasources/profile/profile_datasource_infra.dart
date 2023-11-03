@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/errors/exception.dart';
 import 'package:tesis_app/domain/datasources/profile/profile_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/persona_mapper.dart';
+import 'package:tesis_app/infraestructure/models/profile/profile_model.dart';
 import 'package:tesis_app/infraestructure/models/user/persona_response.dart';
 
 import 'package:tesis_app/infraestructure/models/user/profile_response.dart';
@@ -22,18 +23,20 @@ class ProfileDatasourceInfra extends ProfileDatasourceDomain {
   }
 
   @override
-  Future<bool> postNewPersona(Profile profile) async {
+  Future<bool> postNewPersona(ProfileModel profileModel) async {
     final tokenNullable = await authService.getToken();
     final token = tokenNullable ?? "";
     try {
-      final profileJson = profile.toJson();
+      final profileJson = profileModel.toMap();
       final response =
           await conexion(token).post('/persona/post', data: profileJson);
       final res = ProfileResponse.fromJson(response.data);
       authService.savePersonaId(res.id);
       return res.ok;
+    } on APIException {
+      rethrow;
     } catch (e) {
-      return false;
+      throw APIException(message: e.toString(), statusCode: 505);
     }
   }
 
@@ -43,13 +46,14 @@ class ProfileDatasourceInfra extends ProfileDatasourceDomain {
   }
 
   @override
-  Future<Profile> getOnePersona(String id) async {
+  Future<ProfileModel> getOnePersona(String id) async {
     final tokenNullable = await authService.getToken();
     final token = tokenNullable ?? "";
     final response = await conexion(token).get('/persona/getPersonaIdUser/$id');
     final data = PersonaResponse.fromJson(response.data);
-    final List<Profile> listProfile = data.personaList;
-    final Profile profile = PersonaMapper.personaDbToEntity(listProfile[0]);
+    final List<ProfileModel> listProfile = data.personaList;
+    final ProfileModel profile =
+        PersonaMapper.personaDbToEntity(listProfile[0]);
     return profile;
   }
 }

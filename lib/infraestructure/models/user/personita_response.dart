@@ -1,5 +1,6 @@
 import 'package:tesis_app/core/utils/typedef.dart';
 import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+import 'package:tesis_app/infraestructure/models/profile/profile_model.dart';
 
 class PersonitaReponse {
   final bool ok;
@@ -11,6 +12,6 @@ class PersonitaReponse {
       PersonitaReponse(
           ok: json["ok"] ?? '',
           persona: (json["persona"] as List<dynamic>)
-              .map((e) => Profile.fromJson(e))
+              .map((e) => ProfileModel.fromMap(e))
               .toList());
 }

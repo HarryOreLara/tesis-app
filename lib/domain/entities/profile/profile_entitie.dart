@@ -1,4 +1,6 @@
-class Profile {
+import 'package:equatable/equatable.dart';
+
+class Profile extends Equatable {
   final String id;
   final String nombre;
   final String apellidos;
@@ -7,7 +9,7 @@ class Profile {
   final String dni;
   final String idUsuario;
 
-  Profile(
+  const Profile(
       {required this.idUsuario,
       required this.id,
       required this.nombre,
@@ -16,23 +18,7 @@ class Profile {
       required this.genero,
       required this.dni});
 
-  factory Profile.fromJson(Map<String, dynamic> json) => Profile(
-      id: json["_id"] ?? '',
-      nombre: json["nombre"] ?? '',
-      apellidos: json["apellidos"] ?? '',
-      edad: json["edad"] ?? '',
-      genero: json["genero"] ?? '',
-      dni: json["dni"] ?? '',
-      idUsuario: json["idUsuario"] ?? '');
-
-  Map<String, dynamic> toJson() {
-    return {
-      'nombre': nombre,
-      'apellidos': apellidos,
-      'edad': edad,
-      'genero': genero,
-      'dni': dni,
-      'idUsuario': idUsuario
-    };
-  }
+  @override
+  List<Object?> get props =>
+      [id, nombre, apellidos, edad, genero, dni, idUsuario];
 }

@@ -1,7 +1,8 @@
-import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
+
+import 'package:tesis_app/infraestructure/models/profile/profile_model.dart';
 
 class PersonaMapper {
-  static Profile personaDbToEntity(Profile profile) => Profile(
+  static ProfileModel personaDbToEntity(ProfileModel profile) => ProfileModel(
       id: profile.id,
       nombre: profile.nombre,
       apellidos: profile.apellidos,

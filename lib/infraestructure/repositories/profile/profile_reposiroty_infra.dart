@@ -1,6 +1,6 @@
 import 'package:tesis_app/domain/datasources/profile/profile_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
 import 'package:tesis_app/domain/repositories/profile/profile_repository_domain.dart';
+import 'package:tesis_app/infraestructure/models/profile/profile_model.dart';
 
 class ProfileRepositoryInfra extends ProfileRepositoryDomain {
   final ProfileDatasourceDomain profileDatasourceDomain;
@@ -13,8 +13,8 @@ class ProfileRepositoryInfra extends ProfileRepositoryDomain {
   }
 
   @override
-  Future<bool> postNewPersona(Profile profile) {
-    return profileDatasourceDomain.postNewPersona(profile);
+  Future<bool> postNewPersona(ProfileModel profileModel) {
+    return profileDatasourceDomain.postNewPersona(profileModel);
   }
 
   @override
@@ -23,7 +23,7 @@ class ProfileRepositoryInfra extends ProfileRepositoryDomain {
   }
 
   @override
-  Future<Profile> getOnePersona(String id) {
+  Future<ProfileModel> getOnePersona(String id) {
     return profileDatasourceDomain.getOnePersona(id);
   }
 }
