@@ -1,31 +1,18 @@
 import 'package:tesis_app/core/utils/typedef.dart';
-import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
-
+import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_model.dart';
 
 class RespuestaForumReponse {
   final bool ok;
-  final List<RespuestaForo> foro;
+  final List<RespuestaForoModel> foro;
 
   RespuestaForumReponse({required this.ok, required this.foro});
 
-  factory RespuestaForumReponse.fromJson(DataMap json) {
-    final forumList = json["foro"];
+  factory RespuestaForumReponse.fromJson(DataMap json) => RespuestaForumReponse(
+      ok: json["ok"] ?? '',
+      foro: (json["foro"] as List<dynamic>?)
+              ?.map((e) => RespuestaForoModel.fromMap(e))
+              .toList() ??
+          []);
 
-    if (forumList == null) {
-      return RespuestaForumReponse(ok: json["ok"] ?? false, foro: []);
-    }
-
-    if (forumList is List<dynamic>) {
-      return RespuestaForumReponse(
-          ok: json["ok"] ?? false,
-          foro: forumList.map((e) => RespuestaForo.fromJson(e)).toList());
-    } else {
-      return RespuestaForumReponse(ok: json["ok"] ?? false, foro: []);
-    }
-  }
-
-  Map<String, dynamic> toJson() =>{"ok":ok, "foro":foro};
-
+  Map<String, dynamic> toJson() => {"ok": ok, "foro": foro};
 }
-
-

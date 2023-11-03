@@ -5,7 +5,7 @@ class ForumState extends Equatable {
   final String error;
   final bool add;
   final List<ForumModel> listForum;
-  final List<RespuestaForo> listRespuestaForo;
+  final List<RespuestaForoModel> listRespuestaForo;
 
   const ForumState(
       {this.loading = false,
@@ -19,7 +19,7 @@ class ForumState extends Equatable {
           String? error,
           bool? add,
           List<ForumModel>? listForum,
-          List<RespuestaForo>? listRespuestaForo}) =>
+          List<RespuestaForoModel>? listRespuestaForo}) =>
       ForumState(
           loading: loading ?? this.loading,
           error: error ?? this.error,

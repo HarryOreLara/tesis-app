@@ -1,12 +1,13 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/errors/exception.dart';
 import 'package:tesis_app/domain/datasources/forum/forum_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/forum_mapper.dart';
 import 'package:tesis_app/infraestructure/mappers/respuesta_foro_mapper.dart';
 import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
 import 'package:tesis_app/infraestructure/models/forum/forum_response.dart';
 import 'package:tesis_app/infraestructure/models/forum/response_reponse.dart';
+import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_model.dart';
 import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_response.dart';
 
 class ForumDatasourceInfra extends ForumDatasourceDomain {
@@ -35,11 +36,11 @@ class ForumDatasourceInfra extends ForumDatasourceDomain {
   }
 
   @override
-  Future<bool> createRespuestaForum(RespuestaForo respuestaForo) async {
+  Future<bool> createRespuestaForum(RespuestaForoModel respuestaForo) async {
     final tokenNull = await authService.getToken();
     final token = tokenNull ?? '';
 
-    final respuestaJson = respuestaForo.toJson();
+    final respuestaJson = respuestaForo.toMap();
     final idForo = respuestaForo.idForo;
 
     final response = await nuevo(token)
@@ -62,15 +63,21 @@ class ForumDatasourceInfra extends ForumDatasourceDomain {
   }
 
   @override
-  Future<List<RespuestaForo>> readAllRespuestForum(String id) async {
-    final tokenNull = await authService.getToken();
-    final token = tokenNull ?? '';
-    final response = await nuevo(token).get('/responseForum/readAll/$id');
-    final res = RespuestaForumReponse.fromJson(response.data);
-    final List<RespuestaForo> foros = res.foro
-        .map((forumDb) => RespuestaForoMapper.respuestaForoToEntity(forumDb))
-        .toList();
-    return foros;
+  Future<List<RespuestaForoModel>> readAllRespuestForum(String id) async {
+    try {
+      final tokenNull = await authService.getToken();
+      final token = tokenNull ?? '';
+      final response = await nuevo(token).get('/responseForum/readAll/$id');
+      final res = RespuestaForumReponse.fromJson(response.data);
+      final List<RespuestaForoModel> foros = res.foro
+          .map((forumDb) => RespuestaForoMapper.respuestaForoToEntity(forumDb))
+          .toList();
+      return foros;
+    } on APIException {
+      rethrow;
+    } catch (e) {
+      throw APIException(message: e.toString(), statusCode: 505);
+    }
   }
 
   @override

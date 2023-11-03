@@ -9,10 +9,10 @@ abstract class ForumEvent extends Equatable {
 
 class ForumInit extends ForumEvent {}
 
-class GetOneForum extends ForumEvent {
+class GetAllRespuestasByForum extends ForumEvent {
   final String id;
 
-  const GetOneForum({required this.id});
+  const GetAllRespuestasByForum({required this.id});
 }
 
 class GetAllForums extends ForumEvent {}
@@ -22,4 +22,11 @@ class CreateForum extends ForumEvent {
   final String descripcion;
 
   const CreateForum({required this.titulo, required this.descripcion});
+}
+
+class SendRespuesta extends ForumEvent {
+  final String id;
+  final String respuesta;
+
+  const SendRespuesta({required this.respuesta, required this.id});
 }

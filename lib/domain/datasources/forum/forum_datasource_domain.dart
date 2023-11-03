@@ -1,5 +1,5 @@
-import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
+import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_model.dart';
 
 abstract class ForumDatasourceDomain{
     Future<bool> createForum(ForumModel forum);
@@ -9,7 +9,7 @@ abstract class ForumDatasourceDomain{
   Future<ForumModel> readOneForum(String id);
 
   //Respuesta
-  Future<bool> createRespuestaForum(RespuestaForo respuestaForo);
+  Future<bool> createRespuestaForum(RespuestaForoModel respuestaForo);
   
-  Future<List<RespuestaForo>> readAllRespuestForum(String id);
+  Future<List<RespuestaForoModel>> readAllRespuestForum(String id);
 }

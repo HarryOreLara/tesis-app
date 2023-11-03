@@ -1,11 +1,11 @@
-import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
+import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_model.dart';
 
 class RespuestaForoMapper {
-  static RespuestaForo respuestaForoToEntity(RespuestaForo respuestaForo) =>
-      RespuestaForo(
-          contenido: respuestaForo.contenido,
+  static RespuestaForoModel respuestaForoToEntity(RespuestaForoModel respuestaForo) =>
+      RespuestaForoModel(
           id: respuestaForo.id,
-          creator: respuestaForo.creator,
+          contenido: respuestaForo.contenido,
+          creador: respuestaForo.creador,
           idForo: respuestaForo.idForo,
           createdAt: respuestaForo.createdAt);
 }

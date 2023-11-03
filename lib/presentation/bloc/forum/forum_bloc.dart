@@ -2,11 +2,11 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:tesis_app/domain/datasources/forum/forum_datasource_domain.dart';
 import 'package:tesis_app/domain/datasources/profile/profile_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/forum/forum_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
+import 'package:tesis_app/infraestructure/models/forum/respuesta_forum_model.dart';
 
 part 'forum_event.dart';
 part 'forum_state.dart';
@@ -39,10 +39,9 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
       }
     });
 
-    on<GetOneForum>((event, emit) async {
+    on<GetAllRespuestasByForum>((event, emit) async {
       try {
         emit(state.copyWith(loading: true));
-
         final listRespuestaForo =
             await _forumDatasourceDomain.readAllRespuestForum(event.id);
         emit(state.copyWith(
@@ -75,6 +74,35 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
             createdAt: "createdAt");
 
         await _forumDatasourceDomain.createForum(forum);
+        emit(state.copyWith(loading: false, add: true));
+      } catch (e) {
+        try {
+          emit(
+              state.copyWith(loading: false, error: (e as dynamic)['message']));
+        } catch (e) {
+          emit(state.copyWith(
+              loading: false, error: 'Ocurrio un error de segundo nivel'));
+        }
+      }
+    });
+
+    on<SendRespuesta>((event, emit) async {
+      final authService = AuthService();
+
+      try {
+        emit(state.copyWith(loading: true));
+        final idUsuarioNull = await authService.getUserId();
+        final idUsuario = idUsuarioNull ?? '';
+        final idEmisor =
+            await _profileDatasourceDomain.getOnePersona(idUsuario);
+
+        final respuestaForo = RespuestaForoModel(
+            contenido: event.respuesta,
+            id: "id",
+            creador: idEmisor.id,
+            idForo: event.id,
+            createdAt: "createdAt");
+        await _forumDatasourceDomain.createRespuestaForum(respuestaForo);
         emit(state.copyWith(loading: false, add: true));
       } catch (e) {
         try {
