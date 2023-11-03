@@ -6,8 +6,6 @@ export 'package:tesis_app/presentation/widgets/medicine/add_medicine_dialog.dart
 
 export 'package:tesis_app/presentation/widgets/medicine/list_custom_medicine.dart';
 
-export 'package:tesis_app/presentation/widgets/forum/modal_creator_new.dart';
-
 export 'package:tesis_app/presentation/widgets/message/Me_chat.dart';
 export 'package:tesis_app/presentation/widgets/message/your_chat.dart';
 

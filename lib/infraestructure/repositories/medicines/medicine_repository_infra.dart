@@ -1,5 +1,5 @@
-import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
-import 'package:tesis_app/domain/repositories/medicines_repository_domain.dart';
+import 'package:tesis_app/domain/datasources/medicines/medicines_datasources_domain.dart';
+import 'package:tesis_app/domain/repositories/medicines/medicines_repository_domain.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
 class MedicineRepositoryInfra extends MedicineRepository {

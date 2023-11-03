@@ -1,4 +1,4 @@
-import 'package:tesis_app/domain/entities/musica_entitie.dart';
+import 'package:tesis_app/domain/entities/entertainment/musica_entitie.dart';
 
 class PlayList {
   final String title;

@@ -1,7 +1,7 @@
 import 'package:tesis_app/domain/datasources/forum/forum_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
 import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
 import 'package:tesis_app/domain/repositories/forum/forum_repository_domain.dart';
+import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
 
 class ForumRepositoryInfra extends ForumRepositoryDomain {
   final ForumDatasourceDomain forumDatasourceDomain;
@@ -9,8 +9,8 @@ class ForumRepositoryInfra extends ForumRepositoryDomain {
   ForumRepositoryInfra(this.forumDatasourceDomain);
 
   @override
-  Future<bool> createForum(Forum forum) {
-    return forumDatasourceDomain.createForum(forum);
+  Future<bool> createForum(ForumModel forumModel) {
+    return forumDatasourceDomain.createForum(forumModel);
   }
 
   @override
@@ -19,7 +19,7 @@ class ForumRepositoryInfra extends ForumRepositoryDomain {
   }
 
   @override
-  Future<List<Forum>> readAllForum() {
+  Future<List<ForumModel>> readAllForum() {
     return forumDatasourceDomain.readAllForum();
   }
 
@@ -29,7 +29,7 @@ class ForumRepositoryInfra extends ForumRepositoryDomain {
   }
 
   @override
-  Future<Forum> readOneForum(String id) {
+  Future<ForumModel> readOneForum(String id) {
     return forumDatasourceDomain.readOneForum(id);
   }
 }

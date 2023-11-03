@@ -34,7 +34,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             id: "id",
             mensaje: "mensaje",
             leido: false,
-            tiempo: "tiempo",
+            createdAt: "createdAt",
             emisor: idEmisor.id,
             receptor: event.idReceptor);
         final listChats =
@@ -64,7 +64,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
             id: "id",
             mensaje: event.mensaje,
             leido: false,
-            tiempo: "tiempo",
+            createdAt: "createdAt",
             emisor: idEmisor.id,
             receptor: event.idReceptor);
         _chatDatasourceDomain.sendChat(chatModel);

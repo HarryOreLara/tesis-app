@@ -1,12 +1,12 @@
-import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
 import 'package:tesis_app/domain/entities/forum/respuesta_forum.dart';
+import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
 
 abstract class ForumRepositoryDomain {
-  Future<bool> createForum(Forum forum);
+  Future<bool> createForum(ForumModel forumModel);
 
-  Future<List<Forum>> readAllForum();
+  Future<List<ForumModel>> readAllForum();
 
-  Future<Forum> readOneForum(String id);
+  Future<ForumModel> readOneForum(String id);
 
   //Respuesta
   Future<bool> createRespuestaForum(RespuestaForo respuestaForo);

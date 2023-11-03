@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:tesis_app/config/errors/exception.dart';
-import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
+import 'package:tesis_app/domain/datasources/medicines/medicines_datasources_domain.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/medicine_mapper.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';

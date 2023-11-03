@@ -7,6 +7,7 @@ import 'package:tesis_app/infraestructure/datasources/forum/forum_datasource_inf
 import 'package:tesis_app/infraestructure/formularios/inputs/forum/description_input.dart';
 import 'package:tesis_app/infraestructure/formularios/inputs/forum/title_input.dart';
 import 'package:tesis_app/infraestructure/mappers/forum_mapper.dart';
+import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
 import 'package:tesis_app/infraestructure/repositories/forum/forum_repository_infra.dart';
 
 part 'forum_v2_state.dart';
@@ -29,7 +30,7 @@ class ForumV2Cubit extends Cubit<ForumV2State> {
   Future<bool> createForum(String titulo, String descripcion) async {
     final idPersonaNull = await authService.getPersonaId();
     final creator = idPersonaNull ?? '';
-    final forum = Forum(
+    final forum = ForumModel(
         id: "id",
         titulo: titulo,
         descripcion: descripcion,

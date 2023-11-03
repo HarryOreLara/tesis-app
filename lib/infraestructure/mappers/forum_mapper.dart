@@ -1,7 +1,7 @@
-import 'package:tesis_app/domain/entities/forum/forum_entitie.dart';
+import 'package:tesis_app/infraestructure/models/forum/forum_model.dart';
 
 class ForumMapper {
-  static Forum forumDbToEntity(Forum forum) => Forum(
+  static ForumModel forumDbToEntity(ForumModel forum) => ForumModel(
       id: forum.id,
       titulo: forum.titulo,
       descripcion: forum.descripcion,

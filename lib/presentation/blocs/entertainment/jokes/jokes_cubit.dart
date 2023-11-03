@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tesis_app/domain/entities/jokes_entitie.dart';
-import 'package:tesis_app/infraestructure/datasources/jokes_datasource_infra.dart';
-import 'package:tesis_app/infraestructure/repositories/jokes_reposotiry_infra.dart';
+import 'package:tesis_app/domain/entities/entertainment/jokes_entitie.dart';
+import 'package:tesis_app/infraestructure/datasources/entertainment/jokes_datasource_infra.dart';
+import 'package:tesis_app/infraestructure/repositories/entertainment/jokes_reposotiry_infra.dart';
 import 'dart:math';
 part 'jokes_state.dart';
 

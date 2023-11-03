@@ -1,0 +1,9 @@
+{
+    "_id":"1",
+    "nombre": "_empty_nombre",
+    "apellidos": "_empty_appelidos",
+    "edad": "_empty_edad",
+    "genero": "_empty_genero",
+    "dni": "_empty_dni",
+    "idUsuario": "1"
+}

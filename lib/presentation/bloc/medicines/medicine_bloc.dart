@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:tesis_app/domain/datasources/medicines_datasources_domain.dart';
+import 'package:tesis_app/domain/datasources/medicines/medicines_datasources_domain.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
-import 'package:tesis_app/infraestructure/datasources/medicines_datasource_infra.dart';
+import 'package:tesis_app/infraestructure/datasources/medicines/medicines_datasource_infra.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
 part 'medicine_event.dart';

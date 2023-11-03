@@ -5,7 +5,7 @@ class ChatMapper {
       id: messageModel.id,
       mensaje: messageModel.mensaje,
       leido: messageModel.leido,
-      tiempo: messageModel.tiempo,
+      createdAt: messageModel.createdAt,
       emisor: messageModel.emisor,
       receptor: messageModel.receptor);
 }

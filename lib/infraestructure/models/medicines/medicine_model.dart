@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:tesis_app/core/utils/typedef.dart';
-import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/domain/entities/medicines/medicine_entitie.dart';
 
 class MedicineModel extends Medicine {
   const MedicineModel(
@@ -15,7 +15,7 @@ class MedicineModel extends Medicine {
   const MedicineModel.empty()
       : this(
             id: "1",
-            nombre: "_empty_dni",
+            nombre: "_empty_nombre",
             cantidadMedicamentos: "1",
             horaInicio: "00:00",
             horaIntermedio: "00:00",
@@ -51,6 +51,7 @@ class MedicineModel extends Medicine {
   }
 
   DataMap toMap() => {
+        "_id": id,
         "nombre": nombre,
         "cantidadMedicamentos": cantidadMedicamentos,
         "horaInicio": horaInicio,

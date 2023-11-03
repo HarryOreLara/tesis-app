@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart' as rxdart;
-import 'package:tesis_app/domain/entities/music/seekbar_entitite.dart';
+import 'package:tesis_app/domain/entities/entertainment/music/seekbar_entitite.dart';
 
-import 'package:tesis_app/domain/entities/musica_entitie.dart';
+import 'package:tesis_app/domain/entities/entertainment/musica_entitie.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
 class OneMusicScreen extends StatefulWidget {

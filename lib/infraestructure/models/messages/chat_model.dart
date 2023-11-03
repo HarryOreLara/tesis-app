@@ -8,7 +8,7 @@ class ChatModel extends Chat {
       {required super.id,
       required super.mensaje,
       required super.leido,
-      required super.tiempo,
+      required super.createdAt,
       required super.emisor,
       required super.receptor});
 
@@ -19,7 +19,7 @@ class ChatModel extends Chat {
             receptor: "2",
             mensaje: "_empty_mensaje",
             leido: true,
-            tiempo: "2023-11-02 08:28:00");
+            createdAt: "2023-11-02 08:28:00");
 
   factory ChatModel.fromJson(String source) =>
       ChatModel.fromMap(jsonDecode(source) as DataMap);
@@ -31,7 +31,7 @@ class ChatModel extends Chat {
             receptor: map["receptor"] as String,
             mensaje: map["mensaje"] as String,
             leido: map["leido"] as bool,
-            tiempo: map["createdAt"] as String);
+            createdAt: map["createdAt"] as String);
 
   ChatModel copyWith(
       {String? id,
@@ -39,22 +39,23 @@ class ChatModel extends Chat {
       String? receptor,
       String? mensaje,
       bool? leido,
-      String? tiempo}) {
+      String? createdAt}) {
     return ChatModel(
         id: id ?? this.id,
         emisor: emisor ?? this.emisor,
         receptor: receptor ?? this.receptor,
         mensaje: mensaje ?? this.mensaje,
         leido: leido ?? this.leido,
-        tiempo: tiempo ?? this.tiempo);
+        createdAt: createdAt ?? this.createdAt);
   }
 
   DataMap toMap() => {
+        "_id": id,
         "emisor": emisor,
         "receptor": receptor,
         "mensaje": mensaje,
         "leido": leido,
-        "tiempo": tiempo
+        "createdAt": createdAt
       };
 
   String toJson() => jsonEncode(toMap());

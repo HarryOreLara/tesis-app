@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tesis_app/domain/entities/medicine_entitie.dart';
+import 'package:tesis_app/domain/entities/medicines/medicine_entitie.dart';
 import 'package:tesis_app/presentation/blocs/new_medicine/new_medicines_cubit.dart';
 
 class ModalMedicineDetail extends StatelessWidget {

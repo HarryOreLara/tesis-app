@@ -1,4 +1,4 @@
-import 'package:tesis_app/domain/entities/jokes_entitie.dart';
+import 'package:tesis_app/domain/entities/entertainment/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
 import 'package:tesis_app/infraestructure/models/entertainment/jokes_list_response.dart';
 

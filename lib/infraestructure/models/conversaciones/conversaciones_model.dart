@@ -39,8 +39,8 @@ class ConversacionesModel extends Conversaciones {
   }
 
   DataMap toMap() => {
-        "idReceptor": idReceptor,
         "idEmisor": idEmisor,
+        "idReceptor": idReceptor,
         "nombreEmisor": nombreEmisor,
         "nombreReceptor": nombreReceptor
       };

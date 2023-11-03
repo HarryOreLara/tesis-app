@@ -1,0 +1,10 @@
+
+{
+    "_id":"1",
+    "nombre": "_empty_nombre",
+    "cantidadMedicamentos": "1",
+    "horaInicio": "00:00",
+    "horaIntermedio": "00:00",
+    "horaFin": "00:00"
+}
+

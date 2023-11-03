@@ -72,7 +72,7 @@ class ConversacionesBloc
             id: "id",
             mensaje: "Agregaste a este contacto",
             leido: false,
-            tiempo: "tiempo",
+            createdAt: "createdAt",
             emisor: idEmisor.id,
             receptor: event.idReceptor);
         await _chatDatasourceDomain.sendChat(chatModel);

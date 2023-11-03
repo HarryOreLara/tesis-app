@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:tesis_app/domain/entities/play_list_entitite.dart';
+import 'package:tesis_app/domain/entities/entertainment/play_list_entitite.dart';
 
 class PlayListCard extends StatelessWidget {
   const PlayListCard({

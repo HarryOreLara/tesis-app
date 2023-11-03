@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:tesis_app/domain/entities/musica_entitie.dart';
+import 'package:tesis_app/domain/entities/entertainment/musica_entitie.dart';
 
 class CardMusic extends StatelessWidget {
   const CardMusic({

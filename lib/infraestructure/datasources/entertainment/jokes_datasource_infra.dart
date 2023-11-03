@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:tesis_app/domain/datasources/jokes_datasource_domain.dart';
-import 'package:tesis_app/domain/entities/jokes_entitie.dart';
+import 'package:tesis_app/domain/datasources/entertainment/jokes_datasource_domain.dart';
+import 'package:tesis_app/domain/entities/entertainment/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
 
 class JokeDatasouserceInfra extends JokesDataSourceDomain {

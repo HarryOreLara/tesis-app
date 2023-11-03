@@ -6,7 +6,7 @@ class Chat extends Equatable {
   final String receptor;
   final String mensaje;
   final bool leido;
-  final String tiempo;
+  final String createdAt;
 
   const Chat.empty()
       : this(
@@ -15,16 +15,16 @@ class Chat extends Equatable {
             receptor: "2",
             mensaje: "_empty_mensaje",
             leido: true,
-            tiempo: "2023-11-02 08:28:00");
+            createdAt: "2023-11-02 08:28:00");
 
   const Chat(
       {required this.id,
       required this.mensaje,
       required this.leido,
-      required this.tiempo,
+      required this.createdAt,
       required this.emisor,
       required this.receptor});
 
   @override
-  List<Object?> get props => [id, mensaje, leido, tiempo, emisor, receptor];
+  List<Object?> get props => [id, mensaje, leido, createdAt, emisor, receptor];
 }

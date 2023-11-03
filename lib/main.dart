@@ -5,6 +5,7 @@ import 'package:tesis_app/config/router/app_router.dart';
 import 'package:tesis_app/config/theme/app_theme.dart';
 import 'package:tesis_app/presentation/bloc/chat/chat_bloc.dart';
 import 'package:tesis_app/presentation/bloc/conversaciones/conversaciones_bloc.dart';
+import 'package:tesis_app/presentation/bloc/forum/forum_bloc.dart';
 import 'package:tesis_app/presentation/bloc/login/login_bloc.dart';
 import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
 import 'package:tesis_app/presentation/bloc/profile/profile_bloc.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ProfileBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ForumBloc(),
         )
       ],
       child: MaterialApp.router(
