@@ -1,4 +1,6 @@
 
+export 'package:tesis_app/presentation/widgets/forum/we_forum.dart';
+
 export 'package:tesis_app/presentation/widgets/shared/circular_progres_custom.dart';
 export 'package:tesis_app/presentation/widgets/shared/ningun_elemento_notifier.dart';
 
@@ -33,4 +35,3 @@ export 'package:tesis_app/presentation/widgets/home/cards_second.dart';
 export 'package:tesis_app/presentation/widgets/home/card_first.dart';
 
 export 'package:tesis_app/presentation/widgets/medicine/input_text_form_field.dart';
-
