@@ -28,3 +28,8 @@ class DeleteMedicine extends MedicineEvent {
 
   const DeleteMedicine({required this.id});
 }
+
+
+class MarcarMedicine extends MedicineEvent{
+  
+}

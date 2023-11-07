@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/medicines/medicine_entitie.dart';
 import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
 
@@ -28,11 +29,14 @@ class ListCustomItemsMedicine extends StatelessWidget {
                     Color.fromARGB(235, 60, 236, 255)
                   ])),
               alignment: Alignment.center,
-              height: 70,
+              height: 90,
               child: ListTile(
                 title: Text(
                   medicine.nombre,
-                  style: const TextStyle(fontSize: 20),
+                  style: const TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Gotham-Book',
+                      fontWeight: FontWeight.bold),
                 ),
                 subtitle: SizedBox(
                   width: 80,
@@ -156,9 +160,21 @@ class ListCustomItemsMedicine extends StatelessWidget {
                                 children: [
                                   Flexible(
                                     child: ElevatedButton(
-                                      onPressed: () {},
-                                      child:
-                                          const Text('Actualizar medicamento'),
+                                      onPressed: () {
+                                        //TODO:MARCAR MEDICINA TOMADA
+                                        context
+                                            .read<MedicineBloc>()
+                                            .add(MarcarMedicine());
+                                        context.pop(context);
+                                      },
+                                      child: const Text(
+                                        'Marcar medicamento',
+                                        style: TextStyle(
+                                            fontFamily: 'Gotham-Medium',
+                                            color: Color.fromARGB(
+                                                255, 12, 156, 86),
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
@@ -174,8 +190,13 @@ class ListCustomItemsMedicine extends StatelessWidget {
                                               .read<MedicineBloc>()
                                               .add(GetMedicineByUser());
                                         },
-                                        child:
-                                            const Text('Eliminar medicamento')),
+                                        child: const Text(
+                                          'Eliminar medicamento',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Gotham-Medium',
+                                              color: Colors.red),
+                                        )),
                                   )
                                 ],
                               )

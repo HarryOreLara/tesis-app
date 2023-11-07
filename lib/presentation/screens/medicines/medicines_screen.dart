@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tesis_app/presentation/bloc/medicines/medicine_bloc.dart';
 import 'package:tesis_app/presentation/widgets/widgets.dart';
 
@@ -59,6 +60,28 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(40.0),
             child: AppBar(
+              leading: GestureDetector(
+                onTap: () {
+                  context.pop(context);
+                },
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                  size: 30.0,
+                ),
+              ),
+              actions: [
+                GestureDetector(
+                  onTap: () {
+                    print("Recomendado");
+                  },
+                  child: const Icon(
+                    Icons.medication_outlined,
+                    color: Colors.white,
+                    size: 35.0,
+                  ),
+                )
+              ],
               flexibleSpace: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -83,39 +106,44 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                       children: [
                         FadeInDown(
                             child: SizedBox(
-                              width: size.width * 1,
-                              height: size.height * 0.3,
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(120)),
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          Color.fromARGB(255, 7, 197, 255),
-                                          Color.fromARGB(255, 0, 109, 255),
-                                        ],
-                                        begin: Alignment.topLeft,
-                                        end: Alignment.bottomRight)),
-                                child: const Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Center(
-                                        child: Text(
-                                      'MEDICAMENTOS',
-                                      style: TextStyle(
-                                          fontSize: 35, color: Colors.white),
-                                    )),
-                                    Center(
-                                      child: Text(
-                                          'Por que tu salud es muy importante'),
-                                    ),
-                                    SizedBox(
-                                      height: 50,
-                                    ),
-                                  ],
+                          width: size.width * 1,
+                          height: size.height * 0.3,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(120)),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromARGB(255, 7, 197, 255),
+                                      Color.fromARGB(255, 0, 109, 255),
+                                    ],
+                                    begin: Alignment.topLeft,
+                                    end: Alignment.bottomRight)),
+                            child: const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                    child: Text(
+                                  'MEDICAMENTOS',
+                                  style: TextStyle(
+                                      fontSize: 35,
+                                      color: Colors.white,
+                                      fontFamily: 'Gotham-Bold'),
+                                )),
+                                Center(
+                                  child: Text(
+                                    'Por que tu salud es muy importante',
+                                    style:
+                                        TextStyle(fontFamily: 'Gotham-Black'),
+                                  ),
                                 ),
-                              ),
-                            )),
+                                SizedBox(
+                                  height: 50,
+                                ),
+                              ],
+                            ),
+                          ),
+                        )),
                         const SizedBox(
                           height: 20,
                         ),
