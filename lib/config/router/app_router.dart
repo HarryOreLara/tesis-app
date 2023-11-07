@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:tesis_app/presentation/screens/chat/conversaciones_screen.dart';
 import 'package:tesis_app/presentation/screens/screens.dart';
 
 final appRouter = GoRouter(
