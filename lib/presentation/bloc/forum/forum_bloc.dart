@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:tesis_app/domain/datasources/forum/forum_datasource_domain.dart';
 import 'package:tesis_app/domain/datasources/profile/profile_datasource_domain.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
@@ -101,7 +102,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
             id: "id",
             creador: idEmisor.id,
             idForo: event.id,
-            createdAt: "createdAt");
+            createdAt: TimeOfDay.now().toString());
         await _forumDatasourceDomain.createRespuestaForum(respuestaForo);
         emit(state.copyWith(loading: false, add: true));
       } catch (e) {

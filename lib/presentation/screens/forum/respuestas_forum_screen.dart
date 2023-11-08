@@ -79,7 +79,10 @@ class _RespuestasForumScreenState extends State<RespuestasForumScreen> {
                           return Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 20.0, vertical: 10.0),
-                            child: WeForum(respuesa: respuesta.contenido),
+                            child: WeForum(
+                              respuesa: respuesta.contenido,
+                              time: respuesta.createdAt,
+                            ),
                           );
                         },
                       ),

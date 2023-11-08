@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 
 class WeForum extends StatelessWidget {
   final String respuesa;
-  const WeForum({super.key, required this.respuesa});
+  final String time;
+  const WeForum({super.key, required this.respuesa, required this.time});
 
   @override
   Widget build(BuildContext context) {
@@ -56,13 +57,19 @@ class WeForum extends StatelessWidget {
             const SizedBox(
               width: 10.0,
             ),
-            const Text(
-              "16:00",
-              style: TextStyle(fontSize: 12.00, color: Colors.black45),
+            Text(
+              convertir(time),
+              style: const TextStyle(fontSize: 12.00, color: Colors.black45),
             ),
           ],
         )
       ],
     );
   }
+}
+
+String convertir(String tiempo) {
+  DateTime date = DateFormat("yyyy-MM-ddTHH:mm:ss.SSSZ").parse(tiempo);
+  String formattedHour = DateFormat("hh:mm a").format(date);
+  return formattedHour;
 }
