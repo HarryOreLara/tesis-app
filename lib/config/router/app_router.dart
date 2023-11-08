@@ -27,6 +27,11 @@ final appRouter = GoRouter(
         builder: (context, state) => const AssistantScreen(),
       ),
       GoRoute(
+        path: '/recomendado',
+        name: RecomendadoScreen.name,
+        builder: (context, state) => const RecomendadoScreen(),
+      ),
+      GoRoute(
         path: '/entertainment',
         name: EntertainmentScreen.name,
         builder: (context, state) => const EntertainmentScreen(),

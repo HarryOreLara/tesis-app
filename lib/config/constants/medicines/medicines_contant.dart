@@ -1,69 +1,88 @@
-class MedicinesConstant {
-  final String idMedicine;
-  final String nombre;
-  final String? horaInicio;
-  final String? horaIntermedio;
-  final String? horaFin;
-  final int cantidadMedicamentos;
+import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
-  const MedicinesConstant({
-    required this.idMedicine,
-    required this.nombre,
-    required this.horaInicio,
-    required this.horaIntermedio,
-    required this.horaFin,
-    required this.cantidadMedicamentos,
-  });
-}
-
-const itemsMedicineConstant = <MedicinesConstant>[
-  MedicinesConstant(
-      nombre: 'Amoxicilina',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 1,
-      idMedicine: '1'),
-  MedicinesConstant(
-      nombre: 'Amoxicilina',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 3,
-      idMedicine: '2'),
-  MedicinesConstant(
-      idMedicine: '3',
-      nombre: 'Clorfenamina',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 2),
-  MedicinesConstant(
-      idMedicine: '4',
-      nombre: 'Paracetamol',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 1),
-  MedicinesConstant(
-      idMedicine: '5',
-      nombre: 'Aspirina',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 2),
-  MedicinesConstant(
-      idMedicine: '6',
-      nombre: 'Aspirina',
-      horaInicio: '08:00',
-      horaIntermedio: '',
-      horaFin: '20:00',
-      cantidadMedicamentos: 2),
-  MedicinesConstant(
-      idMedicine: '7',
-      nombre: 'Aspirina',
-      horaInicio: '08:00',
-      horaIntermedio: '14:00',
-      horaFin: '20:00',
-      cantidadMedicamentos: 2),
+const itemsMedicineConstant = <MedicineModel>[
+  MedicineModel(
+      id: "",
+      nombre: "Amoxicilina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Clorfenamina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Paracetamol",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Ibuprofeno",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Aspirina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Simvastatina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Omeprazol",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Levotiroxina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Ramipril",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Amlodipíno",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Atorvastatina",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
+  MedicineModel(
+      id: "",
+      nombre: "Ventolin",
+      cantidadMedicamentos: "1",
+      horaInicio: "08:00",
+      horaIntermedio: "14:00",
+      horaFin: "20:00"),
 ];

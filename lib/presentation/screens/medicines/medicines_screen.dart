@@ -73,7 +73,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
               actions: [
                 GestureDetector(
                   onTap: () {
-                    print("Recomendado");
+                    context.push('/recomendado');
                   },
                   child: const Icon(
                     Icons.medication_outlined,

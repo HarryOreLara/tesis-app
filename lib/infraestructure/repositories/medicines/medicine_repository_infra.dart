@@ -1,5 +1,6 @@
 import 'package:tesis_app/domain/datasources/medicines/medicines_datasources_domain.dart';
 import 'package:tesis_app/domain/repositories/medicines/medicines_repository_domain.dart';
+import 'package:tesis_app/infraestructure/models/medicines/medicine_marcacion_model.dart';
 import 'package:tesis_app/infraestructure/models/medicines/medicine_model.dart';
 
 class MedicineRepositoryInfra extends MedicineRepository {
@@ -23,7 +24,12 @@ class MedicineRepositoryInfra extends MedicineRepository {
   }
 
   @override
-  Future<List<MedicineModel>> getMedicines(String idUser) {
-    return medicineDataSourceDomain.getMedicines(idUser);
+  Future<List<MedicineModel>> getMedicinesByUser(String idUser) {
+    return medicineDataSourceDomain.getMedicinesByUser(idUser);
+  }
+
+  @override
+  Future<void> createMarcacion(MedicineMarcacionModel marcacionModel) {
+    return medicineDataSourceDomain.createMarcacion(marcacionModel);
   }
 }

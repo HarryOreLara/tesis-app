@@ -1,3 +1,5 @@
+export 'package:tesis_app/presentation/screens/medicines/recomendado_screen.dart';
+
 export 'package:tesis_app/presentation/screens/chat/conversaciones_screen.dart';
 
 export 'package:tesis_app/presentation/screens/forum/respuestas_forum_screen.dart';
@@ -27,4 +29,3 @@ export 'package:tesis_app/presentation/screens/home/home_screen.dart';
 export 'package:tesis_app/presentation/screens/medicines/medicines_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/profile_screen.dart';
 export 'package:tesis_app/presentation/screens/settings/settings_screen.dart';
-

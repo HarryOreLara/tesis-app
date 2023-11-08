@@ -161,10 +161,10 @@ class ListCustomItemsMedicine extends StatelessWidget {
                                   Flexible(
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        //TODO:MARCAR MEDICINA TOMADA
-                                        context
-                                            .read<MedicineBloc>()
-                                            .add(MarcarMedicine());
+                                        context.read<MedicineBloc>().add(
+                                            MarcacionMedicine(
+                                                nombre: medicine.nombre,
+                                                idMedicine: medicine.id));
                                         context.pop(context);
                                       },
                                       child: const Text(
