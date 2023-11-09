@@ -11,7 +11,7 @@ class ConversacionestListResponse {
       ConversacionestListResponse(
           ok: json["ok"] ?? '',
           listChats: (json["listChats"] as List<dynamic>?)
-                  ?.map((e) => ConversacionesModel.fromJson(e))
+                  ?.map((e) => ConversacionesModel.fromMap(e))
                   .toList() ??
               []);
 

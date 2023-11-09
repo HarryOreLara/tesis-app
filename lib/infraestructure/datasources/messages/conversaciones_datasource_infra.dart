@@ -29,11 +29,13 @@ class ConversacionesDatasourceInfra extends ConversacionesDatasourceDomain {
   }
 
   @override
-  Future<ConversacionesModel> oneConversacion(String idReceptor, String idEmisor) async {
+  Future<ConversacionesModel> oneConversacion(
+      String idReceptor, String idEmisor) async {
     final response = await dio.get('/chat/oneChat/$idEmisor/$idReceptor');
     final res = ConversacionestListResponse.fromJson(response.data);
     final List<ConversacionesModel> listChats = res.listChats;
-    final ConversacionesModel chats = ConversacionesMapper.chatDbToEntity(listChats[0]);
+    final ConversacionesModel chats =
+        ConversacionesMapper.chatDbToEntity(listChats[0]);
     return chats;
   }
 }

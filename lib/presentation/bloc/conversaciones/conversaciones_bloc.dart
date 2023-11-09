@@ -62,17 +62,19 @@ class ConversacionesBloc
         final idEmisor =
             await _profileDatasourceDomain.getOnePersona(idUsuario);
         ConversacionesModel conversacionesModel = ConversacionesModel(
+            id: "",
             idEmisor: idEmisor.id,
             idReceptor: event.idReceptor,
             nombreReceptor: event.nombreReceptor,
-            nombreEmisor: idEmisor.nombre);
+            nombreEmisor: idEmisor.nombre,
+            createdAt: DateTime.now().toString());
         await _conversacionesDatasourceDomain
             .saveConversaciones(conversacionesModel);
         ChatModel chatModel = ChatModel(
             id: "id",
             mensaje: "Agregaste a este contacto",
             leido: false,
-            createdAt: "createdAt",
+            createdAt: DateTime.now().toString(),
             emisor: idEmisor.id,
             receptor: event.idReceptor);
         await _chatDatasourceDomain.sendChat(chatModel);

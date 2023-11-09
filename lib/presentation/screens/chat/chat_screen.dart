@@ -117,7 +117,10 @@ class _ChatScreenState extends State<ChatScreen> {
                                             .trim()));
                                     _textEditingController.clear();
                                   },
-                                  icon: const Icon(Icons.send))
+                                  icon: const Icon(
+                                    Icons.send,
+                                    color: Colors.purple,
+                                  ))
                             ],
                           ),
                         )

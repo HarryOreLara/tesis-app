@@ -72,7 +72,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
             titulo: event.titulo,
             descripcion: event.descripcion,
             creator: creator.id,
-            createdAt: "createdAt");
+            createdAt: DateTime.now().toString());
 
         await _forumDatasourceDomain.createForum(forum);
         emit(state.copyWith(loading: false, add: true));

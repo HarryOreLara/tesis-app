@@ -66,6 +66,7 @@ class _ListConversacionesState extends State<ListConversaciones> {
   Widget build(BuildContext context) {
     return BlocBuilder<ConversacionesBloc, ConversacionesState>(
       builder: (context, state) {
+        
         if (state.error != '') {
           Future.delayed(Duration.zero, () {
             context.read<ConversacionesBloc>()
