@@ -41,7 +41,7 @@ class _AddForumDialogState extends State<AddForumDialog> {
                   ),
                   TextField(
                     controller: widget.descripcionController,
-                    inputFormatters: [LengthLimitingTextInputFormatter(15)],
+                    inputFormatters: [LengthLimitingTextInputFormatter(35)],
                     decoration: const InputDecoration(
                         labelText: 'Descripcion del foro'),
                   ),

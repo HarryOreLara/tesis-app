@@ -16,7 +16,7 @@ class MinigamesScreen extends StatelessWidget {
             onPressed: () {
               context.go('/entertainment');
             },
-            icon:const Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: _GameListScreen(),
     );
@@ -26,15 +26,12 @@ class MinigamesScreen extends StatelessWidget {
 class _GameListScreen extends StatelessWidget {
   final List<Map<String, String>> games = [
     {'title': 'Pareja', 'subtitle': 'Un juego clasico de encontrar la pareja'},
-    {'title': 'rompecabeza', 'subtitle': 'A legendary RPG by Square Enix'},
     {
-      'title': 'busqueda',
-      'subtitle': 'Build, explore, and survive in a blocky world'
+      'title': 'Rompecabeza',
+      'subtitle': 'Arma el rompecabezas antes de complear el tiempo'
     },
-    {
-      'title': 'refran',
-      'subtitle': 'Build, explore, and survive in a blocky world'
-    }
+    {'title': 'Busqueda', 'subtitle': 'Busca cosas que te sugiere la app'},
+    {'title': 'Refran', 'subtitle': 'Completa el refran'}
   ];
   //refran
 
