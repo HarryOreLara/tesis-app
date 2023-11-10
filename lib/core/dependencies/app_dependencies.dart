@@ -8,7 +8,7 @@ import 'package:tesis_app/presentation/bloc/profile/profile_bloc.dart';
 
 class AppDependencies {
   static List<BlocProvider> blocProviders = [
-        BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
+    BlocProvider<LoginBloc>(create: (context) => LoginBloc()),
     BlocProvider<MedicineBloc>(create: (context) => MedicineBloc()),
     BlocProvider<ConversacionesBloc>(create: (context) => ConversacionesBloc()),
     BlocProvider<ChatBloc>(create: (context) => ChatBloc()),
