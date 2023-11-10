@@ -18,7 +18,7 @@ class JokesCubit extends Cubit<JokesState> {
   }
 
   Future<Joke> getOneJoke() async {
-    final id = generateRandomNumber(1, 30);
+    final id = generateRandomNumber(1, 240);
     final res = jokeRepositoryInfra.getOneJoke(id);
     return res;
   }
