@@ -102,7 +102,7 @@ class ForumBloc extends Bloc<ForumEvent, ForumState> {
             id: "id",
             creador: idEmisor.id,
             idForo: event.id,
-            createdAt: TimeOfDay.now().toString());
+            createdAt: DateTime.now().toString());
         await _forumDatasourceDomain.createRespuestaForum(respuestaForo);
         emit(state.copyWith(loading: false, add: true));
       } catch (e) {
