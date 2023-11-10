@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tesis_app/domain/entities/cuestionario/puntuacion_soledad_entitie.dart';
 import 'package:tesis_app/domain/entities/cuestionario/soledad_entitie.dart';
-import 'package:tesis_app/presentation/blocs/cuestionarios/soledad/soledad_cubit.dart';
+import 'package:tesis_app/presentation/cubits/cuestionarios/soledad/soledad_cubit.dart';
 
 class SoledadCuestionarioScreen extends StatelessWidget {
   static const String name = 'soledad_cuestionario_screen';

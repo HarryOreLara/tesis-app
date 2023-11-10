@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-import 'package:tesis_app/presentation/blocs/login/login_cubit.dart';
+import 'package:tesis_app/presentation/cubits/login/login_cubit.dart';
 
 class SignUpScreen extends StatelessWidget {
   static const String name = 'signup_screen';

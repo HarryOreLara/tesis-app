@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:tesis_app/domain/entities/cuestionario/depresion_entitie.dart';
 import 'package:tesis_app/domain/entities/cuestionario/puntuacion_depresion_entitie.dart';
-import 'package:tesis_app/presentation/blocs/cuestionarios/depresion/depresion_cubit.dart';
+import 'package:tesis_app/presentation/cubits/cuestionarios/depresion/depresion_cubit.dart';
 
 class DepresionCuestionarioScreen extends StatelessWidget {
   static const String name = 'depresion_cuestionario_screen';
