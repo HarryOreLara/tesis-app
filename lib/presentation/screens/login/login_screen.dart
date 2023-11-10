@@ -216,39 +216,3 @@ class _FormLoginState extends State<_FormLogin> {
   }
 }
 
-class SomeOtherWidget extends StatelessWidget {
-  const SomeOtherWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Error en el inicio de sesión'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.error,
-              color: Colors.red,
-              size: 64.0,
-            ),
-            const SizedBox(height: 16.0),
-            const Text(
-              'Hubo un error al iniciar sesión.',
-              style: TextStyle(fontSize: 18.0),
-            ),
-            const SizedBox(height: 16.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context); // Regresar a la pantalla anterior
-              },
-              child: const Text('Regresar'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
