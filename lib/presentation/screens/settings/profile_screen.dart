@@ -22,7 +22,6 @@ class ProfileScreen extends StatelessWidget {
                 Icons.arrow_back_ios,
                 color: Colors.white,
               )),
-          actions: const [Icon(Icons.dark_mode)],
         ),
         body: Container(
           decoration: const BoxDecoration(

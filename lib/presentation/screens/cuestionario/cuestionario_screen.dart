@@ -29,7 +29,7 @@ class CuestionarioScreen extends StatelessWidget {
             Center(
               child: Text(
                 "Ayudanos a conocer mas de ti",
-                style: GoogleFonts.montserrat(fontSize: 30.0),
+                style: GoogleFonts.montserrat(fontSize: 40.0),
               ),
             ),
             GestureDetector(
@@ -51,7 +51,7 @@ class CuestionarioScreen extends StatelessWidget {
                         ),
                         Text(
                           "Cuestionario Uno",
-                          style: GoogleFonts.montserrat(fontSize: 18.0),
+                          style: GoogleFonts.montserrat(fontSize: 25.0),
                         ),
                         const Icon(
                           Icons.keyboard_arrow_right_outlined,
@@ -82,7 +82,7 @@ class CuestionarioScreen extends StatelessWidget {
                         ),
                         Text(
                           "Cuestionario Dos",
-                          style: GoogleFonts.montserrat(fontSize: 18.0),
+                          style: GoogleFonts.montserrat(fontSize: 25.0),
                         ),
                         const Icon(
                           Icons.keyboard_arrow_right_outlined,

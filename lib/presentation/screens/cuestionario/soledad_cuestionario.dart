@@ -144,7 +144,9 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
 
                 return Text(
                   soledadcita.contenido,
-                  style: GoogleFonts.montserrat(fontSize: 35.0),
+                  style: GoogleFonts.montserrat(
+                    fontSize: 35.0,
+                  ),
                   textAlign: TextAlign.center,
                 );
               },
@@ -159,6 +161,10 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          Colors.blue,
+                        )),
                         onPressed: () {
                           final data = soledadCubit.enviarRespuestaSoledad(
                               curretSoledadId, contenidoPregunta, "siempre");
@@ -185,8 +191,18 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                             );
                           }
                         },
-                        child: const Text("Siempre")),
+                        child: const Text(
+                          "Siempre",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontFamily: 'Gotham-Medium'),
+                        )),
                     ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          Colors.green,
+                        )),
                         onPressed: () {
                           final data = soledadCubit.enviarRespuestaSoledad(
                               curretSoledadId,
@@ -215,7 +231,17 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                             );
                           }
                         },
-                        child: const Text("Con Frecuencia")),
+                        child: const Expanded(
+                          child: Text(
+                            "Con Frecuencia",
+                            maxLines: 2,
+                            softWrap: true,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20.0,
+                                fontFamily: 'Gotham-Medium'),
+                          ),
+                        )),
                   ],
                 ),
                 const SizedBox(
@@ -225,6 +251,10 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          Colors.orange,
+                        )),
                         onPressed: () {
                           final data = soledadCubit.enviarRespuestaSoledad(
                               curretSoledadId, contenidoPregunta, "aveces");
@@ -252,8 +282,18 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                             );
                           }
                         },
-                        child: const Text("Aveces")),
+                        child: const Text(
+                          "Aveces",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontFamily: 'Gotham-Medium'),
+                        )),
                     ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(
+                          Colors.red,
+                        )),
                         onPressed: () {
                           final data = soledadCubit.enviarRespuestaSoledad(
                               curretSoledadId, contenidoPregunta, "nunca");
@@ -281,7 +321,13 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                             );
                           }
                         },
-                        child: const Text("Nunca")),
+                        child: const Text(
+                          "Nunca",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontFamily: 'Gotham-Medium'),
+                        )),
                   ],
                 )
               ],

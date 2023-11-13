@@ -125,7 +125,8 @@ class _ForumScreenState extends State<ForumScreen> {
                         );
                       },
                     ),
-          floatingActionButton: FloatingActionButton(
+          floatingActionButton: FloatingActionButton.extended(
+            backgroundColor: Colors.green,
             onPressed: () {
               showDialog(
                 context: context,
@@ -134,7 +135,18 @@ class _ForumScreenState extends State<ForumScreen> {
                     descripcionController: descripcionController),
               );
             },
-            child: const Icon(Icons.add),
+            label: const Text(
+              'Agregar otro tema',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontFamily: 'Gotham-Black'),
+            ),
+            icon: const Icon(
+              Icons.add,
+              color: Colors.white,
+              size: 30.0,
+            ),
           ),
         );
       },
