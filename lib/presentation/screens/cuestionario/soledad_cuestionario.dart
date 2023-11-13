@@ -231,16 +231,14 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
                             );
                           }
                         },
-                        child: const Expanded(
-                          child: Text(
-                            "Con Frecuencia",
-                            maxLines: 2,
-                            softWrap: true,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20.0,
-                                fontFamily: 'Gotham-Medium'),
-                          ),
+                        child: const Text(
+                          "Con Frecuencia",
+                          maxLines: 2,
+                          softWrap: true,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20.0,
+                              fontFamily: 'Gotham-Medium'),
                         )),
                   ],
                 ),
