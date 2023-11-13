@@ -4,6 +4,7 @@ import 'package:tesis_app/domain/entities/cuestionario/preguntas_puntuadas_depre
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 
+//DEPRESION TIENE 15 PREGUNTAS Y EL DE SI O NO
 class DepresionDatasourceInfra extends DepresionDatasourceDomain {
   AuthService authService = AuthService();
   ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
@@ -22,11 +23,13 @@ class DepresionDatasourceInfra extends DepresionDatasourceDomain {
       "preguntasPuntuadas": preguntasPuntuadasDepresion
           .map((respuesta) => respuesta.toJson())
           .toList(),
+      "createdAt": DateTime.now().toString()
     };
 
     await dio.post('/assistent/resDepresion/$idPersona',
         data: preguntasPuntuadas);
 
     preguntasPuntuadasDepresion.clear();
+    preguntasPuntuadas.clear();
   }
 }

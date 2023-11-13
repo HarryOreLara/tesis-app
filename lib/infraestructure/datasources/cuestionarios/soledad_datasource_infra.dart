@@ -23,11 +23,13 @@ class SoledadDatasourceInfra extends SoledadDatasourceDomain {
       "preguntasPuntuadas": preguntasPuntuadasSoledad
           .map((respuesta) => respuesta.toJson())
           .toList(),
+      "createdAt": DateTime.now().toString()
     };
 
     await dio.post('/assistent/resSoledad/$idPersona',
         data: preguntasPuntuadas);
 
+    preguntasPuntuadasSoledad.clear();
     preguntasPuntuadas.clear();
   }
 }
