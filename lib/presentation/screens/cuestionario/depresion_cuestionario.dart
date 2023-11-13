@@ -151,10 +151,20 @@ class _BodyScreenState extends State<BodyScreen> {
               height: 20.0,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(
-                    onPressed: () {
+                Ink(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  decoration: const ShapeDecoration(
+                    color: Colors.blue, // Cambia el color de fondo como desees
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          10.0)), // Cambia el radio de borde según tus preferencias
+                    ),
+                  ),
+                  child: InkWell(
+                    onTap: () {
                       final data = depresionCubit.sendRespuestasDepresion(
                           currentDepresionId, contenidoPregunta, true);
                       if (data == false) {
@@ -166,7 +176,7 @@ class _BodyScreenState extends State<BodyScreen> {
                           builder: (context) {
                             return AlertDialog(
                               title: const Text('Seleccionaste:'),
-                              content: const Text("Ya no quedan mas preguntas"),
+                              content: const Text("Ya no quedan más preguntas"),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -180,9 +190,40 @@ class _BodyScreenState extends State<BodyScreen> {
                         );
                       }
                     },
-                    child: const Text("Si")),
-                ElevatedButton(
-                    onPressed: () {
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.thumb_up, // Cambia el ícono a tu elección
+                          color: Colors
+                              .white, // Cambia el color del ícono como desees
+                        ),
+                        SizedBox(width: 8), // Espacio entre el ícono y el texto
+                        Text(
+                          "Si",
+                          style: TextStyle(
+                            color: Colors
+                                .white, // Cambia el color del texto como desees
+                            fontSize:
+                                18, // Cambia el tamaño de fuente del texto según tus preferencias
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Ink(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 10.0),
+                  decoration: const ShapeDecoration(
+                    color: Colors.red, // Cambia el color de fondo como desees
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(
+                          10.0)), // Cambia el radio de borde según tus preferencias
+                    ),
+                  ),
+                  child: InkWell(
+                    onTap: () {
                       final data = depresionCubit.sendRespuestasDepresion(
                           currentDepresionId, contenidoPregunta, false);
                       if (data == false) {
@@ -194,7 +235,7 @@ class _BodyScreenState extends State<BodyScreen> {
                           builder: (context) {
                             return AlertDialog(
                               title: const Text('Seleccionaste:'),
-                              content: const Text("Ya no quedan mas preguntas"),
+                              content: const Text("Ya no quedan más preguntas"),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -208,7 +249,27 @@ class _BodyScreenState extends State<BodyScreen> {
                         );
                       }
                     },
-                    child: const Text("No")),
+                    child: const Row(
+                      children: [
+                        Icon(
+                          Icons.thumb_down, // Cambia el ícono a tu elección
+                          color: Colors
+                              .white, // Cambia el color del ícono como desees
+                        ),
+                        SizedBox(width: 8), // Espacio entre el ícono y el texto
+                        Text(
+                          "No",
+                          style: TextStyle(
+                            color: Colors
+                                .white, // Cambia el color del texto como desees
+                            fontSize:
+                                18, // Cambia el tamaño de fuente del texto según tus preferencias
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
               ],
             )
           ],
