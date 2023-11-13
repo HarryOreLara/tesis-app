@@ -31,7 +31,7 @@ class DepresionCubit extends Cubit<DepresionState> {
 
   bool validar() {
     final numeracion = preguntasPuntuadas.length;
-    if (numeracion == 15) {
+    if (numeracion > 15) {
       return true;
     } else {
       return false;

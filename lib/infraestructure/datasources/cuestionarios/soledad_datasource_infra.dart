@@ -2,9 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:tesis_app/domain/datasources/cuestionarios/soledad_datasource_daomain.dart';
 import 'package:tesis_app/domain/entities/cuestionario/preguntas_puntuadas_soledad_entitite.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
+import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 
 class SoledadDatasourceInfra extends SoledadDatasourceDomain {
   AuthService authService = AuthService();
+  ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
+
   final dio = Dio(BaseOptions(
       baseUrl: 'https://tesis-xz3b.onrender.com',
       headers: {'Content-Type': 'application/json'}));
@@ -12,8 +15,9 @@ class SoledadDatasourceInfra extends SoledadDatasourceDomain {
   @override
   Future<void> sendRespuestaSoledad(
       List<PreguntasPuntuadasSoledad> preguntasPuntuadasSoledad) async {
-    final idPersonaNull = await authService.getPersonaId();
-    final idPersona = idPersonaNull ?? '';
+    final idUsuarioNull = await authService.getUserId();
+    final idUsuario = idUsuarioNull ?? '';
+    final idPersona = await profileDatasourceInfra.getOnePersona(idUsuario);
 
     final preguntasPuntuadas = {
       "preguntasPuntuadas": preguntasPuntuadasSoledad

@@ -24,14 +24,14 @@ class SoledadCubit extends Cubit<SoledadState> {
     if (validar() == true) {
       soledadRepositoryInfra.sendRespuestaSoledad(preguntasPuntuadas);
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
   bool validar() {
     final numeracion = preguntasPuntuadas.length;
-    if (numeracion == 20) {
+    if (numeracion > 19) {
       return true;
     } else {
       return false;
