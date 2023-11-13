@@ -26,7 +26,7 @@ class SoledadDatasourceInfra extends SoledadDatasourceDomain {
       "createdAt": DateTime.now().toString()
     };
 
-    await dio.post('/assistent/resSoledad/$idPersona',
+    await dio.post('/assistent/resSoledad/${idPersona.id}',
         data: preguntasPuntuadas);
 
     preguntasPuntuadasSoledad.clear();

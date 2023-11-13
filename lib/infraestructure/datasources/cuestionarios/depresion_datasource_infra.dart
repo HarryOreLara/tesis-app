@@ -26,7 +26,7 @@ class DepresionDatasourceInfra extends DepresionDatasourceDomain {
       "createdAt": DateTime.now().toString()
     };
 
-    await dio.post('/assistent/resDepresion/$idPersona',
+    await dio.post('/assistent/resDepresion/${idPersona.id}',
         data: preguntasPuntuadas);
 
     preguntasPuntuadasDepresion.clear();
