@@ -211,8 +211,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   return 'Su apellido es muy grande';
                                 }
 
-                                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
-                                  return 'Su apellido contiene un numero, eliminelo';
+                                if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+                                  return 'Su apellido contiene un número o caracteres no permitidos';
                                 }
                                 return null; // La validación pasó
                               },
@@ -288,7 +288,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   return 'Este campo es obligatorio';
                                 }
                                 if (value.length != 8) {
-                                  return 'Este campo es obligatorio';
+                                  return 'El dni no tiene el tamaño correcto';
                                 }
                                 if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
                                   return 'Ingrese solo números';
