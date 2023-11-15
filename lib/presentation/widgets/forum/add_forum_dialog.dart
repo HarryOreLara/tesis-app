@@ -18,6 +18,7 @@ class AddForumDialog extends StatefulWidget {
 }
 
 class _AddForumDialogState extends State<AddForumDialog> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ForumBloc, ForumState>(
@@ -31,34 +32,63 @@ class _AddForumDialogState extends State<AddForumDialog> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   color: Colors.white),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: widget.temaController,
-                    decoration:
-                        const InputDecoration(labelText: 'Tema de foro'),
-                  ),
-                  TextField(
-                    controller: widget.descripcionController,
-                    inputFormatters: [LengthLimitingTextInputFormatter(35)],
-                    decoration: const InputDecoration(
-                        labelText: 'Descripcion del foro'),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        context.read<ForumBloc>().add(CreateForum(
-                            titulo: widget.temaController.text.trim(),
-                            descripcion:
-                                widget.descripcionController.text.trim()));
-
-                        context.pop(context);
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Este campo es obligatorio';
+                        }
+                        if (value.length >= 20) {
+                          return 'El tema tiene el tamaño correcto';
+                        }
+                        if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                          return 'El tema contiene un numero, eliminelo';
+                        }
+                        return null;
                       },
-                      child: const Text("Guardar nuevo foro"))
-                ],
+                      controller: widget.temaController,
+                      decoration:
+                          const InputDecoration(labelText: 'Tema de foro'),
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Este campo es obligatorio';
+                        }
+                        if (value.length >= 30) {
+                          return 'La descripcion tiene el tamaño correcto';
+                        }
+                        if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                          return 'La descripcion contiene un numero, eliminelo';
+                        }
+                        return null;
+                      },
+                      controller: widget.descripcionController,
+                      inputFormatters: [LengthLimitingTextInputFormatter(30)],
+                      decoration: const InputDecoration(
+                          labelText: 'Descripcion del foro'),
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            context.read<ForumBloc>().add(CreateForum(
+                                titulo: widget.temaController.text.trim(),
+                                descripcion:
+                                    widget.descripcionController.text.trim()));
+
+                            context.pop(context);
+                          }
+                        },
+                        child: const Text("Guardar nuevo foro"))
+                  ],
+                ),
               ),
             ),
           ),
