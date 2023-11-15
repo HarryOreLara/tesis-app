@@ -230,6 +230,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     !RegExp(r'^[0-9]+$').hasMatch(value)) {
                                   return 'Ingrese una edad válida';
                                 }
+
+                                if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return 'Ingrese solo números';
+                                }
+                                
                                 return null; // La validación pasó
                               },
                               decoration: InputDecoration(

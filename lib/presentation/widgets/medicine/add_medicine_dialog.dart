@@ -19,6 +19,7 @@ class AddMedicineDialog extends StatefulWidget {
 }
 
 class _AddMedicineDialogState extends State<AddMedicineDialog> {
+  final _formKey = GlobalKey<FormState>();
   TimeOfDay? selectedHoraInicio;
   bool isHoraInicioSelected = false;
 
@@ -44,129 +45,161 @@ class _AddMedicineDialogState extends State<AddMedicineDialog> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   color: Colors.white),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: widget.nombreController,
-                    decoration: const InputDecoration(
-                        labelText: 'Nombre de la medicina'),
-                  ),
-                  TextField(
-                    controller: widget.cantidadController,
-                    inputFormatters: [LengthLimitingTextInputFormatter(15)],
-                    decoration: const InputDecoration(
-                        labelText: 'Cantidad de pastillas a tomar'),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      final newTime = await showTimePicker(
-                        context: context,
-                        initialTime: selectedHoraInicio ?? TimeOfDay.now(),
-                      );
-
-                      if (newTime != null && newTime != selectedHoraInicio) {
-                        setState(() {
-                          selectedHoraInicio = newTime;
-                          isHoraInicioSelected = true;
-                        });
-                      }
-                    },
-                    label: Text(
-                      isHoraInicioSelected
-                          ? 'Hora seleccionada: ${selectedHoraInicio!.format(context)}'
-                          : 'Ingrese hora de inicio',
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Este campo es obligatorio';
+                        }
+                        if (value.length >= 20) {
+                          return 'El nombre tiene el tamaño correcto';
+                        }
+                        if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                          return 'El nombre contiene un numero, eliminelo';
+                        }
+                        return null;
+                      },
+                      controller: widget.nombreController,
+                      decoration: const InputDecoration(
+                          labelText: 'Nombre de la medicina'),
                     ),
-                    icon: const Icon(Icons.date_range),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      final newTime = await showTimePicker(
-                        context: context,
-                        initialTime: selectedHoraIntermedia ?? TimeOfDay.now(),
-                      );
+                    TextFormField(
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Este campo es obligatorio';
+                        }
+                        if (value.length > 2 ||
+                            !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'Escriba una cantidad válida';
+                        }
 
-                      if (newTime != null &&
-                          newTime != selectedHoraIntermedia) {
-                        setState(() {
-                          selectedHoraIntermedia = newTime;
-                          isHoraIIntermediaSelected = true;
-                        });
-                      }
-                    },
-                    label: Text(
-                      isHoraIIntermediaSelected
-                          ? 'Hora seleccionada: ${selectedHoraIntermedia!.format(context)}'
-                          : 'Ingrese hora intermedia',
+                        if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'Escriba solo números';
+                        }
+
+                        return null; // La validación pasó
+                      },
+                      controller: widget.cantidadController,
+                      inputFormatters: [LengthLimitingTextInputFormatter(15)],
+                      decoration: const InputDecoration(
+                          labelText: 'Cantidad de pastillas a tomar'),
                     ),
-                    icon: const Icon(Icons.date_range),
-                  ),
-                  const SizedBox(
-                    height: 15.0,
-                  ),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      final newTime = await showTimePicker(
-                        context: context,
-                        initialTime: selectedHoraFin ?? TimeOfDay.now(),
-                      );
-
-                      if (newTime != null && newTime != selectedHoraFin) {
-                        setState(() {
-                          selectedHoraFin = newTime;
-                          isHoraFinSelected = true;
-                        });
-                      }
-                    },
-                    label: Text(
-                      isHoraFinSelected
-                          ? 'Hora seleccionada: ${selectedHoraFin!.format(context)}'
-                          : 'Ingrese hora final',
+                    const SizedBox(
+                      height: 15.0,
                     ),
-                    icon: const Icon(Icons.date_range),
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      final nombre = widget.nombreController.text.trim();
-                      final cantidad = widget.cantidadController.text.trim();
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        final newTime = await showTimePicker(
+                          context: context,
+                          initialTime: selectedHoraInicio ?? TimeOfDay.now(),
+                        );
 
-                      String horaInicio = selectedHoraInicio != null
-                          ? selectedHoraInicio!.format(context)
-                          : "";
-                      String horaIntermedia = selectedHoraIntermedia != null
-                          ? selectedHoraIntermedia!.format(context)
-                          : "";
-                      String horaFin = selectedHoraFin != null
-                          ? selectedHoraFin!.format(context)
-                          : "";
+                        if (newTime != null && newTime != selectedHoraInicio) {
+                          setState(() {
+                            selectedHoraInicio = newTime;
+                            isHoraInicioSelected = true;
+                          });
+                        }
+                      },
+                      label: Text(
+                        isHoraInicioSelected
+                            ? 'Hora seleccionada: ${selectedHoraInicio!.format(context)}'
+                            : 'Ingrese hora de inicio',
+                      ),
+                      icon: const Icon(Icons.date_range),
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        final newTime = await showTimePicker(
+                          context: context,
+                          initialTime:
+                              selectedHoraIntermedia ?? TimeOfDay.now(),
+                        );
 
-                      MedicineModel medicine = MedicineModel(
-                        id: "",
-                        nombre: nombre,
-                        cantidadMedicamentos: cantidad,
-                        horaInicio: horaInicio,
-                        horaIntermedio: horaIntermedia,
-                        horaFin: horaFin,
-                      );
+                        if (newTime != null &&
+                            newTime != selectedHoraIntermedia) {
+                          setState(() {
+                            selectedHoraIntermedia = newTime;
+                            isHoraIIntermediaSelected = true;
+                          });
+                        }
+                      },
+                      label: Text(
+                        isHoraIIntermediaSelected
+                            ? 'Hora seleccionada: ${selectedHoraIntermedia!.format(context)}'
+                            : 'Ingrese hora intermedia',
+                      ),
+                      icon: const Icon(Icons.date_range),
+                    ),
+                    const SizedBox(
+                      height: 15.0,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () async {
+                        final newTime = await showTimePicker(
+                          context: context,
+                          initialTime: selectedHoraFin ?? TimeOfDay.now(),
+                        );
 
-                      context
-                          .read<MedicineBloc>()
-                          .add(CreatedMedicine(medicine: medicine));
+                        if (newTime != null && newTime != selectedHoraFin) {
+                          setState(() {
+                            selectedHoraFin = newTime;
+                            isHoraFinSelected = true;
+                          });
+                        }
+                      },
+                      label: Text(
+                        isHoraFinSelected
+                            ? 'Hora seleccionada: ${selectedHoraFin!.format(context)}'
+                            : 'Ingrese hora final',
+                      ),
+                      icon: const Icon(Icons.date_range),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        final nombre = widget.nombreController.text.trim();
+                        final cantidad = widget.cantidadController.text.trim();
 
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Guardar Medicina'),
-                  )
-                ],
+                        String horaInicio = selectedHoraInicio != null
+                            ? selectedHoraInicio!.format(context)
+                            : "";
+                        String horaIntermedia = selectedHoraIntermedia != null
+                            ? selectedHoraIntermedia!.format(context)
+                            : "";
+                        String horaFin = selectedHoraFin != null
+                            ? selectedHoraFin!.format(context)
+                            : "";
+
+                        MedicineModel medicine = MedicineModel(
+                          id: "",
+                          nombre: nombre,
+                          cantidadMedicamentos: cantidad,
+                          horaInicio: horaInicio,
+                          horaIntermedio: horaIntermedia,
+                          horaFin: horaFin,
+                        );
+                        if (_formKey.currentState!.validate()) {
+                          context
+                              .read<MedicineBloc>()
+                              .add(CreatedMedicine(medicine: medicine));
+
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: const Text('Guardar Medicina'),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
