@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
 
 // Define input validation errors
-enum DniProfileError { empty, length }
+enum DniProfileError { empty, length, nonNumeric }
 
 // Extend FormzInput and provide the input type and error type.
 class DniProfile extends FormzInput<String, DniProfileError> {
@@ -17,6 +17,7 @@ class DniProfile extends FormzInput<String, DniProfileError> {
 
     if (displayError == DniProfileError.empty) return 'El campo es requerido';
     if (displayError == DniProfileError.length) return 'Minimo 8 caracteres';
+    if (displayError == DniProfileError.nonNumeric) return 'Solo se permiten números';
 
     return null;
   }
@@ -26,6 +27,7 @@ class DniProfile extends FormzInput<String, DniProfileError> {
   DniProfileError? validator(String value) {
     if (value.isEmpty || value.trim().isEmpty) return DniProfileError.empty;
     if (value.length != 8) return DniProfileError.length;
+    if (!RegExp(r'^[0-9]+$').hasMatch(value)) return DniProfileError.nonNumeric;
 
     return null;
   }
