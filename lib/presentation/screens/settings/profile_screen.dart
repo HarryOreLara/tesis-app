@@ -13,6 +13,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final _formKey = GlobalKey<FormState>();
   final nombreController = TextEditingController();
   final apellidosController = TextEditingController();
   final edadController = TextEditingController();
@@ -61,6 +62,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
         return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.blue,
+              title: const Text(
+                "Mi Perfil",
+                style: TextStyle(
+                    fontFamily: 'Gotham-Book',
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              centerTitle: true,
               leading: IconButton(
                   color: Colors.white,
                   onPressed: () {
@@ -78,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.blue,
-                      Color.fromARGB(255, 127, 15, 219)
+                      Color.fromARGB(255, 230, 199, 255)
                     ], // Colores del degradado
                   ),
                 ),
@@ -142,13 +151,31 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       height: 40,
                     ),
                     Form(
+                      key: _formKey,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         child: Column(
                           children: [
                             TextFormField(
                               controller: nombreController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (value.length > 20) {
+                                  return 'Su nombre es muy grande';
+                                }
+
+                                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                                  return 'Su nombre contiene un numero, eliminelo';
+                                }
+                                return null; // La validación pasó
+                              },
                               decoration: InputDecoration(
+                                  errorStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0),
                                   hintText: "Ingrese su nombre",
                                   filled:
                                       true, // Indica que el fondo debe ser llenado
@@ -164,6 +191,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             TextFormField(
                               controller: apellidosController,
                               decoration: InputDecoration(
+                                  errorStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0),
                                   hintText: "Ingrese sus apellidos",
                                   filled:
                                       true, // Indica que el fondo debe ser llenado
@@ -172,13 +203,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   border: OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.circular(20.0))),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (value.length > 20) {
+                                  return 'Su apellido es muy grande';
+                                }
+
+                                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                                  return 'Su apellido contiene un numero, eliminelo';
+                                }
+                                return null; // La validación pasó
+                              },
                             ),
                             const SizedBox(
                               height: 10.0,
                             ),
                             TextFormField(
                               controller: edadController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (value.length != 2 ||
+                                    !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return 'Ingrese una edad válida';
+                                }
+                                return null; // La validación pasó
+                              },
                               decoration: InputDecoration(
+                                  errorStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0),
                                   hintText: "Ingrese su edad",
                                   filled:
                                       true, // Indica que el fondo debe ser llenado
@@ -193,7 +251,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             TextFormField(
                               controller: generoController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (value.length > 9 || value.length < 8) {
+                                  return 'Error al escribir el genero';
+                                }
+
+                                if (!RegExp(r'^[a-zA-Z]+$').hasMatch(value)) {
+                                  return 'El genero contiene un numero, eliminelo';
+                                }
+                                return null; // La validación pasó
+                              },
                               decoration: InputDecoration(
+                                  errorStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0),
                                   hintText: "Ingrese su genero",
                                   filled:
                                       true, // Indica que el fondo debe ser llenado
@@ -208,7 +283,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             TextFormField(
                               controller: dniController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (value.length != 8) {
+                                  return 'Este campo es obligatorio';
+                                }
+                                if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                                  return 'Ingrese solo números';
+                                }
+                                return null; // La validación pasó
+                              },
                               decoration: InputDecoration(
+                                  errorStyle: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 13.0),
                                   hintText: "Ingrese su DNI",
                                   filled:
                                       true, // Indica que el fondo debe ser llenado
@@ -225,20 +316,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.blue),
                               onPressed: () {
-                                context.read<ProfileBloc>().add(SaveProfile(
-                                      nombre: nombreController.text.trim(),
-                                      apellidos:
-                                          apellidosController.text.trim(),
-                                      edad: edadController.text.trim(),
-                                      genero: generoController.text.trim(),
-                                      dni: dniController.text.trim(),
-                                    ));
-                                Future.delayed(
-                                  const Duration(seconds: 5),
-                                  () {
-                                    context.pop(context);
-                                  },
-                                );
+                                if (_formKey.currentState!.validate()) {
+                                  context.read<ProfileBloc>().add(SaveProfile(
+                                        nombre: nombreController.text.trim(),
+                                        apellidos:
+                                            apellidosController.text.trim(),
+                                        edad: edadController.text.trim(),
+                                        genero: generoController.text.trim(),
+                                        dni: dniController.text.trim(),
+                                      ));
+                                  Future.delayed(
+                                    const Duration(seconds: 5),
+                                    () {
+                                      context.pop(context);
+                                    },
+                                  );
+                                }
                               },
                               child: const Text(
                                 'Guardar Datos',
