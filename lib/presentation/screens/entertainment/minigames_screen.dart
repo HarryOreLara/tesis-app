@@ -45,6 +45,8 @@ class _GameListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: ListView.builder(
         itemCount: games.length,
@@ -55,25 +57,66 @@ class _GameListScreen extends StatelessWidget {
                   '/minigames/${games[index]['ruta']}'); //CRUCIAL NO BORRAR NUNCA
             },
             child: Card(
-              elevation: 4,
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ListTile(
-                title: Text(
-                  games[index]['title']!,
-                  style: TextStyle(
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue.shade800),
-                ),
-                subtitle: Text(
-                  games[index]['subtitle']!,
-                  style: const TextStyle(fontSize: 18),
-                ),
-              ),
-            ),
+                elevation: 4,
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      image: const DecorationImage(
+                          image: NetworkImage(
+                              'https://ak.picdn.net/shutterstock/videos/1057714930/thumb/1.jpg'),
+                          fit: BoxFit.fill)
+                      // gradient: const LinearGradient(
+                      //     colors: [Colors.blueAccent, Colors.blue])
+
+                      ),
+                  height: size.height * 0.15,
+                  child: Center(
+                      child: Text(
+                    games[index]['title']!,
+                    style: TextStyle(
+                        fontFamily: 'Gotham-Book',
+                        fontSize: 35.0,
+                        color: Colors.white),
+                  )),
+                )),
           );
         },
       ),
     );
   }
+
+  //   @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: ListView.builder(
+  //       itemCount: games.length,
+  //       itemBuilder: (BuildContext context, int index) {
+  //         return InkWell(
+  //           onTap: () {
+  //             context.push(
+  //                 '/minigames/${games[index]['ruta']}'); //CRUCIAL NO BORRAR NUNCA
+  //           },
+  //           child: Card(
+  //             elevation: 4,
+  //             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  //             child: ListTile(
+  //               title: Text(
+  //                 games[index]['title']!,
+  //                 style: TextStyle(
+  //                     fontSize: 25,
+  //                     fontWeight: FontWeight.bold,
+  //                     color: Colors.blue.shade800),
+  //               ),
+  //               subtitle: Text(
+  //                 games[index]['subtitle']!,
+  //                 style: const TextStyle(fontSize: 18),
+  //               ),
+  //             ),
+  //           ),
+  //         );
+  //       },
+  //     ),
+  //   );
+  // }
 }
