@@ -62,6 +62,14 @@ final appRouter = GoRouter(
               path: 'refran',
               builder: (context, state) => const RefranesMinigameScreen(),
             ),
+            GoRoute(
+              path: 'tresenraya',
+              builder: (context, state) => const TresEnRayaScreen(),
+            ),
+            GoRoute(
+              path: 'buscaminas',
+              builder: (context, state) => const BuscaminasScreen(),
+            ),
           ]),
       GoRoute(
           path: '/music',

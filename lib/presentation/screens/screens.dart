@@ -1,3 +1,6 @@
+export 'package:tesis_app/presentation/screens/entertainment/minigames_list/buscaminas.dart';
+export 'package:tesis_app/presentation/screens/entertainment/minigames_list/tres_en_raya.dart';
+
 export 'package:tesis_app/presentation/screens/medicines/recomendado_screen.dart';
 
 export 'package:tesis_app/presentation/screens/chat/conversaciones_screen.dart';
