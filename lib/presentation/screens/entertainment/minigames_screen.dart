@@ -25,18 +25,21 @@ class MinigamesScreen extends StatelessWidget {
 
 class _GameListScreen extends StatelessWidget {
   final List<Map<String, String>> games = [
-    {'title': 'Pareja', 'subtitle': 'Un juego clasico de encontrar la pareja', 'ruta':'Pareja'},
     {
-      'title': 'Rompecabeza',
-      'subtitle': 'Arma el rompecabezas antes de complear el tiempo', 'ruta':'Rompecabeza'
+      'title': 'Pareja',
+      'subtitle': 'Un juego clasico de encontrar la pareja',
+      'ruta': 'Pareja'
     },
-    {'title': 'Busqueda', 'subtitle': 'Busca cosas que te sugiere la app', 'ruta':'Busqueda'},
-    {'title': 'Refran', 'subtitle': 'Completa el refran', 'ruta':'Refran'},
     {
       'title': 'Tres en Raya',
-      'subtitle': 'Juega el fabuloso juego de tres en raya', 'ruta':'tresenraya'
+      'subtitle': 'Juega el fabuloso juego de tres en raya',
+      'ruta': 'tresenraya'
     },
-    {'title': 'Buscaminas', 'subtitle': 'Acierta los casilleros', 'ruta':'buscaminas'},
+    {
+      'title': 'Buscaminas',
+      'subtitle': 'Acierta los casilleros',
+      'ruta': 'buscaminas'
+    },
   ];
   //refran
 

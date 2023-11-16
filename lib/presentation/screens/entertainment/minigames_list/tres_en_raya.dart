@@ -57,7 +57,7 @@ class _TresEnRayaScreenState extends State<TresEnRayaScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Es $lastValue turno".toUpperCase(),
+            "Turno: $lastValue".toUpperCase(),
             style: const TextStyle(color: Colors.white, fontSize: 58),
           ),
           const SizedBox(
