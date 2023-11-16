@@ -1,6 +1,8 @@
 # tesis_app
 
-A new Flutter project.
+Este proyecto es una recopilacion de informacion durante meses, se refactorizo muchas veces el codigo contal de lograr una buena funcionalidad, y aun falta refactorizar mas.
+
+Este codigo es un proyecto de Tesis.
 
 ## Getting Started
 
