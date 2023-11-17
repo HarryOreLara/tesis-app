@@ -74,7 +74,7 @@ class _GameListScreen extends StatelessWidget {
                   child: Center(
                       child: Text(
                     games[index]['title']!,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontFamily: 'Gotham-Book',
                         fontSize: 35.0,
                         color: Colors.white),

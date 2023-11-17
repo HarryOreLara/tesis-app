@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tesis_app/domain/entities/entertainment/jokes_entitie.dart';
 import 'package:tesis_app/domain/entities/votos_entitie.dart';
+import 'package:tesis_app/infraestructure/auth/auth_service.dart';
+import 'package:tesis_app/infraestructure/datasources/profile/profile_datasource_infra.dart';
 
 class JokesScreen extends StatelessWidget {
   static const String name = 'jokes_screen';
@@ -19,7 +21,7 @@ class JokesScreen extends StatelessWidget {
             onPressed: () {
               context.go('/entertainment');
             },
-            icon:const Icon(Icons.arrow_back_ios)),
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const _ChistesScreen(),
     );
@@ -37,6 +39,7 @@ class __ChistesScreenState extends State<_ChistesScreen> {
   int currentIndex = 0;
   late Future<Joke> jokeFromApi;
   String currentJokeId = '';
+  String respuestaJoke = '';
 
   int generateRandomNumber(int min, int max) {
     final random = Random();
@@ -117,6 +120,7 @@ class __ChistesScreenState extends State<_ChistesScreen> {
 
                 final joke = snapshot.data!;
                 currentJokeId = joke.id;
+                respuestaJoke = joke.contenido;
                 return Text(
                   joke.contenido,
                   style: const TextStyle(fontSize: 35),
@@ -131,6 +135,7 @@ class __ChistesScreenState extends State<_ChistesScreen> {
                 ElevatedButton(
                   onPressed: () {
                     cargar('likes', currentJokeId);
+                    responderJoke(currentJokeId, respuestaJoke, 'likes');
                     cargarNuevoChiste();
                   },
                   child: const Text('Like'),
@@ -139,6 +144,8 @@ class __ChistesScreenState extends State<_ChistesScreen> {
                 ElevatedButton(
                   onPressed: () {
                     cargar('dislikes', currentJokeId);
+                    responderJoke(currentJokeId, respuestaJoke, 'dislikes');
+
                     cargarNuevoChiste();
                   },
                   child: const Text('Dislike'),
@@ -156,4 +163,32 @@ void cargar(String seleccion, String id) async {
   final dio = Dio();
   final url = 'https://tesis-xz3b.onrender.com/voto/$seleccion/$id';
   await dio.post(url);
+}
+
+void responderJoke(String idJoke, String contenido, String respuesta) async {
+  final authService = AuthService();
+  final dio = Dio(BaseOptions(
+      baseUrl: 'https://tesis-xz3b.onrender.com',
+      headers: {'Content-Type': 'application/json'}));
+
+  ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
+
+  final idUsuarioNull = await authService.getUserId();
+  final idUsuario = idUsuarioNull ?? '';
+  final idEmisor = await profileDatasourceInfra.getOnePersona(idUsuario);
+
+  final jokePuntuado = {
+    "nombrePersona": idEmisor.nombre,
+    "apellidoPersona": idEmisor.apellidos,
+    "jokePuntuado": [
+      {
+        "idJoke": idJoke,
+        "contenido": contenido,
+        "respuesta": respuesta,
+      }
+    ],
+    "createdAt": DateTime.now().toString(),
+  };
+
+  await dio.post('/joke/resJoke/${idEmisor.id}', data: jokePuntuado);
 }
