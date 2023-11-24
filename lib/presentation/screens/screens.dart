@@ -1,3 +1,5 @@
+export 'package:tesis_app/presentation/screens/cuestionario/estado_animo_cuestionario.dart';
+
 export 'package:tesis_app/presentation/screens/entertainment/minigames_list/buscaminas.dart';
 export 'package:tesis_app/presentation/screens/entertainment/minigames_list/tres_en_raya.dart';
 

@@ -23,78 +23,117 @@ class CuestionarioScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 25.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Text(
-                "Ayudanos a conocer mas de ti",
-                style: GoogleFonts.montserrat(fontSize: 40.0),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  "Ayudanos a conocer mas de ti",
+                  style: GoogleFonts.montserrat(fontSize: 40.0),
+                ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                context.go('/cuestionario/soledad');
-              },
-              child: Card(
-                child: SizedBox(
-                  height: size.height * 0.2,
-                  width: size.width * 1,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(
-                          Icons.person,
-                          color: Colors.red,
-                          size: 38.0,
-                        ),
-                        Text(
-                          "Cuestionario Uno",
-                          style: GoogleFonts.montserrat(fontSize: 25.0),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          size: 38.0,
-                        ),
-                      ],
+              GestureDetector(
+                onTap: () {
+                  context.go('/cuestionario/soledad');
+                },
+                child: Card(
+                  child: SizedBox(
+                    height: size.height * 0.2,
+                    width: size.width * 1,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Icon(
+                            Icons.person,
+                            color: Colors.red,
+                            size: 38.0,
+                          ),
+                          Text(
+                            "Cuestionario Uno",
+                            style: GoogleFonts.montserrat(fontSize: 25.0),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_right_outlined,
+                            size: 38.0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                context.go('/cuestionario/depresion');
-              },
-              child: Card(
-                child: SizedBox(
-                  height: size.height * 0.2,
-                  width: size.width * 1,
-                  child: Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(
-                          Icons.person_2_rounded,
-                          color: Colors.green,
-                          size: 38.0,
-                        ),
-                        Text(
-                          "Cuestionario Dos",
-                          style: GoogleFonts.montserrat(fontSize: 25.0),
-                        ),
-                        const Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          size: 38.0,
-                        ),
-                      ],
+              GestureDetector(
+                onTap: () {
+                  context.go('/cuestionario/depresion');
+                },
+                child: Card(
+                  child: SizedBox(
+                    height: size.height * 0.2,
+                    width: size.width * 1,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Icon(
+                            Icons.person_2_rounded,
+                            color: Colors.green,
+                            size: 38.0,
+                          ),
+                          Text(
+                            "Cuestionario Dos",
+                            style: GoogleFonts.montserrat(fontSize: 25.0),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_right_outlined,
+                            size: 38.0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            )
-          ],
+              Center(
+                child: Text(
+                  "Ayudanos a saber como te sientes",
+                  style: GoogleFonts.montserrat(fontSize: 40.0),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  context.go('/cuestionario/animo');
+                },
+                child: Card(
+                  child: SizedBox(
+                    height: size.height * 0.2,
+                    width: size.width * 1,
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Icon(
+                            Icons.person_2_rounded,
+                            color: Colors.green,
+                            size: 38.0,
+                          ),
+                          Text(
+                            "Estado de animo",
+                            style: GoogleFonts.montserrat(fontSize: 25.0),
+                          ),
+                          const Icon(
+                            Icons.keyboard_arrow_right_outlined,
+                            size: 38.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

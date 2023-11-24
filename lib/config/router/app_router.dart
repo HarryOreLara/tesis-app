@@ -149,6 +149,12 @@ final appRouter = GoRouter(
                 return const DepresionCuestionarioScreen();
               },
             ),
+            GoRoute(
+              path: 'animo',
+              builder: (context, state) {
+                return const EstadoAnimoScreen();
+              },
+            ),
           ]),
       GoRoute(
         path: '/movies',
