@@ -21,6 +21,9 @@ class _EstadoAnimoScreenState extends State<EstadoAnimoScreen> {
             },
             icon: const Icon(Icons.arrow_back_ios_new)),
       ),
+      body: Center(
+        child: Text("Ups!...Ocurrio un error, contactese con el administrador"),
+      ),
     );
   }
 }
