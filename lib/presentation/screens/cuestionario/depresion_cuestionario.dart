@@ -47,7 +47,7 @@ class _BodyScreenState extends State<BodyScreen> {
 
   Future<Depresion> readOneDepresion() async {
     final dio = Dio();
-    final url = 'https://tesis-xz3b.onrender.com/assistent/getOneDepre/$i';
+    final url = 'https://tesis-zdco.onrender.com/assistent/getOneDepre/$i';
     final response = await dio.get(url);
     //final res = DepresionResponse.fromJson(response.data);
     final jsonData = response.data as Map<String, dynamic>;

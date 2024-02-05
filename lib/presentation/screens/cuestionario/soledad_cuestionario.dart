@@ -48,7 +48,7 @@ class _BodyCuestionarioState extends State<BodyCuestionario> {
 
   Future<Soledad> readOneSoledad() async {
     final dio = Dio();
-    final url = 'https://tesis-xz3b.onrender.com/assistent/getOneSole/$i';
+    final url = 'https://tesis-zdco.onrender.com/assistent/getOneSole/$i';
     final response = await dio.get(url);
     final jsonData = response.data as Map<String, dynamic>;
     final soleList = jsonData["soledad"] as List<dynamic>;
