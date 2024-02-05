@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/config/errors/exception.dart';
 import 'package:tesis_app/domain/datasources/messages/chat_datasource_domain.dart';
 import 'package:tesis_app/domain/entities/profile/profile_entitie.dart';
@@ -13,7 +14,7 @@ class ChatDatasourceInfra extends ChatDatasourceDomain {
   AuthService authService = AuthService();
   final dio = Dio(
     BaseOptions(
-        baseUrl: 'https://tesis-xz3b.onrender.com',
+        baseUrl: Enviroment.apiUrl,
         headers: {'Content-Type': 'application/json'}),
   );
 

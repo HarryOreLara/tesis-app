@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/domain/datasources/messages/conversaciones_datasource_domain.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
 import 'package:tesis_app/infraestructure/mappers/conversaciones_mapper.dart';
@@ -9,7 +10,7 @@ class ConversacionesDatasourceInfra extends ConversacionesDatasourceDomain {
   AuthService authService = AuthService();
 
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://tesis-xz3b.onrender.com',
+      baseUrl: Enviroment.apiUrl,
       headers: {'Content-Type': 'application/json', 'x-auth-token': 'token'}));
 
   @override

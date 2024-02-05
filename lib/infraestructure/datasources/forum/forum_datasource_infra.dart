@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/config/errors/exception.dart';
 import 'package:tesis_app/domain/datasources/forum/forum_datasource_domain.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
@@ -15,7 +16,7 @@ class ForumDatasourceInfra extends ForumDatasourceDomain {
 
   Dio nuevo(String token) {
     return Dio(BaseOptions(
-        baseUrl: 'https://tesis-xz3b.onrender.com',
+        baseUrl: Enviroment.apiUrl,
         headers: {'Content-Type': 'application/json', 'x-auth-token': token}));
   }
 

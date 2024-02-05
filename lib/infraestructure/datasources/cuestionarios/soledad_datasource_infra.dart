@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/domain/datasources/cuestionarios/soledad_datasource_daomain.dart';
 import 'package:tesis_app/domain/entities/cuestionario/preguntas_puntuadas_soledad_entitite.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
@@ -9,7 +10,7 @@ class SoledadDatasourceInfra extends SoledadDatasourceDomain {
   ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
 
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://tesis-xz3b.onrender.com',
+      baseUrl: Enviroment.apiUrl,
       headers: {'Content-Type': 'application/json'}));
 
   @override

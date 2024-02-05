@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/domain/datasources/cuestionarios/depresion_datasource_domain.dart';
 import 'package:tesis_app/domain/entities/cuestionario/preguntas_puntuadas_depresion_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
@@ -10,7 +11,7 @@ class DepresionDatasourceInfra extends DepresionDatasourceDomain {
   ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
 
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://tesis-xz3b.onrender.com',
+      baseUrl: Enviroment.apiUrl,
       headers: {'Content-Type': 'application/json'}));
   @override
   Future<void> sendRespuestaDepresion(

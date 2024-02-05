@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:tesis_app/config/constants/enviroment.dart';
 import 'package:tesis_app/domain/datasources/auth/register_datasourcer_domain.dart';
 import 'package:tesis_app/domain/entities/auth/usuario_entitie.dart';
 import 'package:tesis_app/infraestructure/auth/auth_service.dart';
@@ -11,7 +12,7 @@ class RegisterDatasourceInfra extends RegisterDatasourceDomain {
   ProfileRepositoryInfra profileRepositoryInfra =
       ProfileRepositoryInfra(ProfileDatasourceInfra());
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://tesis-xz3b.onrender.com',
+      baseUrl: Enviroment.apiUrl,
       headers: {'Content-Type': 'application/json'}));
 
   @override
