@@ -99,8 +99,7 @@ flutter:
   assets:
     - .env
     - assets/images/
-    - assets/music/images/
-    - assets/music/url/
+
 
 
 
