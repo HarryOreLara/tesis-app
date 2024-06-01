@@ -71,16 +71,7 @@ final appRouter = GoRouter(
               builder: (context, state) => const BuscaminasScreen(),
             ),
           ]),
-      GoRoute(
-          path: '/music',
-          name: MusicScreen.name,
-          builder: (context, state) => const MusicScreen(),
-          routes: [
-            GoRoute(
-              path: 'onemusic',
-              builder: (context, state) => const OneMusicScreen(),
-            )
-          ]),
+
       GoRoute(
         path: '/forum',
         name: ForumScreen.name,
@@ -97,11 +88,7 @@ final appRouter = GoRouter(
           );
         },
       ),
-      GoRoute(
-        path: '/videos',
-        name: VideosScreen.name,
-        builder: (context, state) => const VideosScreen(),
-      ),
+
       GoRoute(
         path: '/medicines',
         name: MedicinesScreen.name,
