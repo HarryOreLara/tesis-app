@@ -119,7 +119,7 @@ class CuestionarioScreen extends StatelessWidget {
                             size: 38.0,
                           ),
                           Text(
-                            "Estado de animo",
+                            "Estado de Ánimo",
                             style: GoogleFonts.montserrat(fontSize: 25.0),
                           ),
                           const Icon(

@@ -143,9 +143,4 @@ final appRouter = GoRouter(
               },
             ),
           ]),
-      GoRoute(
-        path: '/movies',
-        name: MoviesScreen.name,
-        builder: (context, state) => const MoviesScreen(),
-      ),
     ]);
