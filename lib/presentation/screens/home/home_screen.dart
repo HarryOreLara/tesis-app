@@ -88,8 +88,9 @@ class _HomeInterfaceState extends State<HomeInterface> {
                         context.push('/profile');
                       },
                       icon: const CircleAvatar(
+                        
                         backgroundImage:
-                            AssetImage('assets/images/perfil.webp'),
+                            AssetImage('assets/images/perfil.png'),
                         radius: 40,
                       ))
                 ],
@@ -112,32 +113,32 @@ class _GridDashboard extends StatelessWidget {
       title: 'Mensajes',
       subtitle: 'Interactua con las personas',
       event: '/conversacion',
-      img: 'assets/images/message.jpg');
+      img: 'assets/images/message.png');
   Home home2 = Home(
       title: 'Medicamentos',
       subtitle: 'Programa tus tiempos adecuados',
       event: '/medicines',
-      img: 'assets/images/medicines.jpg');
+      img: 'assets/images/medicines.png');
   Home home3 = Home(
       title: 'Entrentemiento',
       subtitle: 'Diviertete con multiples opciones',
       event: '/entertainment',
-      img: 'assets/images/entertainment.jpg');
+      img: 'assets/images/entertainment.png');
   Home home4 = Home(
       title: 'Foro',
       subtitle: 'Interactua en grupos de discucion',
       event: '/forum',
-      img: 'assets/images/forum.jpg');
+      img: 'assets/images/forum.png');
   Home home5 = Home(
       title: 'Asistente',
       subtitle: 'Un asistente que te ayudara en tu dia a dia',
       event: '/assistant',
-      img: 'assets/images/assistant.jpg');
+      img: 'assets/images/assistant.png');
   Home home6 = Home(
       title: 'Cuestionarios',
       subtitle: 'Preguntas que nos ayudara a conocerte',
       event: '/cuestionario',
-      img: 'assets/images/cuestionario.jpg');
+      img: 'assets/images/cuestionario.png');
 
   @override
   Widget build(BuildContext context) {

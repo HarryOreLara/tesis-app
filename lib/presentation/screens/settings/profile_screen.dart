@@ -114,7 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     const CircleAvatar(
                                       radius: 100,
                                       foregroundImage: AssetImage(
-                                          'assets/images/perfil.webp'),
+                                          'assets/images/perfil.png'),
                                     ),
                                     Align(
                                       alignment: Alignment.bottomRight,
@@ -234,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
                                   return 'Ingrese solo números';
                                 }
-                                
+
                                 return null; // La validación pasó
                               },
                               decoration: InputDecoration(
