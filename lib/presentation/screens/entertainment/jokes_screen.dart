@@ -49,7 +49,7 @@ class __ChistesScreenState extends State<_ChistesScreen> {
   Future<Joke> probandoGet() async {
     final dio = Dio();
     final numera = generateRandomNumber(1, 30);
-    final url = 'https://tesis-xz3b.onrender.com/joke/getOneNum/$numera';
+    final url = 'https://tesis-zdco.onrender.com/joke/getOneNum/$numera';
     final response = await dio.get(url);
 
     final jsonData = response.data as Map<String, dynamic>;
@@ -161,14 +161,15 @@ class __ChistesScreenState extends State<_ChistesScreen> {
 
 void cargar(String seleccion, String id) async {
   final dio = Dio();
-  final url = 'https://tesis-xz3b.onrender.com/voto/$seleccion/$id';
+  // final url = 'https://tesis-xz3b.onrender.com/voto/$seleccion/$id';
+  final url = 'https://tesis-zdco.onrender.com/voto/$seleccion/$id';
   await dio.post(url);
 }
 
 void responderJoke(String idJoke, String contenido, String respuesta) async {
   final authService = AuthService();
   final dio = Dio(BaseOptions(
-      baseUrl: 'https://tesis-xz3b.onrender.com',
+      baseUrl: 'https://tesis-zdco.onrender.com',
       headers: {'Content-Type': 'application/json'}));
 
   ProfileDatasourceInfra profileDatasourceInfra = ProfileDatasourceInfra();
